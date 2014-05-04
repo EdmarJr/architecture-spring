@@ -5,28 +5,18 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class MainController {
-
+public class MainController { 
 	
-	@RequestMapping("/inicio")
-	public String hello(String name,
-			Model model) {
-		return "helloworld";
-	}
-	
-	@RequestMapping(value = { "/", "/welcome**" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/", "/inicio**" }, method = RequestMethod.GET)
 	public ModelAndView defaultPage() {
 	  ModelAndView model = new ModelAndView();
-	  model.addObject("title", "Spring Security Login Form - Database Authentication");
-	  model.addObject("message", "This is default page!");
-	  model.setViewName("index");
+	  model.setViewName("inicio");
 	  return model;
  
 	}
