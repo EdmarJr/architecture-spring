@@ -7,6 +7,9 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.springframework.context.annotation.Bean;
 
+import br.com.cheklab.web.entity.Usuario;
+import br.com.cheklab.web.entity.PermissoesUsuario;
+
 public class HibernateUtil {
 
 	private static SessionFactory sessionFactory;
@@ -15,7 +18,7 @@ public class HibernateUtil {
 	private static SessionFactory configureSessionFactory()
 			throws HibernateException {
 		@SuppressWarnings("rawtypes")
-		Class[] annotadeClass = {};
+		Class[] annotadeClass = {PermissoesUsuario.class, Usuario.class};
 		
 		
 		Configuration configuration = new Configuration();

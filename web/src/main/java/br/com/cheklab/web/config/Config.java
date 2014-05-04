@@ -13,7 +13,7 @@ import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 @Configuration
-@ComponentScan("br.com.cheklab.web")
+@ComponentScan("br.com.cheklab.web.*")
 @EnableWebMvc
 @Import({SecurityConfig.class})
 public class Config extends WebMvcConfigurerAdapter {

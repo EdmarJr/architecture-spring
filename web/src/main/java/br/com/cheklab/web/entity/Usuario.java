@@ -1,23 +1,28 @@
 package br.com.cheklab.web.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "usuario")
 public class Usuario {
 	@Id
-	@Column(name="email")
+	@Column(name = "email")
 	private String email;
-	
-	@Column(name="senha")
+
+	@Column(name = "senha")
 	private String senha;
-	
-	@Column(name="ativo")
+
+	@Column(name = "ativo")
 	private Boolean ativo;
-	
+	@OneToMany(mappedBy = "usuario")
+	private List<PermissoesUsuario> roles;
+
 	public String getEmail() {
 		return email;
 	}
@@ -41,8 +46,13 @@ public class Usuario {
 	public void setAtivo(Boolean ativo) {
 		this.ativo = ativo;
 	}
-	
-	
-	
-	
+
+	public List<PermissoesUsuario> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<PermissoesUsuario> roles) {
+		this.roles = roles;
+	}
+
 }
