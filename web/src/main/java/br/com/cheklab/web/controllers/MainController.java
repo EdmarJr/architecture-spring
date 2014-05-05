@@ -16,9 +16,8 @@ public class MainController {
 	@RequestMapping(value = { "/", "/inicio**" }, method = RequestMethod.GET)
 	public ModelAndView defaultPage() {
 	  ModelAndView model = new ModelAndView();
-	  model.setViewName("inicio");
+	  model.setViewName("index");
 	  return model;
- 
 	}
  
 	@RequestMapping(value = "/admin**", method = RequestMethod.GET)

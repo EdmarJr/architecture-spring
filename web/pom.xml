@@ -9,6 +9,13 @@
 	<name>Servlet 3 Web Application</name>
 	<url>http://maven.apache.org</url>
 
+	<repositories>
+		<repository>
+			<id>my-alternate-repository</id>
+			<url>http://myrepo.net/repo</url>
+		</repository>
+	</repositories>
+
 	<properties>
 		<spring.version>4.0.3.RELEASE</spring.version>
 		<spring.security.version>3.2.3.RELEASE</spring.security.version>
@@ -16,7 +23,9 @@
 		<java-version>1.7</java-version>
 	</properties>
 
+
 	<dependencies>
+
 		<!-- Servlet 3.0 API -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -30,6 +39,23 @@
 			<artifactId>hibernate-core</artifactId>
 			<version>4.3.5.Final</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.apache.tiles</groupId>
+			<artifactId>tiles-extras</artifactId>
+			<version>3.0.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.7</version>
+		</dependency>
+
+
+
+
+
 
 		<dependency>
 			<groupId>jstl</groupId>
