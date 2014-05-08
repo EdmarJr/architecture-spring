@@ -8,7 +8,10 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 import br.com.cheklab.web.config.Config;
 import br.com.cheklab.web.config.HibernateListener;
 
-public class SpringMvcInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+import com.opensymphony.sitemesh.webapp.SiteMeshFilter;
+
+public class SpringMvcInitializer extends
+		AbstractAnnotationConfigDispatcherServletInitializer {
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
@@ -24,14 +27,14 @@ public class SpringMvcInitializer extends AbstractAnnotationConfigDispatcherServ
 	protected String[] getServletMappings() {
 		return new String[] { "/" };
 	}
-	
+
 	@Override
 	public void onStartup(ServletContext servletContext)
 			throws ServletException {
 		super.onStartup(servletContext);
 		servletContext.addListener(HibernateListener.class);
+		servletContext.addFilter("sitemesh", SiteMeshFilter.class)
+				.addMappingForUrlPatterns(null, false, "/*");
 	}
-	
-	
-	
+
 }
