@@ -7,8 +7,11 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.springframework.context.annotation.Bean;
 
-import br.com.cheklab.web.entity.Usuario;
+import br.com.cheklab.web.entity.Categoria;
+import br.com.cheklab.web.entity.Imagem;
 import br.com.cheklab.web.entity.PermissoesUsuario;
+import br.com.cheklab.web.entity.Produto;
+import br.com.cheklab.web.entity.Usuario;
 
 public class HibernateUtil {
 
@@ -18,7 +21,7 @@ public class HibernateUtil {
 	private static SessionFactory configureSessionFactory()
 			throws HibernateException {
 		@SuppressWarnings("rawtypes")
-		Class[] annotadeClass = {PermissoesUsuario.class, Usuario.class};
+		Class[] annotadeClass = {PermissoesUsuario.class, Usuario.class, Categoria.class, Produto.class, Imagem.class};
 		
 		
 		Configuration configuration = new Configuration();

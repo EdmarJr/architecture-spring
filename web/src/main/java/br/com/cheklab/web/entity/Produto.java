@@ -14,7 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "permissoes_usuario")
+@Table(name = "produto")
 public class Produto {
 
 	@Id
@@ -32,8 +32,7 @@ public class Produto {
 	@Column(name = "codigo_identificacao")
 	private String codigoIdentificação;
 
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(referencedColumnName = "id_produto")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="produto")
 	private List<Imagem> imagens;
 
 	@Column(name = "descricao")

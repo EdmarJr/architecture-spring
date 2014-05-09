@@ -44,10 +44,10 @@
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
-					<li class="active"><a href="index.html">HOME</a></li>
-					<li><a href="about.html">ABOUT</a></li>
-					<li><a href="services.html">SERVICES</a></li>
-					<li><a href="works.html">WORKS</a></li>
+					<li class="active"><a href="inicio">INÍCIO</a></li>
+					<li><a href="sobre">SOBRE</a></li>
+					<li><a href="produtos">PRODUTOS</a></li>
+					<li><a href="services.html">FALE CONOSCO</a></li>
 					<li><a data-toggle="modal" data-target="#myModal"
 						href="#myModal"><i class="fa fa-envelope-o"></i></a></li>
 				</ul>
