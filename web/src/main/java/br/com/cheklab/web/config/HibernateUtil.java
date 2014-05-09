@@ -12,6 +12,9 @@ import br.com.cheklab.web.entity.Imagem;
 import br.com.cheklab.web.entity.PermissoesUsuario;
 import br.com.cheklab.web.entity.Produto;
 import br.com.cheklab.web.entity.Usuario;
+import br.com.cheklab.web.entity.configuracoes.Configuracao;
+import br.com.cheklab.web.entity.configuracoes.ConfiguracaoPaginaInicial;
+import br.com.cheklab.web.entity.configuracoes.ConfiguracaoPaginaProdutos;
 
 public class HibernateUtil {
 
@@ -21,23 +24,25 @@ public class HibernateUtil {
 	private static SessionFactory configureSessionFactory()
 			throws HibernateException {
 		@SuppressWarnings("rawtypes")
-		Class[] annotadeClass = {PermissoesUsuario.class, Usuario.class, Categoria.class, Produto.class, Imagem.class};
-		
-		
+		Class[] annotadeClass = { PermissoesUsuario.class, Usuario.class,
+				Categoria.class, Produto.class, Imagem.class,
+				Configuracao.class, ConfiguracaoPaginaInicial.class,
+				ConfiguracaoPaginaProdutos.class };
+
 		Configuration configuration = new Configuration();
 		configuration.configure("br/com/cheklab/web/config/hibernate.cfg.xml");
-		
-		for(@SuppressWarnings("rawtypes") Class classe : annotadeClass) {
+
+		for (@SuppressWarnings("rawtypes")
+		Class classe : annotadeClass) {
 			configuration.addAnnotatedClass(classe);
 		}
-		
-		
+
 		serviceRegistry = new StandardServiceRegistryBuilder().applySettings(
 				configuration.getProperties()).build();
 		sessionFactory = configuration.buildSessionFactory(serviceRegistry);
 		return sessionFactory;
 	}
-	
+
 	@Bean
 	public static SessionFactory getSessionFactory() {
 		return configureSessionFactory();
