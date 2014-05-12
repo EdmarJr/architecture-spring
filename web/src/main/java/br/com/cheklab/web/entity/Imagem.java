@@ -32,6 +32,10 @@ public class Imagem {
 	@ManyToOne
 	@JoinColumn(name="id_produto", referencedColumnName="id")
 	private Produto produto;
+
+	@ManyToOne
+	@JoinColumn(name = "id_categoria", referencedColumnName = "id")
+	private Categoria categoria;
 	
 	public Produto getProduto() {
 		return produto;

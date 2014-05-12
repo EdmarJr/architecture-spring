@@ -2,14 +2,13 @@ package br.com.cheklab.web.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -26,12 +25,11 @@ public class Categoria {
 	@Column(name = "descricao")
 	private String descricao;
 
-	@OneToOne
-	@JoinColumn(name = "id_imagem_representacao", referencedColumnName = "id")
-	private Imagem imagemRepresentacao;
-
 	@OneToMany(mappedBy = "categoria")
 	private List<Produto> produtos;
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "categoria")
+	private List<Imagem> imagens;
 
 	public Long getId() {
 		return id;
@@ -57,20 +55,20 @@ public class Categoria {
 		this.descricao = descricao;
 	}
 
-	public Imagem getImagemRepresentacao() {
-		return imagemRepresentacao;
-	}
-
-	public void setImagemRepresentacao(Imagem imagemRepresentacao) {
-		this.imagemRepresentacao = imagemRepresentacao;
-	}
-
 	public List<Produto> getProdutos() {
 		return produtos;
 	}
 
 	public void setProdutos(List<Produto> produtos) {
 		this.produtos = produtos;
+	}
+
+	public List<Imagem> getImagens() {
+		return imagens;
+	}
+
+	public void setImagens(List<Imagem> imagens) {
+		this.imagens = imagens;
 	}
 
 }
