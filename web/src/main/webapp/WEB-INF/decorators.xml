@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <decorators defaultdir="/decorators">
+    <decorator name="admin" page="DecoratorAdmin.jsp">
+        <pattern>/admin*</pattern>
+    </decorator>
     <decorator name="default" page="MyDecorator.jsp">
         <pattern>/*</pattern>
     </decorator>
