@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "imagem")
@@ -23,6 +24,9 @@ public class Imagem {
 	@Column(name = "endereco")
 	private String endereco;
 
+	@Column(name = "endereco_miniatura")
+	private String enderecoMiniatura;
+
 	@Column(name = "descricao")
 	private String descricao;
 
@@ -37,6 +41,9 @@ public class Imagem {
 	@JoinColumn(name = "id_categoria", referencedColumnName = "id")
 	private Categoria categoria;
 	
+	@Transient
+	private Boolean ativo;
+
 	public Produto getProduto() {
 		return produto;
 	}
@@ -85,5 +92,28 @@ public class Imagem {
 		this.principal = principal;
 	}
 
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+
+	public Boolean getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
+	}
+
+	public String getEnderecoMiniatura() {
+		return enderecoMiniatura;
+	}
+
+	public void setEnderecoMiniatura(String enderecoMiniatura) {
+		this.enderecoMiniatura = enderecoMiniatura;
+	}
 
 }

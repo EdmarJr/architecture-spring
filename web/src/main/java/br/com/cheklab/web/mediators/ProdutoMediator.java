@@ -17,4 +17,9 @@ public class ProdutoMediator {
 	public List<Produto> obterProdutos() {
 		return dao.obterProdutos();
 	}
+
+	public Produto obterPorIdComInializacaoDeImagens(Long id) {
+		return dao.obterPorIdComInializacaoDeImagens(id);
+	}
+
 }

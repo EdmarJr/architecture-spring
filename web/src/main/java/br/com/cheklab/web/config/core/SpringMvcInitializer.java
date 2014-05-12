@@ -3,6 +3,7 @@ package br.com.cheklab.web.config.core;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
+import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import br.com.cheklab.web.config.Config;
@@ -35,6 +36,9 @@ public class SpringMvcInitializer extends
 		servletContext.addListener(HibernateListener.class);
 		servletContext.addFilter("sitemesh", SiteMeshFilter.class)
 				.addMappingForUrlPatterns(null, false, "/*");
+		servletContext.addFilter("hiddenHttpMethodFilter",
+				HiddenHttpMethodFilter.class).addMappingForUrlPatterns(null,
+				false, "*");
 	}
 
 }

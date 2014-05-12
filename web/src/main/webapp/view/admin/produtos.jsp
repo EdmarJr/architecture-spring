@@ -26,7 +26,9 @@
 					<td>${produto.categoria.nome}</td>
 					<td>${produto.codigoIdentificação}</td>
 					<td>${produto.descricao}</td>
-					<td></td>
+					<td><a href='produto/editar?idProduto=${produto.id}'><span class="glyphicon glyphicon-pencil"></span></a>
+						<span class="glyphicon glyphicon-pencil"></span>
+						<span class="glyphicon glyphicon-pencil"></span></td>
 
 				</tr>
 			</tbody>

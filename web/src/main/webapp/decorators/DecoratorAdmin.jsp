@@ -10,8 +10,8 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Dashboard - SB Admin</title>
-
+<title><decorator:title default="Dashboard - SB Admin"/></title>
+<script src='<c:url value="/resources/admin/js/jquery-1.10.2.js"/>'></script>
 <!-- Bootstrap core CSS -->
 <link href='<c:url value="/resources/admin/css/bootstrap.css"/>'
 	rel="stylesheet">
@@ -139,7 +139,7 @@
 		<div id="content">
 			<decorator:body />
 		</div>
-		<script src='<c:url value="/resources/admin/js/jquery-1.10.2.js"/>'></script>
+		
 		<script src='<c:url value="/resources/admin/js/bootstrap.js"/>'></script>
 
 		<!-- Page Specific Plugins -->
@@ -153,6 +153,7 @@
 		<script
 			src='<c:url value="/resources/admin/js/tablesorter/tables.js"/>'></script>
 	</div>
+	
 	<div id="Footer">
 		<!-- FOOTER -->
 	</div>
