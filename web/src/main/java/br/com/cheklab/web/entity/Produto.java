@@ -30,7 +30,7 @@ public class Produto {
 	private Categoria categoria;
 
 	@Column(name = "codigo_identificacao")
-	private String codigoIdentificação;
+	private String codigoIdentificacao;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="produto")
 	private List<Imagem> imagens;
@@ -62,12 +62,12 @@ public class Produto {
 		this.categoria = categoria;
 	}
 
-	public String getCodigoIdentificação() {
-		return codigoIdentificação;
+	public String getCodigoIdentificacao() {
+		return codigoIdentificacao;
 	}
 
-	public void setCodigoIdentificação(String codigoIdentificação) {
-		this.codigoIdentificação = codigoIdentificação;
+	public void setCodigoIdentificacao(String codigoIdentificacao) {
+		this.codigoIdentificacao = codigoIdentificacao;
 	}
 
 	public List<Imagem> getImagens() {
@@ -85,5 +85,6 @@ public class Produto {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+
 
 }

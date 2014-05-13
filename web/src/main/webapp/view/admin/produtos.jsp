@@ -9,7 +9,6 @@
 <c:if test="${pageContext.request.userPrincipal.name != null}">
 
 	<table class='table table-striped table-bordered table-condensed'>
-		<c:forEach var="produto" items="${produtos}">
 			<thead>
 				<tr>
 					<th>Nome</th>
@@ -19,12 +18,13 @@
 					<th>Ações</th>
 				</tr>
 			</thead>
+		<c:forEach var="produto" items="${produtos}">
 			<tbody>
 				<tr>
 
 					<td>${produto.nome}</td>
 					<td>${produto.categoria.nome}</td>
-					<td>${produto.codigoIdentificação}</td>
+					<td>${produto.codigoIdentificacao}</td>
 					<td>${produto.descricao}</td>
 					<td><a href='produto/editar?idProduto=${produto.id}'><span class="glyphicon glyphicon-pencil"></span></a>
 						<span class="glyphicon glyphicon-pencil"></span>

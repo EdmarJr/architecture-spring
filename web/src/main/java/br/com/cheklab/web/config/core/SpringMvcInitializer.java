@@ -3,7 +3,6 @@ package br.com.cheklab.web.config.core;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
-import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import br.com.cheklab.web.config.Config;
@@ -13,6 +12,7 @@ import com.opensymphony.sitemesh.webapp.SiteMeshFilter;
 
 public class SpringMvcInitializer extends
 		AbstractAnnotationConfigDispatcherServletInitializer {
+
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
@@ -33,12 +33,10 @@ public class SpringMvcInitializer extends
 	public void onStartup(ServletContext servletContext)
 			throws ServletException {
 		super.onStartup(servletContext);
+
 		servletContext.addListener(HibernateListener.class);
 		servletContext.addFilter("sitemesh", SiteMeshFilter.class)
 				.addMappingForUrlPatterns(null, false, "/*");
-		servletContext.addFilter("hiddenHttpMethodFilter",
-				HiddenHttpMethodFilter.class).addMappingForUrlPatterns(null,
-				false, "*");
 	}
 
 }

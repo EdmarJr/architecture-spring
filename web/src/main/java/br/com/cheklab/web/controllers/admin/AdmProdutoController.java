@@ -1,16 +1,16 @@
 package br.com.cheklab.web.controllers.admin;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.cheklab.web.entity.Produto;
 import br.com.cheklab.web.mediators.CategoriaMediator;
@@ -36,8 +36,16 @@ public class AdmProdutoController {
 	public ModelAndView incluirProduto() {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("admin/produto/incluirProduto");
-		model.addObject("produtos", mediator.obterProdutos());
+		model.addObject("produto", new Produto());
 		return model;
+	}
+
+	@RequestMapping(value = "/admin/produto/incluir**", method = RequestMethod.POST)
+	public String processSubmitIncluir(
+			@ModelAttribute("produto") Produto produto, BindingResult result,
+			Model model) {
+		mediator.incluir(produto);
+		return "redirect:" + "/admin/produtos";
 	}
 
 	@RequestMapping(value = "/admin/produto/editar**", method = RequestMethod.GET)
@@ -51,11 +59,10 @@ public class AdmProdutoController {
 		return model;
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
-	public String processSubmit(@Validated Produto produto,
-			BindingResult result,
-			@ModelAttribute("ajaxRequest") boolean ajaxRequest, Model model,
-			RedirectAttributes redirectAttrs) {
-		return "";
+	@RequestMapping(value = "/admin/produto/editar**", method = RequestMethod.POST)
+	public String processSubmitEditar(@Valid Produto produto,
+			BindingResult result, Model model) {
+		mediator.alterar(produto);
+		return "redirect:" + "/admin/produtos";
 	}
 }

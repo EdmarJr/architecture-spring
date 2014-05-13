@@ -28,7 +28,27 @@ public abstract class DAO<T> {
 	}
 
 	public void excluir(T entidade) {
-		abrirSessao().delete(entidade);
+		Session sessao = abrirSessao();
+		sessao.beginTransaction();
+		sessao.delete(entidade);
+		sessao.getTransaction().commit();
+		sessao.close();
+	}
+
+	public void incluir(T entidade) {
+		Session sessao = abrirSessao();
+		sessao.beginTransaction();
+		sessao.persist(entidade);
+		sessao.getTransaction().commit();
+		sessao.close();
+	}
+
+	public void alterar(T entidade) {
+		Session sessao = abrirSessao();
+		sessao.beginTransaction();
+		sessao.merge(entidade);
+		sessao.getTransaction().commit();
+		sessao.close();
 	}
 
 	@SuppressWarnings("unchecked")
