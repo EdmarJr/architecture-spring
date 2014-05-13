@@ -49,9 +49,9 @@
 							class="fa fa-dashboard"></i> Dashboard</a></li>
 					<li><a href="charts.html"><i class="fa fa-bar-chart-o"></i>
 							Charts</a></li>
-					<li><a href="admin/categorias"><i class="fa fa-table"></i>
+					<li><a href="/admin/categorias"><i class="fa fa-table"></i>
 							Categorias</a></li>
-					<li><a href="admin/produtos"><i class="fa fa-edit"></i> Produtos</a></li>
+					<li><a href="/admin/produtos"><i class="fa fa-edit"></i> Produtos</a></li>
 					<li><a href="typography.html"><i class="fa fa-font"></i>
 							Typography</a></li>
 					<li><a href="bootstrap-elements.html"><i
