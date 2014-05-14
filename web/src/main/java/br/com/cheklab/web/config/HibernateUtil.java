@@ -8,11 +8,15 @@ import org.hibernate.service.ServiceRegistry;
 import org.springframework.context.annotation.Bean;
 
 import br.com.cheklab.web.entity.Categoria;
+import br.com.cheklab.web.entity.Cliente;
 import br.com.cheklab.web.entity.Imagem;
+import br.com.cheklab.web.entity.Orcamento;
+import br.com.cheklab.web.entity.OrcamentoProdutos;
 import br.com.cheklab.web.entity.PermissoesUsuario;
 import br.com.cheklab.web.entity.Produto;
 import br.com.cheklab.web.entity.Usuario;
 import br.com.cheklab.web.entity.configuracoes.Configuracao;
+import br.com.cheklab.web.entity.configuracoes.ConfiguracaoOrcamento;
 import br.com.cheklab.web.entity.configuracoes.ConfiguracaoPaginaInicial;
 import br.com.cheklab.web.entity.configuracoes.ConfiguracaoPaginaProdutos;
 
@@ -27,7 +31,8 @@ public class HibernateUtil {
 		Class[] annotadeClass = { PermissoesUsuario.class, Usuario.class,
 				Categoria.class, Produto.class, Imagem.class,
 				Configuracao.class, ConfiguracaoPaginaInicial.class,
-				ConfiguracaoPaginaProdutos.class };
+				ConfiguracaoPaginaProdutos.class, ConfiguracaoOrcamento.class,
+				Cliente.class, Orcamento.class, OrcamentoProdutos.class};
 
 		Configuration configuration = new Configuration();
 		configuration.configure("br/com/cheklab/web/config/hibernate.cfg.xml");

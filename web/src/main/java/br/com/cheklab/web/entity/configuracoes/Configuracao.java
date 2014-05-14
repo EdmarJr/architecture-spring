@@ -26,6 +26,8 @@ public class Configuracao {
 	private List<ConfiguracaoPaginaInicial> configuracoesPaginaInicial;
 	@OneToMany(mappedBy = "configuracao")
 	private List<ConfiguracaoPaginaProdutos> configuracoesPaginaProdutos;
+	@OneToMany(mappedBy = "configuracao")
+	private List<ConfiguracaoOrcamento> configuracoesOrcamentos;
 
 	@OneToOne
 	@JoinColumn(name = "id_logo_menu_superior")
@@ -63,6 +65,15 @@ public class Configuracao {
 
 	public void setEnderecoLogoMenuSuperior(Imagem enderecoLogoMenuSuperior) {
 		this.enderecoLogoMenuSuperior = enderecoLogoMenuSuperior;
+	}
+
+	public List<ConfiguracaoOrcamento> getConfiguracoesOrcamentos() {
+		return configuracoesOrcamentos;
+	}
+
+	public void setConfiguracoesOrcamentos(
+			List<ConfiguracaoOrcamento> configuracoesOrcamentos) {
+		this.configuracoesOrcamentos = configuracoesOrcamentos;
 	}
 
 }

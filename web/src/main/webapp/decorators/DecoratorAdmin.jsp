@@ -45,13 +45,13 @@
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse navbar-ex1-collapse">
 				<ul class="nav navbar-nav side-nav">
-					<li class="active"><a href="index.html"><i
+					<li class="active"><a href="${pageContext.request.contextPath}/admin"><i
 							class="fa fa-dashboard"></i> Dashboard</a></li>
-					<li><a href="charts.html"><i class="fa fa-bar-chart-o"></i>
-							Charts</a></li>
-					<li><a href="/admin/categorias"><i class="fa fa-table"></i>
+					<li><a href="${pageContext.request.contextPath}/admin/orcamentos"><i class="fa fa-bar-chart-o"></i>
+							Orçamentos</a></li>
+					<li><a href="${pageContext.request.contextPath}/admin/categorias"><i class="fa fa-table"></i>
 							Categorias</a></li>
-					<li><a href="/admin/produtos"><i class="fa fa-edit"></i> Produtos</a></li>
+					<li><a href="${pageContext.request.contextPath}/admin/produtos"><i class="fa fa-edit"></i> Produtos</a></li>
 					<li><a href="typography.html"><i class="fa fa-font"></i>
 							Typography</a></li>
 					<li><a href="bootstrap-elements.html"><i
