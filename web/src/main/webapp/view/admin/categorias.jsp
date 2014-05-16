@@ -9,27 +9,46 @@
 <c:if test="${pageContext.request.userPrincipal.name != null}">
 
 	<table class='table table-striped table-bordered table-condensed'>
-			<thead>
-				<tr>
-					<th>Nome</th>
-					<th>Descrição</th>
-					<th>Ações</th>
-					
-				</tr>
-			</thead>
-		<c:forEach var="categoria" items="${categorias}">
+		<thead>
+			<tr>
+				<th>Nome</th>
+				<th>Descrição</th>
+				<th>Ações</th>
+
+			</tr>
+		</thead>
 			<tbody>
+		<c:forEach var="categoria" items="${categorias}">
 				<tr>
 
 					<td>${categoria.nome}</td>
 					<td>${categoria.descricao}</td>
-					<td><a href='${pageContext.request.contextPath}/admin/categoria/editar?idCategoria=${categoria.id}'><span class="glyphicon glyphicon-pencil"></span></a>
-						<span class="glyphicon glyphicon-pencil"></span>
-						<span class="glyphicon glyphicon-pencil"></span></td>
+					<td><a
+						href='${pageContext.request.contextPath}/admin/categoria/editar?idCategoria=${categoria.id}'><span
+							class="glyphicon glyphicon-pencil"></span></a> <span
+						class="glyphicon glyphicon-pencil"></span> <span
+						class="glyphicon glyphicon-pencil"></span></td>
 
 				</tr>
-			</tbody>
+
+				<c:if test="${not empty categoria.categoriasFilha}">
+					<c:forEach items="${categoria.categoriasFilha}"
+						var="categoriaFilha">
+						<tr>
+
+							<td> -- ${categoriaFilha.nome}</td>
+							<td>${categoriaFilha.descricao}</td>
+							<td><a
+								href='${pageContext.request.contextPath}/admin/categoria/editar?idCategoria=${categoriaFilha.id}'><span
+									class="glyphicon glyphicon-pencil"></span></a> <span
+								class="glyphicon glyphicon-pencil"></span> <span
+								class="glyphicon glyphicon-pencil"></span></td>
+
+						</tr>
+					</c:forEach>
+				</c:if>
 		</c:forEach>
+			</tbody>
 
 	</table>
 	<a href="categoria/incluir">

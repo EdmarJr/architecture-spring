@@ -1,0 +1,19 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
+
+<div class="form-group warning">
+
+	<c:set var='path'
+		value='${param.path == null ? "categoria" : param.path}' />
+	<c:set var='label'
+		value='${param.label == null ? "Categoria" : param.label}' />
+
+	<form:label cssClass="col-lg-2 control-label" path="${path}">
+		  				${label} <form:errors path="${path}" />
+	</form:label>
+	<div class="col-lg-6">
+		<form:input path="${path}" cssClass="form-control" />
+	</div>
+</div>

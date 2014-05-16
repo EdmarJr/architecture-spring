@@ -7,37 +7,25 @@
 <%@ page session="false"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<style type="text/css">
-.containerCadaImagem {
-	display: inline-block;
-}
-
-.containerBotoesEdicaoImagens {
-	display: none;
-}
-</style>
 <div id="formsContent">
 	<form:form method="POST" modelAttribute="categoria">
 	
 		<fieldset>
 			<legend>Dados Categoria</legend>
-			<div class="form-group warning">
-				<form:label  cssClass="col-lg-2 control-label" path="nome">
-		  				Nome <form:errors path="nome" />
-				</form:label>
-				<div class="col-lg-6">
-					<form:input path="nome" cssClass="form-control" />
-				</div>
-			</div>
+			
+			<jsp:include page="../includes/inputText.jsp" >
+				<jsp:param value="nome" name="path"/>
+				<jsp:param value="Nome" name="label"/>
+			</jsp:include>
 			<br>
-			<div class="form-group warning">
-				<form:label  cssClass="col-lg-2 control-label" path="descricao">
-		  				Descrição <form:errors path="descricao" />
-				</form:label>
-				<div class="col-lg-6">
-					<form:input path="descricao" cssClass="form-control" />
-				</div>
-			</div>
+			<jsp:include page="../includes/selectCategoria.jsp" >
+				<jsp:param value="categoriaPai" name="path"/>
+			</jsp:include>
+			<br>
+			<jsp:include page="../includes/inputText.jsp" >
+				<jsp:param value="descricao" name="path"/>
+				<jsp:param value="Descrição" name="label"/>
+			</jsp:include>
 			<br>
 		</fieldset>
 

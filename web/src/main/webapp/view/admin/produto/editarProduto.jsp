@@ -31,16 +31,7 @@
 				</div>
 			</div>
 			<br>
-			<div class="form-group">
-				<form:label class="col-lg-2 control-label" path="categoria">
-						Categoria
-					</form:label>
-				<div class="col-lg-6">
-					<form:select class="form-control" path="categoria" >
-						<form:options items="${categorias}" itemLabel="nome" itemValue="id" />
-					</form:select>
-				</div>
-			</div>
+			<jsp:include page="../includes/selectCategoria.jsp" ></jsp:include>
 			<br>
 			<div class="form-group warning">
 				<form:label cssClass="col-lg-2 control-label"

@@ -2,12 +2,15 @@ package br.com.cheklab.web.controllers.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.com.cheklab.web.converters.CategoriaConverter;
 import br.com.cheklab.web.entity.Categoria;
 import br.com.cheklab.web.mediators.CategoriaMediator;
 
@@ -16,6 +19,14 @@ public class AdmCategoriaController {
 
 	@Autowired
 	private CategoriaMediator mediator;
+
+	@Autowired
+	private CategoriaConverter categoriaConverter;
+
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		binder.registerCustomEditor(Categoria.class, this.categoriaConverter);
+	}
 
 	@RequestMapping(value = "/admin/categorias", method = RequestMethod.GET)
 	public ModelAndView carregarCategorias() {
@@ -36,6 +47,7 @@ public class AdmCategoriaController {
 	public ModelAndView acionarIncluirCategoria() {
 		ModelAndView model = new ModelAndView();
 		model.addObject("categoria", new Categoria());
+		model.addObject("categoriasSelect", mediator.obterTodos());
 		model.setViewName("/admin/categoria/incluirCategoria");
 		return model;
 	}

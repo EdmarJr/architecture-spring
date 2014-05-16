@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -22,8 +24,18 @@ public class Categoria {
 	@Column(name = "nome")
 	private String nome;
 
+	@Column(name = "posicao")
+	private Integer posicaoApresentacao;
+
 	@Column(name = "descricao")
 	private String descricao;
+
+	@ManyToOne
+	@JoinColumn(name = "id_categoria_pai", referencedColumnName = "id")
+	private Categoria categoriaPai;
+
+	@OneToMany(mappedBy = "categoriaPai")
+	private List<Categoria> categoriasFilha;
 
 	@OneToMany(mappedBy = "categoria")
 	private List<Produto> produtos;
@@ -69,6 +81,30 @@ public class Categoria {
 
 	public void setImagens(List<Imagem> imagens) {
 		this.imagens = imagens;
+	}
+
+	public Integer getPosicaoApresentacao() {
+		return posicaoApresentacao;
+	}
+
+	public void setPosicaoApresentacao(Integer posicaoApresentacao) {
+		this.posicaoApresentacao = posicaoApresentacao;
+	}
+
+	public Categoria getCategoriaPai() {
+		return categoriaPai;
+	}
+
+	public void setCategoriaPai(Categoria categoriaPai) {
+		this.categoriaPai = categoriaPai;
+	}
+
+	public List<Categoria> getCategoriasFilha() {
+		return categoriasFilha;
+	}
+
+	public void setCategoriasFilha(List<Categoria> categoriasFilha) {
+		this.categoriasFilha = categoriasFilha;
 	}
 
 }

@@ -24,6 +24,8 @@
 <!-- Page Specific CSS -->
 <link rel="stylesheet"
 	href='<c:url value="/resources/admin/css/morris-0.4.3.min.css"/>'>
+<link rel="stylesheet"
+	href='<c:url value="/resources/admin/css/category.css"/>'>
 </head>
 <body>
 

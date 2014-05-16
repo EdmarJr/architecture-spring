@@ -15,8 +15,9 @@ public class CategoriaMediator extends Mediator<Categoria>{
 	@Autowired
 	private CategoriaDAO dao;
 	
-	public List<Categoria> obterCategorias() {
-		return dao.obterTodos();
+	@Override
+	public List<Categoria> obterTodos() {
+		return dao.obterCategoriasEFilhas();
 	}
 
 	@Override

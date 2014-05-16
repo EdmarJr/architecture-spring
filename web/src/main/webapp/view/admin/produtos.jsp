@@ -18,24 +18,24 @@
 					<th>Ações</th>
 				</tr>
 			</thead>
-		<c:forEach var="produto" items="${produtos}">
 			<tbody>
+		<c:forEach var="produto" items="${produtos}">
 				<tr>
 
 					<td>${produto.nome}</td>
 					<td>${produto.categoria.nome}</td>
 					<td>${produto.codigoIdentificacao}</td>
 					<td>${produto.descricao}</td>
-					<td><a href='produto/editar?idProduto=${produto.id}'><span class="glyphicon glyphicon-pencil"></span></a>
+					<td><a href='${pageContext.request.contextPath}/admin/produto/editar?idProduto=${produto.id}'><span class="linkEditar"></span></a>
 						<span class="glyphicon glyphicon-pencil"></span>
 						<span class="glyphicon glyphicon-pencil"></span></td>
 
 				</tr>
-			</tbody>
 		</c:forEach>
+			</tbody>
 
 	</table>
-	<a href="produto/incluir">
+	<a href="${pageContext.request.contextPath}/admin/produto/incluir">
 		<button class="btn btn-default">Incluir Produto</button>
 	</a>
 
