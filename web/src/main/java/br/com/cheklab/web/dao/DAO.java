@@ -53,8 +53,11 @@ public abstract class DAO<T> {
 
 	@SuppressWarnings("unchecked")
 	public List<T> obterTodos() {
-		Criteria criteria = abrirSessao().createCriteria(clazz);
-		return criteria.list();
+		Session session = abrirSessao();
+		Criteria criteria = session.createCriteria(clazz);
+		List<T> list = criteria.list();
+		session.close();
+		return list;
 	}
 
 	public abstract Class<T> getEntidade();

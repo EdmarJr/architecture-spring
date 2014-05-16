@@ -17,10 +17,11 @@
 }
 </style>
 <div id="formsContent">
-	<form:form method="POST" modelAttribute="produto">
+	<form:form method="POST" modelAttribute="categoria">
 	
 		<fieldset>
-			<legend>Dados Produto</legend>
+			<legend>Dados Categoria</legend>
+			<form:input type="hidden" path="id" cssClass="form-control" />
 			<div class="form-group warning">
 				<form:label  cssClass="col-lg-2 control-label" path="nome">
 		  				Nome <form:errors path="nome" />
@@ -30,40 +31,19 @@
 				</div>
 			</div>
 			<br>
-			<div class="form-group">
-				<form:label class="col-lg-2 control-label" path="categoria">
-						Categoria
-					</form:label>
-				<div class="col-lg-6">
-					<form:select class="form-control" path="categoria" >
-						<form:options items="${categorias}" itemLabel="nome" itemValue="id" />
-					</form:select>
-				</div>
-			</div>
-			<br>
 			<div class="form-group warning">
-				<form:label cssClass="col-lg-2 control-label"
-					path="codigoIdentificacao">
-		  				Cod. Identificação <form:errors path="codigoIdentificacao" />
+				<form:label  cssClass="col-lg-2 control-label" path="descricao">
+		  				Descrição <form:errors path="descricao" />
 				</form:label>
 				<div class="col-lg-6">
-					<form:input path="codigoIdentificacao" cssClass="form-control" />
+					<form:input path="descricao" cssClass="form-control" />
 				</div>
 			</div>
 			<br>
-			<div class="form-group">
-				<form:label class="col-lg-2 control-label" path="descricao"> 
-		  				Descrição
-					</form:label>
-				<div class="col-lg-6">
-					<form:textarea class="form-control" path="descricao" />
-				</div>
-			</div>
-
 		</fieldset>
 
 		
-		<p><button type="submit" class="btn btn-primary">Incluir</button></p>	
+		<p><button type="submit" class="btn btn-primary">Concluir</button></p>	
 	</form:form>
 	
 </div>

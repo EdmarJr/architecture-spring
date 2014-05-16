@@ -36,6 +36,7 @@ public class AdmProdutoController {
 	public ModelAndView incluirProduto() {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("admin/produto/incluirProduto");
+		model.addObject("categorias", categoriaMediator.obterCategorias());
 		model.addObject("produto", new Produto());
 		return model;
 	}

@@ -6,10 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.cheklab.web.dao.CategoriaDAO;
+import br.com.cheklab.web.dao.DAO;
 import br.com.cheklab.web.entity.Categoria;
 
 @Service
-public class CategoriaMediator {
+public class CategoriaMediator extends Mediator<Categoria>{
 	
 	@Autowired
 	private CategoriaDAO dao;
@@ -17,6 +18,12 @@ public class CategoriaMediator {
 	public List<Categoria> obterCategorias() {
 		return dao.obterTodos();
 	}
+
+	@Override
+	protected DAO<Categoria> getDAO() {
+		return dao;
+	}
+
 
 
 }
