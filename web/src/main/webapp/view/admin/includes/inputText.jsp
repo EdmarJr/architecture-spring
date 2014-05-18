@@ -9,11 +9,13 @@
 		value='${param.path == null ? "categoria" : param.path}' />
 	<c:set var='label'
 		value='${param.label == null ? "Categoria" : param.label}' />
+	<c:set var='id'
+		value='${param.id == null ? "" : param.id}' />
 
 	<form:label cssClass="col-lg-2 control-label" path="${path}">
 		  				${label} <form:errors path="${path}" />
 	</form:label>
 	<div class="col-lg-6">
-		<form:input path="${path}" cssClass="form-control" />
+		<form:input path="${path}" id="${id}" cssClass="form-control" />
 	</div>
 </div>

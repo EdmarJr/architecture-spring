@@ -9,6 +9,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.Max;
+
+import org.springframework.format.annotation.NumberFormat;
 
 @Entity
 @Table(name = "imagem")
@@ -29,9 +32,10 @@ public class Imagem {
 
 	@Column(name = "descricao")
 	private String descricao;
-
-	@Column(name = "principal")
-	private Boolean principal;
+	@Max(value = 9999)
+	@NumberFormat
+	@Column(name = "posicao")
+	private Integer posicao;
 	
 	@ManyToOne
 	@JoinColumn(name="id_produto", referencedColumnName="id")
@@ -43,6 +47,10 @@ public class Imagem {
 	
 	@Transient
 	private Boolean ativo;
+	@Transient
+	private Long idEntidade;
+	@Transient
+	private String tipoEntidade;
 
 	public Produto getProduto() {
 		return produto;
@@ -84,12 +92,12 @@ public class Imagem {
 		this.descricao = descricao;
 	}
 
-	public Boolean getPrincipal() {
-		return principal;
+	public Integer getPosicao() {
+		return posicao;
 	}
 
-	public void setPrincipal(Boolean principal) {
-		this.principal = principal;
+	public void setPosicao(Integer posicao) {
+		this.posicao = posicao;
 	}
 
 	public Categoria getCategoria() {
@@ -115,5 +123,23 @@ public class Imagem {
 	public void setEnderecoMiniatura(String enderecoMiniatura) {
 		this.enderecoMiniatura = enderecoMiniatura;
 	}
+	
+	
+	
+	public Long getIdEntidade() {
+		return idEntidade;
+	}
 
+	public void setIdEntidade(Long idEntidade) {
+		this.idEntidade = idEntidade;
+	}
+
+	public String getTipoEntidade() {
+		return tipoEntidade;
+	}
+
+	public void setTipoEntidade(String tipoEntidade) {
+		this.tipoEntidade = tipoEntidade;
+	}
+	
 }

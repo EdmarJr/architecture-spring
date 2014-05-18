@@ -56,6 +56,7 @@
 
 		
 		<p><button type="submit" class="btn btn-primary">Submit</button></p>	
+		<p><button type="button" onclick="javascript:window.location.href='../imagem/imagens?idEntidade=${produto.id}&tipoEntidade=produto';" class="btn btn-primary">Gerenciar Fotos</button></p>	
 	</form:form>
 	
 </div>

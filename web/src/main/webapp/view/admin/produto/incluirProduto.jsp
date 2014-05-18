@@ -16,17 +16,39 @@
 	display: none;
 }
 </style>
+<script>
+	function validarRequiredByName(names) {
+		var submeter = true;
+		for(var i = 0; i<names.length; i++) {
+			nome = names[i];
+			var elements = document.getElementsByName(nome);
+			for(var j = 0; j<elements.length; j++) {
+				element = elements[j];
+				if(element.value == "") {
+					submeter = false;
+				}
+			}
+		}
+		if(submeter) {
+			return true;
+		}
+		return false;
+	}
+</script>
 <div id="formsContent">
-	<form:form method="POST" modelAttribute="produto">
+	<form:form method="POST" modelAttribute="produto" onsubmit="validarRequiredByName({'nome','codigoIdentificacao'})">
 	
 		<fieldset>
 			<legend>Dados Produto</legend>
+			<ul id="messages">
+			
+			</ul>
 			<div class="form-group warning">
 				<form:label  cssClass="col-lg-2 control-label" path="nome">
 		  				Nome <form:errors path="nome" />
 				</form:label>
 				<div class="col-lg-6">
-					<form:input path="nome" cssClass="form-control" />
+					<form:input path="nome"  cssClass="form-control" />
 				</div>
 			</div>
 			<br>
@@ -54,7 +76,9 @@
 		</fieldset>
 
 		
-		<p><button type="submit" class="btn btn-primary">Incluir</button></p>	
+		<button type="submit" class="btn btn-primary">Incluir</button>
+		<button type="submit" class="btn btn-primary">Gerenciar Imagens</button>
+		
 	</form:form>
 	
 </div>
