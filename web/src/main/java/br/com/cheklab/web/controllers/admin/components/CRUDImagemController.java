@@ -1,5 +1,7 @@
 package br.com.cheklab.web.controllers.admin.components;
 
+import javax.servlet.ServletContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,9 +17,10 @@ public class CRUDImagemController {
 	@Autowired
 	private ProdutoMediator produtoMediator;
 	@Autowired
-	private ImagemMediator imagemMediator;	
-	
-	
+	private ImagemMediator imagemMediator;
+	@Autowired
+	private ServletContext context;
+
 	public void incluir(Imagem imagem) {
 		if (TipoInclusaoImagemEnum.obterPorDescricao(imagem.getTipoEntidade()) == TipoInclusaoImagemEnum.PRODUTO) {
 			incluirImagemProduto(imagem);
@@ -31,17 +34,15 @@ public class CRUDImagemController {
 	public void excluir(Imagem imagem) {
 		imagemMediator.excluir(imagem);
 	}
-	
+
 	private void editarImagemProduto(Imagem imagem) {
 		Imagem imagemTemp = imagemMediator.obterPorId(imagem.getId());
 		imagem.setProduto(imagemTemp.getProduto());
 		imagemMediator.alterar(imagem);
 	}
 
-
 	private void incluirImagemProduto(Imagem imagem) {
-		Produto produto = produtoMediator
-				.obterPorId(imagem.getIdEntidade());
+		Produto produto = produtoMediator.obterPorId(imagem.getIdEntidade());
 		imagem.setProduto(produto);
 		imagemMediator.incluir(imagem);
 	}

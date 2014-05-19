@@ -19,7 +19,7 @@ public class Produto {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
+	@Column(name = "id", nullable = false, updatable = false)
 	private Long id;
 
 	@Column(name = "nome")
@@ -37,6 +37,9 @@ public class Produto {
 
 	@Column(name = "descricao")
 	private String descricao;
+
+	@Column(name = "posicao")
+	private Integer posicao;
 
 	public Long getId() {
 		return id;
@@ -86,5 +89,12 @@ public class Produto {
 		this.descricao = descricao;
 	}
 
+	public Integer getPosicao() {
+		return posicao;
+	}
+
+	public void setPosicao(Integer posicao) {
+		this.posicao = posicao;
+	}
 
 }

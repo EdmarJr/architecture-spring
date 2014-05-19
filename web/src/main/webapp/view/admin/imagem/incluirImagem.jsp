@@ -52,4 +52,5 @@
 <script type="text/javascript">
 	$('#posicao_id_mask').mask('9999');
 </script>
+
 </html>

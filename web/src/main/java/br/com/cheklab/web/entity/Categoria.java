@@ -24,11 +24,11 @@ public class Categoria {
 	@Column(name = "nome")
 	private String nome;
 
-	@Column(name = "posicao")
-	private Integer posicaoApresentacao;
-
 	@Column(name = "descricao")
 	private String descricao;
+
+	@Column(name = "posicao")
+	private Integer posicao;
 
 	@ManyToOne
 	@JoinColumn(name = "id_categoria_pai", referencedColumnName = "id")
@@ -83,14 +83,6 @@ public class Categoria {
 		this.imagens = imagens;
 	}
 
-	public Integer getPosicaoApresentacao() {
-		return posicaoApresentacao;
-	}
-
-	public void setPosicaoApresentacao(Integer posicaoApresentacao) {
-		this.posicaoApresentacao = posicaoApresentacao;
-	}
-
 	public Categoria getCategoriaPai() {
 		return categoriaPai;
 	}
@@ -105,6 +97,14 @@ public class Categoria {
 
 	public void setCategoriasFilha(List<Categoria> categoriasFilha) {
 		this.categoriasFilha = categoriasFilha;
+	}
+
+	public Integer getPosicao() {
+		return posicao;
+	}
+
+	public void setPosicao(Integer posicao) {
+		this.posicao = posicao;
 	}
 
 }

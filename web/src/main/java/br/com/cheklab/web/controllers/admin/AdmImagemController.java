@@ -58,7 +58,7 @@ public class AdmImagemController {
 	}
 
 	@RequestMapping(value = "/admin/imagem/incluir", method = RequestMethod.POST)
-	public ModelAndView incluirImagem(@Valid @ModelAttribute Imagem imagem) {
+	public ModelAndView incluirImagem(@ModelAttribute Imagem imagem) {
 		crudImagem.incluir(imagem);
 		return gerenciarImagensProduto(imagem.getIdEntidade(),
 				imagem.getTipoEntidade());

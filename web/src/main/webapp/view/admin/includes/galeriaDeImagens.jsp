@@ -76,7 +76,7 @@
 						var iconsDelete = document.getElementById("icondelete"
 								+ imgid);
 						iconsDelete.style.visibility = "initial";
-					}
+					};
 					imgsmini[i].parentNode.parentNode.onmouseout = function(
 							event) {
 						var imgid = event.currentTarget.id;
@@ -86,7 +86,7 @@
 						var iconsDelete = document.getElementById("icondelete"
 								+ imgid);
 						iconsDelete.style.visibility = "hidden";
-					}
+					};
 				}
 			});
 </script>
@@ -155,13 +155,32 @@
 	  function deletarImagem (idImagem) {
 	       
 	       
-	    $.ajax({
+	    $.ajax({xhr: function(){
+	        var xhr = new window.XMLHttpRequest();
+	        //Upload progress
+	        xhr.upload.addEventListener("progress", function(evt){
+	        if (evt.lengthComputable) {
+	          var percentComplete = evt.loaded / evt.total;
+	          //Do something with upload progress
+	          console.log(percentComplete);
+	          }
+	        }, false);
+	      //Download progress
+	        xhr.addEventListener("progress", function(evt){
+	          if (evt.lengthComputable) {
+	            var percentComplete = evt.loaded / evt.total;
+	          //Do something with download progress
+	            console.log(percentComplete);
+	          }
+	        }, false);
+	        return xhr;
+	      },
 	        url: "${urlClickDelete}",
 	        data: { "idImagem" : idImagem},
 	        type: "POST",
 	        success: function(data) {
-	        	if(idImagem != "-1") {
-	        		var divImagemDelete = document.getElementById("img" + idImagem);
+	        	if(data != "-1") {
+	        		var divImagemDelete = document.getElementById("img" + data);
 	        		var parentDiv = divImagemDelete.parentNode;
 	        		parentDiv.removeChild(divImagemDelete);
 	        	}        

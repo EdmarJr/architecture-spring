@@ -1,0 +1,2 @@
+editar o server.xml e adicionar a tag connector o seguinte atributo: maxPostSize="4097152"
+

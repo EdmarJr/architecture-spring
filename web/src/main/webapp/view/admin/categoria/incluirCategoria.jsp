@@ -8,6 +8,7 @@
 <%@ page session="false"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br">
+
 <div id="formsContent">
 	<form:form method="POST" modelAttribute="categoria">
 	
@@ -24,6 +25,12 @@
 			</jsp:include>
 			<br>
 			<jsp:include page="../includes/inputText.jsp" >
+				<jsp:param value="posicao" name="path"/>
+				<jsp:param value="Posição" name="label"/>
+				<jsp:param value="posicao_id_mask" name="id"/>
+			</jsp:include>
+			<br>
+			<jsp:include page="../includes/inputTextArea.jsp" >
 				<jsp:param value="descricao" name="path"/>
 				<jsp:param value="Descrição" name="label"/>
 			</jsp:include>
@@ -35,4 +42,8 @@
 	</form:form>
 	
 </div>
+<script type="text/javascript" src='<c:url value="/resources/admin/js/jquery.mask.min.js"/>'></script>
+<script type="text/javascript">
+	$('#posicao_id_mask').mask('9999');
+</script>
 </html>

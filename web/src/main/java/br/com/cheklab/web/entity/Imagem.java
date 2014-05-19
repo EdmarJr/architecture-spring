@@ -9,9 +9,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-import javax.validation.constraints.Max;
-
-import org.springframework.format.annotation.NumberFormat;
 
 @Entity
 @Table(name = "imagem")
@@ -32,8 +29,6 @@ public class Imagem {
 
 	@Column(name = "descricao")
 	private String descricao;
-	@Max(value = 9999)
-	@NumberFormat
 	@Column(name = "posicao")
 	private Integer posicao;
 	

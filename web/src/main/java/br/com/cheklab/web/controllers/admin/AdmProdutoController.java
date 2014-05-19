@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.cheklab.web.converters.CategoriaConverter;
@@ -45,7 +46,7 @@ public class AdmProdutoController {
 	}
 
 	@RequestMapping(value = "/admin/produto/incluir**", method = RequestMethod.GET)
-	public ModelAndView incluirProduto() {
+	public ModelAndView acionarIncluirProduto() {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("admin/produto/incluirProduto");
 		model.addObject("categoriasSelect", categoriaMediator.obterTodos());
@@ -54,7 +55,7 @@ public class AdmProdutoController {
 	}
 
 	@RequestMapping(value = "/admin/produto/incluir**", method = RequestMethod.POST)
-	public ModelAndView processSubmitIncluir(
+	public ModelAndView incluirProduto(
 			@ModelAttribute("produto") Produto produto, BindingResult result,
 			Model model) {
 		mediator.incluir(produto);
@@ -62,7 +63,7 @@ public class AdmProdutoController {
 	}
 
 	@RequestMapping(value = "/admin/produto/editar**", method = RequestMethod.GET)
-	public ModelAndView editarProduto(
+	public ModelAndView acionarAlterarProduto(
 			@RequestParam(value = "idProduto", required = true) Long idProduto) {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("admin/produto/editarProduto");
@@ -73,9 +74,32 @@ public class AdmProdutoController {
 	}
 
 	@RequestMapping(value = "/admin/produto/editar**", method = RequestMethod.POST)
-	public ModelAndView processSubmitEditar(@Valid Produto produto,
+	public ModelAndView alterarProduto(@Valid Produto produto,
 			BindingResult result, Model model) {
 		mediator.alterar(produto);
 		return paginaProdutos();
 	}
+
+	@RequestMapping(value = "/admin/produto/excluir", method = RequestMethod.POST)
+	@ResponseBody
+	public String excluir(Long idEntidade) {
+		Produto produto = new Produto();
+		produto.setId(idEntidade);
+		mediator.excluir(produto);
+		return idEntidade.toString();
+	}
+
+	@RequestMapping(value = "/admin/produto/incluirAjax", method = RequestMethod.POST)
+	@ResponseBody
+	public String incluirProdutoAjax(Produto produto) {
+		mediator.incluir(produto);
+		return produto.getId().toString();
+	}
+	@RequestMapping(value = "/admin/produto/editarAjax", method = RequestMethod.POST)
+	@ResponseBody
+	public String alterarProdutoAjax(Produto produto) {
+		mediator.alterar(produto);
+		return produto.getId().toString();
+	}
+
 }

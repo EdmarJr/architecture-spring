@@ -8,7 +8,6 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 
 import br.com.cheklab.web.config.Config;
 import br.com.cheklab.web.config.HibernateListener;
-import br.com.cheklab.web.config.SimpleCORSFilter;
 
 import com.opensymphony.sitemesh.webapp.SiteMeshFilter;
 
@@ -37,8 +36,6 @@ public class SpringMvcInitializer extends
 		super.onStartup(servletContext);
 
 		servletContext.addListener(HibernateListener.class);
-		servletContext.addFilter("cors", SimpleCORSFilter.class)
-		.addMappingForUrlPatterns(null, false, "/*");
 		servletContext.addFilter("encodingFilter", CharacterEncodingFilter.class)
 		.addMappingForUrlPatterns(null, false, "/*");
 		servletContext.addFilter("sitemesh", SiteMeshFilter.class)

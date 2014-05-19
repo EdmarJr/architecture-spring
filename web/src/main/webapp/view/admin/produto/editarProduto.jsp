@@ -7,57 +7,50 @@
 <%@ page session="false"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<style type="text/css">
-.containerCadaImagem {
-	display: inline-block;
-}
-
-.containerBotoesEdicaoImagens {
-	display: none;
-}
-</style>
+<script src='<c:url value="/resources/admin/js/utils/validation.js"/>'></script>
+<script src='<c:url value="/resources/admin/js/aplicacao/produto/crudProduto.js"/>'></script>
 <div id="formsContent">
-	<form:form method="POST" modelAttribute="produto">
-	
+	<form:form method="POST" id="formProduto" modelAttribute="produto"
+		onsubmit="return validarRequiredByName(['nome','categoria'])">
+		<ul id="messages"></ul>
 		<fieldset>
 			<legend>Dados Produto</legend>
-			<form:input type="hidden" path="id" cssClass="form-control" />
-			<div class="form-group warning">
-				<form:label  cssClass="col-lg-2 control-label" path="nome">
-		  				Nome <form:errors path="nome" />
-				</form:label>
-				<div class="col-lg-6">
-					<form:input path="nome" cssClass="form-control" />
-				</div>
-			</div>
+			<form:input path="id" type="hidden" />
+			<jsp:include page="../includes/inputText.jsp">
+				<jsp:param value="nome" name="path" />
+				<jsp:param value="Nome" name="label" />
+			</jsp:include>
 			<br>
-			<jsp:include page="../includes/selectCategoria.jsp" ></jsp:include>
+			<jsp:include page="../includes/selectCategoria.jsp"></jsp:include>
 			<br>
-			<div class="form-group warning">
-				<form:label cssClass="col-lg-2 control-label"
-					path="codigoIdentificacao">
-		  				Cod. Identificação <form:errors path="codigoIdentificacao" />
-				</form:label>
-				<div class="col-lg-6">
-					<form:input path="codigoIdentificacao" cssClass="form-control" />
-				</div>
-			</div>
+			<jsp:include page="../includes/inputText.jsp">
+				<jsp:param value="codigoIdentificacao" name="path" />
+				<jsp:param value="Cod. Identificação" name="label" />
+			</jsp:include>
 			<br>
-			<div class="form-group">
-				<form:label class="col-lg-2 control-label" path="descricao"> 
-		  				Descrição
-					</form:label>
-				<div class="col-lg-6">
-					<form:textarea class="form-control" path="descricao" />
-				</div>
-			</div>
+			<jsp:include page="../includes/inputTextArea.jsp">
+				<jsp:param value="descricao" name="path" />
+				<jsp:param value="Descrição" name="label" />
+			</jsp:include>
+			<br>
+			<jsp:include page="../includes/inputText.jsp" >
+				<jsp:param value="posicao" name="path"/>
+				<jsp:param value="Posição" name="label"/>
+				<jsp:param value="posicao_id_mask" name="id"/>
+			</jsp:include>
 
 		</fieldset>
+		<br>
 
-		
-		<p><button type="submit" class="btn btn-primary">Submit</button></p>	
-		<p><button type="button" onclick="javascript:window.location.href='../imagem/imagens?idEntidade=${produto.id}&tipoEntidade=produto';" class="btn btn-primary">Gerenciar Fotos</button></p>	
+		<button type="submit" class="btn btn-primary">Concluir Edição</button>
+		<button type="button"
+			onclick="gerenciarImagensComValidacao('${pageContext.request.contextPath}/admin/produto/editarAjax', '${pageContext.request.contextPath}', ['nome','categoria'])"
+			class="btn btn-primary">Gerenciar Imagens</button>
 	</form:form>
-	
+
 </div>
+<script type="text/javascript" src='<c:url value="/resources/admin/js/jquery.mask.min.js"/>'></script>
+<script type="text/javascript">
+	$('#posicao_id_mask').mask('9999');
+</script>
 </html>
