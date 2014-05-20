@@ -3,6 +3,7 @@ package br.com.cheklab.web.dao;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Filter;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
@@ -17,7 +18,14 @@ public abstract class DAO<T> {
 	}
 
 	protected Session abrirSessao() {
-		return HibernateUtil.getSessionFactory().openSession();
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Filter filterCategoria = session.enableFilter("categoriaSomenteAtivos");
+		filterCategoria.setParameter("ativo", Boolean.TRUE);
+		Filter filterProduto = session.enableFilter("produtoSomenteAtivos");
+		filterProduto.setParameter("ativo", Boolean.TRUE);
+		Filter filterImagem = session.enableFilter("imagemSomenteAtivos");
+		filterImagem.setParameter("ativo", Boolean.TRUE);
+		return session;
 	}
 
 	@SuppressWarnings({ "unchecked" })

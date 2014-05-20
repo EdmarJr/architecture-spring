@@ -58,7 +58,7 @@ public class AdmProdutoController {
 	public ModelAndView incluirProduto(
 			@ModelAttribute("produto") Produto produto, BindingResult result,
 			Model model) {
-		mediator.incluir(produto);
+		incluirProduto(produto);
 		return paginaProdutos();
 	}
 
@@ -80,12 +80,6 @@ public class AdmProdutoController {
 		return paginaProdutos();
 	}
 
-	private void alterarProduto(Produto produto) {
-		Produto produtoTemp = mediator.obterPorId(produto.getId());
-		produto.setImagens(produtoTemp.getImagens());
-		mediator.alterar(produtoTemp);
-	}
-
 	@RequestMapping(value = "/admin/produto/excluir", method = RequestMethod.POST)
 	@ResponseBody
 	public String excluir(Long idEntidade) {
@@ -98,14 +92,25 @@ public class AdmProdutoController {
 	@RequestMapping(value = "/admin/produto/incluirAjax", method = RequestMethod.POST)
 	@ResponseBody
 	public String incluirProdutoAjax(Produto produto) {
-		mediator.incluir(produto);
+		incluirProduto(produto);
 		return produto.getId().toString();
 	}
+
 	@RequestMapping(value = "/admin/produto/editarAjax", method = RequestMethod.POST)
 	@ResponseBody
 	public String alterarProdutoAjax(Produto produto) {
 		alterarProduto(produto);
 		return produto.getId().toString();
+	}
+
+	private void alterarProduto(Produto produto) {
+		Produto produtoTemp = mediator.obterPorId(produto.getId());
+		produto.setImagens(produtoTemp.getImagens());
+		mediator.alterar(produtoTemp);
+	}
+
+	private void incluirProduto(Produto produto) {
+		mediator.incluir(produto);
 	}
 
 }

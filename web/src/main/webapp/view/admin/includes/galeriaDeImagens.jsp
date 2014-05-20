@@ -152,7 +152,7 @@
 <script>
 
 	   
-	  function deletarImagem (idImagem) {
+	  function deletarImagem (idImagem, idEntidade, tipoEntidade) {
 	       
 	       
 	    $.ajax({xhr: function(){
@@ -176,7 +176,7 @@
 	        return xhr;
 	      },
 	        url: "${urlClickDelete}",
-	        data: { "idImagem" : idImagem},
+	        data: { "idImagem" : idImagem, "idEntidade" : idEntidade, "tipoEntidade" : tipoEntidade},
 	        type: "POST",
 	        success: function(data) {
 	        	if(data != "-1") {
@@ -204,7 +204,7 @@
 			class="imgMiniaturaFancy" width="150px"
 			src='<c:url value="/resources/${imagem.enderecoMiniatura}"/>' /></a> 
 			<img
-			id="icondeleteimg${imagem.id}" onclick="deletarImagem('${imagem.id}')"
+			id="icondeleteimg${imagem.id}" onclick="deletarImagem('${imagem.id}','${idEntidade}', '${tipoEntidade}')"
 			src='<c:url value="/resources/admin/icons/delete.png"/>'
 			class="iconDeleteAboveImg" alt="Excluir" width=.. height=.. />
 			 <img		

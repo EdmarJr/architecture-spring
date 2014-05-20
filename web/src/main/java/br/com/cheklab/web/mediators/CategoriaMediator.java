@@ -10,11 +10,11 @@ import br.com.cheklab.web.dao.DAO;
 import br.com.cheklab.web.entity.Categoria;
 
 @Service
-public class CategoriaMediator extends Mediator<Categoria>{
-	
+public class CategoriaMediator extends Mediator<Categoria> {
+
 	@Autowired
 	private CategoriaDAO dao;
-	
+
 	@Override
 	public List<Categoria> obterTodos() {
 		return dao.obterCategoriasEFilhas();
@@ -25,6 +25,22 @@ public class CategoriaMediator extends Mediator<Categoria>{
 		return dao;
 	}
 
+	@Override
+	public void incluir(Categoria entidade) {
+		entidade.setAtivo(Boolean.TRUE);
+		getDAO().incluir(entidade);
+	}
 
+	@Override
+	public void alterar(Categoria entidade) {
+		entidade.setAtivo(Boolean.TRUE);
+		getDAO().alterar(entidade);
+	}
+
+	@Override
+	public void excluir(Categoria entidade) {
+		entidade.setAtivo(Boolean.FALSE);
+		getDAO().alterar(entidade);
+	}
 
 }

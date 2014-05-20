@@ -27,7 +27,21 @@ public class ProdutoMediator extends Mediator<Produto> {
 	
 	@Override
 	public void excluir(Produto entidade) {
-		dao.excluir(entidade);
+		entidade = obterPorId(entidade.getId());
+		entidade.setAtivo(Boolean.FALSE);
+		getDAO().alterar(entidade);
+	}
+
+	@Override
+	public void alterar(Produto entidade) {
+		entidade.setAtivo(Boolean.TRUE);
+		getDAO().alterar(entidade);
+	}
+
+	@Override
+	public void incluir(Produto entidade) {
+		entidade.setAtivo(Boolean.TRUE);
+		getDAO().incluir(entidade);
 	}
 
 	@Override

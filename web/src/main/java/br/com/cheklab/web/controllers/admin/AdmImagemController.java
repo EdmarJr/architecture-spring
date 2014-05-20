@@ -86,9 +86,11 @@ public class AdmImagemController {
 
 	@RequestMapping(value="/admin/imagem/excluir", method=RequestMethod.POST)
 	@ResponseBody
-    public String excluir(Long idImagem) {
-        Imagem imagem = new Imagem();
-        imagem.setId(idImagem);
+	public String excluir(Long idImagem, Long idEntidade, String tipoEntidade) {
+		Imagem imagem = new Imagem();
+		imagem.setTipoEntidade(tipoEntidade);
+		imagem.setIdEntidade(idEntidade);
+		imagem.setId(idImagem);
 		crudImagem.excluir(imagem);
 		return idImagem.toString();
     }

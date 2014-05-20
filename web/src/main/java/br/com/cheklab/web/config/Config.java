@@ -34,6 +34,11 @@ public class Config extends WebMvcConfigurerAdapter {
 				"/resources/");
 	}
 
+	@Bean
+	public AutowireHelper autowireHelper() {
+		return AutowireHelper.getInstance();
+	}
+
 
 
 }

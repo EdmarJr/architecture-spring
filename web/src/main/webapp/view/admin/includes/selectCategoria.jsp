@@ -16,8 +16,8 @@
 	</form:label>
 	<div class="col-lg-6">
 		<form:select class="form-control" path="${path}">
-			<c:forEach items="${categoriasSelect}" var="categoria">
 			<form:option value="" label=""/>
+			<c:forEach items="${categoriasSelect}" var="categoria">
 				<form:option label="${categoria.nome}"
 					value="${categoria.id}" />
 				<c:if test="${not empty categoria.categoriasFilha}">

@@ -15,9 +15,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Filter;
+import org.hibernate.annotations.FilterDef;
+import org.hibernate.annotations.ParamDef;
+
 @Entity
+@FilterDef(name = "categoriaSomenteAtivos", parameters = @ParamDef(name = "ativo", type = "java.lang.Boolean"))
+@Filter(name = "categoriaSomenteAtivos", condition = ":ativo = ativo")
 @Table(name = "categoria")
-public class Categoria {
+public class Categoria implements EntidadeComImagens {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
@@ -32,6 +38,8 @@ public class Categoria {
 	@Column(name = "posicao")
 	private Integer posicao;
 
+	@Column(name = "ativo")
+	private Boolean ativo;
 	@ManyToOne
 	@JoinColumn(name = "id_categoria_pai", referencedColumnName = "id")
 	private Categoria categoriaPai;
@@ -108,6 +116,14 @@ public class Categoria {
 
 	public void setPosicao(Integer posicao) {
 		this.posicao = posicao;
+	}
+
+	public Boolean getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
 	}
 
 	@Override
