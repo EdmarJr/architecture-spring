@@ -36,15 +36,14 @@ public class CRUDImagemController {
 	}
 
 	private void editarImagemProduto(Imagem imagem) {
-		Imagem imagemTemp = imagemMediator.obterPorId(imagem.getId());
-		imagem.setProduto(imagemTemp.getProduto());
 		imagemMediator.alterar(imagem);
 	}
 
 	private void incluirImagemProduto(Imagem imagem) {
 		Produto produto = produtoMediator.obterPorId(imagem.getIdEntidade());
-		imagem.setProduto(produto);
-		imagemMediator.incluir(imagem);
+		imagemMediator.definirEnderecoImagens(imagem);
+		produto.getImagens().add(imagem);
+		produtoMediator.alterar(produto);
 	}
 	
 }

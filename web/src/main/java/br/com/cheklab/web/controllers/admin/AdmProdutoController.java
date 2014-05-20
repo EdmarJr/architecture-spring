@@ -76,8 +76,14 @@ public class AdmProdutoController {
 	@RequestMapping(value = "/admin/produto/editar**", method = RequestMethod.POST)
 	public ModelAndView alterarProduto(@Valid Produto produto,
 			BindingResult result, Model model) {
-		mediator.alterar(produto);
+		alterarProduto(produto);
 		return paginaProdutos();
+	}
+
+	private void alterarProduto(Produto produto) {
+		Produto produtoTemp = mediator.obterPorId(produto.getId());
+		produto.setImagens(produtoTemp.getImagens());
+		mediator.alterar(produtoTemp);
 	}
 
 	@RequestMapping(value = "/admin/produto/excluir", method = RequestMethod.POST)
@@ -98,7 +104,7 @@ public class AdmProdutoController {
 	@RequestMapping(value = "/admin/produto/editarAjax", method = RequestMethod.POST)
 	@ResponseBody
 	public String alterarProdutoAjax(Produto produto) {
-		mediator.alterar(produto);
+		alterarProduto(produto);
 		return produto.getId().toString();
 	}
 

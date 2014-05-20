@@ -14,6 +14,8 @@ public class ProdutoMediator extends Mediator<Produto> {
 	
 	@Autowired
 	private ProdutoDAO dao;
+	@Autowired
+	private ImagemMediator imagemMediator;
 	
 	public List<Produto> obterProdutos() {
 		return dao.obterProdutos();
@@ -21,6 +23,11 @@ public class ProdutoMediator extends Mediator<Produto> {
 
 	public Produto obterPorIdComInializacaoDeImagens(Long id) {
 		return dao.obterPorIdComInializacaoDeImagens(id);
+	}
+	
+	@Override
+	public void excluir(Produto entidade) {
+		dao.excluir(entidade);
 	}
 
 	@Override

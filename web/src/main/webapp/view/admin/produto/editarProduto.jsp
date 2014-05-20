@@ -28,15 +28,16 @@
 				<jsp:param value="Cod. Identificação" name="label" />
 			</jsp:include>
 			<br>
-			<jsp:include page="../includes/inputTextArea.jsp">
-				<jsp:param value="descricao" name="path" />
-				<jsp:param value="Descrição" name="label" />
-			</jsp:include>
-			<br>
 			<jsp:include page="../includes/inputText.jsp" >
 				<jsp:param value="posicao" name="path"/>
 				<jsp:param value="Posição" name="label"/>
 				<jsp:param value="posicao_id_mask" name="id"/>
+			</jsp:include>
+			
+			<br>
+			<jsp:include page="../includes/inputTextArea.jsp">
+				<jsp:param value="descricao" name="path" />
+				<jsp:param value="Descrição" name="label" />
 			</jsp:include>
 
 		</fieldset>

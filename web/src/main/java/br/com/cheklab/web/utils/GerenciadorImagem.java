@@ -38,7 +38,7 @@ public class GerenciadorImagem {
 				+ definirFormato(enderecoBase64));
 		criarCaminho(path);
 		try {
-			OutputStream out = Files.newOutputStream(path,  StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+			OutputStream out = Files.newOutputStream(path,  StandardOpenOption.CREATE, StandardOpenOption.WRITE, StandardOpenOption.TRUNCATE_EXISTING);
 			for (byte b : bytes) {
 				out.write(b);
 			}

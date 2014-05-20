@@ -42,7 +42,7 @@ public class ImagemMediator extends Mediator<Imagem> {
 		getDAO().alterar(entidade);
 	}
 
-	private void definirEnderecoImagens(Imagem entidade) {
+	public void definirEnderecoImagens(Imagem entidade) {
 		entidade.setEndereco(gerenciadorImagem.salvarImagem(
 				entidade.getEndereco(),
 				definirEnderecoImagem(entidade, "ampliada")));

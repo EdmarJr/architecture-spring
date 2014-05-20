@@ -23,5 +23,5 @@ public class CategoriaConverter extends PropertyEditorSupport {
 		Categoria categoria = mediator.obterPorId(new Long(text));
 		setValue(categoria);
 	}
-
+	
 }

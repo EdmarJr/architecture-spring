@@ -5,8 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -32,28 +30,12 @@ public class Imagem {
 	@Column(name = "posicao")
 	private Integer posicao;
 	
-	@ManyToOne
-	@JoinColumn(name="id_produto", referencedColumnName="id")
-	private Produto produto;
-
-	@ManyToOne
-	@JoinColumn(name = "id_categoria", referencedColumnName = "id")
-	private Categoria categoria;
-	
 	@Transient
 	private Boolean ativo;
 	@Transient
 	private Long idEntidade;
 	@Transient
 	private String tipoEntidade;
-
-	public Produto getProduto() {
-		return produto;
-	}
-
-	public void setProduto(Produto produto) {
-		this.produto = produto;
-	}
 
 	public Long getId() {
 		return id;
@@ -93,14 +75,6 @@ public class Imagem {
 
 	public void setPosicao(Integer posicao) {
 		this.posicao = posicao;
-	}
-
-	public Categoria getCategoria() {
-		return categoria;
-	}
-
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
 	}
 
 	public Boolean getAtivo() {
