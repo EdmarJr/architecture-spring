@@ -5,6 +5,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.cheklab.web.dao.UsuarioDAO;
 import br.com.cheklab.web.entity.Usuario;
@@ -18,6 +19,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	private Assembler assembler;
 
 	@Override
+	@Transactional(readOnly = true)
 	public UserDetails loadUserByUsername(String username)
 			throws UsernameNotFoundException {
 		Usuario userEntity = userDAO.obterPorEmail(username);

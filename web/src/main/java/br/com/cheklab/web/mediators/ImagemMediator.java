@@ -6,6 +6,7 @@ import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.cheklab.web.dao.DAO;
 import br.com.cheklab.web.dao.ImagemDAO;
@@ -21,6 +22,7 @@ public class ImagemMediator extends Mediator<Imagem> {
 	@Autowired
 	private GerenciadorImagem gerenciadorImagem;
 
+	@Transactional(readOnly = true)
 	public Imagem obterImagemPorIdEnderecoBase64(Long id) {
 		Imagem imagem = getDAO().buscarPorId(id);
 		imagem.setEndereco(gerenciadorImagem.obterImagemBase64(servletContext
@@ -35,6 +37,7 @@ public class ImagemMediator extends Mediator<Imagem> {
 		return imagem;
 	}
 
+	@Transactional(readOnly = true)
 	public Long obterContadorImagem() {
 		Imagem registro = dao.obterRegistroMaiorId();
 		if (registro == null) {

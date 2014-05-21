@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.cheklab.web.dao.DAO;
 import br.com.cheklab.web.dao.ProdutoDAO;
@@ -17,15 +18,18 @@ public class ProdutoMediator extends Mediator<Produto> {
 	@Autowired
 	private ImagemMediator imagemMediator;
 	
+	@Transactional(readOnly = true)
 	public List<Produto> obterProdutos() {
 		return dao.obterProdutos();
 	}
 
+	@Transactional(readOnly = true)
 	public Produto obterPorIdComInializacaoDeImagens(Long id) {
 		return dao.obterPorIdComInializacaoDeImagens(id);
 	}
 	
 	@Override
+	@Transactional
 	public void excluir(Produto entidade) {
 		entidade = obterPorId(entidade.getId());
 		entidade.setAtivo(Boolean.FALSE);
@@ -33,12 +37,14 @@ public class ProdutoMediator extends Mediator<Produto> {
 	}
 
 	@Override
+	@Transactional
 	public void alterar(Produto entidade) {
 		entidade.setAtivo(Boolean.TRUE);
 		getDAO().alterar(entidade);
 	}
 
 	@Override
+	@Transactional
 	public void incluir(Produto entidade) {
 		entidade.setAtivo(Boolean.TRUE);
 		getDAO().incluir(entidade);

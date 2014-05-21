@@ -4,10 +4,12 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.cheklab.web.entity.Imagem;
 
 @Repository
+@Transactional
 public class ImagemDAO extends DAO<Imagem> {
 
 	@Override

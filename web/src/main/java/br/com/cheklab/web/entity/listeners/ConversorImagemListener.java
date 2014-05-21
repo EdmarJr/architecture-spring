@@ -2,6 +2,7 @@ package br.com.cheklab.web.entity.listeners;
 
 import java.io.File;
 
+import javax.persistence.PostPersist;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.servlet.ServletContext;
@@ -46,6 +47,11 @@ public class ConversorImagemListener {
 				+ "images" + File.separator + imagem.getTipoEntidade()
 				+ File.separator + tipoImagem + File.separator
 				+ imagem.getNome();
+	}
+
+	@PostPersist
+	private void setContadorImagem(Imagem imagem) {
+		GerenciadorImagem.contadorImagem = imagem.getId();
 	}
 
 

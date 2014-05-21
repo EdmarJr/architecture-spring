@@ -13,18 +13,14 @@ import java.util.Iterator;
 import org.apache.commons.io.FileDeleteStrategy;
 import org.apache.commons.io.IOUtils;
 import org.apache.tomcat.util.codec.binary.Base64;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import br.com.cheklab.web.mediators.ImagemMediator;
 
 @Component
 public class GerenciadorImagem {
-	@Autowired
-	private ImagemMediator imagemMediator;
-	
+
 	private final static String PREFIXO_PRIMEIRA_PARTE_BASE64 = "data:image/";
 	private final static String PREFIXO_SEGUNDA_PARTE_BASE64 = ";base64,";
+	public static Long contadorImagem;
 	
 	private byte[] converterParaBytes(String enderecoBase64) {
 		Integer posicaoBase64 = enderecoBase64.indexOf("base64,");
@@ -54,8 +50,8 @@ public class GerenciadorImagem {
 		return null;
 	}
 
-	private Long obterContadorImagem() {
-		return imagemMediator.obterContadorImagem();
+	private static Long obterContadorImagem() {
+		return contadorImagem;
 	}
 
 	private String obterRetorno(Path path) {

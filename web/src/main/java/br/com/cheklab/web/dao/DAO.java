@@ -2,14 +2,18 @@ package br.com.cheklab.web.dao;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import org.hibernate.Criteria;
-import org.hibernate.Filter;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.transaction.annotation.Transactional;
 
-import br.com.cheklab.web.config.HibernateUtil;
 
 public abstract class DAO<T> {
+	@PersistenceContext
+	private EntityManager entityManager;
 
 	Class<T> clazz;
 
@@ -18,17 +22,12 @@ public abstract class DAO<T> {
 	}
 
 	protected Session abrirSessao() {
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		Filter filterCategoria = session.enableFilter("categoriaSomenteAtivos");
-		filterCategoria.setParameter("ativo", Boolean.TRUE);
-		Filter filterProduto = session.enableFilter("produtoSomenteAtivos");
-		filterProduto.setParameter("ativo", Boolean.TRUE);
-		Filter filterImagem = session.enableFilter("imagemSomenteAtivos");
-		filterImagem.setParameter("ativo", Boolean.TRUE);
+		Session session = (Session) entityManager.getDelegate();
 		return session;
 	}
 
 	@SuppressWarnings({ "unchecked" })
+	@Transactional(readOnly = true)
 	public T buscarPorId(Long id) {
 		Criteria criteria = abrirSessao().createCriteria(clazz);
 		criteria.add(Restrictions.eq("id", id));
@@ -36,30 +35,19 @@ public abstract class DAO<T> {
 	}
 
 	public void excluir(T entidade) {
-		Session sessao = abrirSessao();
-		sessao.beginTransaction();
-		sessao.delete(entidade);
-		sessao.getTransaction().commit();
-		sessao.close();
+		entityManager.remove(entidade);
 	}
 
 	public void incluir(T entidade) {
-		Session sessao = abrirSessao();
-		sessao.beginTransaction();
-		sessao.persist(entidade);
-		sessao.getTransaction().commit();
-		sessao.close();
+		entityManager.persist(entidade);
 	}
 
 	public void alterar(T entidade) {
-		Session sessao = abrirSessao();
-		sessao.beginTransaction();
-		sessao.merge(entidade);
-		sessao.getTransaction().commit();
-		sessao.close();
+		entityManager.merge(entidade);
 	}
 
 	@SuppressWarnings("unchecked")
+	@Transactional(readOnly = true)
 	public List<T> obterTodos() {
 		Session session = abrirSessao();
 		Criteria criteria = session.createCriteria(clazz);
