@@ -41,7 +41,9 @@
 		</fieldset>
 		<br>
 
-		<button type="submit" class="btn btn-primary">Incluir</button>
+		<jsp:include page="../includes/buttonConfirm.jsp">
+			<jsp:param value="Concluir Inclusão" name="label"/>
+		</jsp:include>
 		<button type="button"
 			onclick="gerenciarImagensComValidacao('${pageContext.request.contextPath}/admin/produto/incluirAjax', '${pageContext.request.contextPath}', ['nome','categoria'])"
 			class="btn btn-primary">Gerenciar Imagens</button>

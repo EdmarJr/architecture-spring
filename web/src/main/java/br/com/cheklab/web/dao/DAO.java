@@ -52,7 +52,6 @@ public abstract class DAO<T> {
 		Session session = abrirSessao();
 		Criteria criteria = session.createCriteria(clazz);
 		List<T> list = criteria.list();
-		session.close();
 		return list;
 	}
 

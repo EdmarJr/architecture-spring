@@ -8,9 +8,10 @@
 <%@ page session="false"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br">
-
+<script src='<c:url value="/resources/admin/js/utils/validation.js"/>'></script>
 <div id="formsContent">
-	<form:form method="POST" modelAttribute="categoria">
+	<form:form method="POST" modelAttribute="categoria" onsubmit="return validarRequiredByName(['nome'])">
+	<ul id="messages"></ul>
 	
 		<fieldset>
 			<legend>Dados Categoria</legend>
@@ -38,7 +39,9 @@
 		</fieldset>
 
 		
-		<p><button type="submit" class="btn btn-primary">Incluir</button></p>	
+		<p><jsp:include page="../includes/buttonConfirm.jsp">
+			<jsp:param value="Concluir Inclusão" name="label"/>
+		</jsp:include></p>	
 	</form:form>
 	
 </div>

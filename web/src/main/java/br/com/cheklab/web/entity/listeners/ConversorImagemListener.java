@@ -25,9 +25,6 @@ public class ConversorImagemListener {
 	@PrePersist
 	@PreUpdate
 	public void converterImagem(Imagem entidade) {
-		if (entidade.getAtivo() == null) {
-			entidade.setAtivo(Boolean.TRUE);
-		}
 		if (entidade.getEndereco() == null
 				|| entidade.getEnderecoMiniatura() == null) {
 			return;

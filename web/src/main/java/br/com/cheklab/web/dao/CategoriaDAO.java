@@ -25,6 +25,7 @@ public class CategoriaDAO extends DAO<Categoria> {
 		Session session = abrirSessao();
 		Criteria criteria = session.createCriteria(clazz);
 		criteria.add(Restrictions.isNull("categoriaPai"));
+		criteria.add(Restrictions.eq("ativo", true));
 		@SuppressWarnings("unchecked")
 		List<Categoria> categorias = criteria.list();
 		for (Categoria categoria : categorias) {

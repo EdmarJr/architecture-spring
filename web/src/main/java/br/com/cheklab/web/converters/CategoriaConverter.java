@@ -17,11 +17,20 @@ public class CategoriaConverter extends PropertyEditorSupport {
 	@Override
 	public void setAsText(String text) throws IllegalArgumentException {
 		if (text.equals("")) {
-			setValue(null);
 			return;
 		}
 		Categoria categoria = mediator.obterPorId(new Long(text));
 		setValue(categoria);
 	}
 	
+	@Override
+	public String getAsText() {
+		Categoria s = (Categoria) getValue();
+		if (s == null) {
+			return null;
+		} else {
+			return s.getId().toString();
+		}
+	}
+
 }

@@ -1,5 +1,6 @@
 package br.com.cheklab.web.entity;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -32,6 +33,12 @@ public class Orcamento {
 	@Column(name = "emAberto")
 	private Boolean emAberto;
 
+	@Column(name = "horaRegistro")
+	private Date horaRegistro;
+
+	@Column(name = "horaRegistro")
+	private Date ultimaAtualizacao;
+
 	public Long getId() {
 		return id;
 	}
@@ -62,6 +69,22 @@ public class Orcamento {
 
 	public void setEmAberto(Boolean emAberto) {
 		this.emAberto = emAberto;
+	}
+
+	public Date getHoraRegistro() {
+		return horaRegistro;
+	}
+
+	public void setHoraRegistro(Date horaRegistro) {
+		this.horaRegistro = horaRegistro;
+	}
+
+	public Date getUltimaAtualizacao() {
+		return ultimaAtualizacao;
+	}
+
+	public void setUltimaAtualizacao(Date ultimaAtualizacao) {
+		this.ultimaAtualizacao = ultimaAtualizacao;
 	}
 
 }

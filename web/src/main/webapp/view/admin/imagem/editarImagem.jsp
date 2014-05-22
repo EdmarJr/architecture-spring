@@ -8,9 +8,10 @@
 <%@ page session="false"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br">
+<script src='<c:url value="/resources/admin/js/utils/validation.js"/>'></script>
 <div id="formsContent">
-	<form:form method="POST" modelAttribute="imagem" action="${pageContext.request.contextPath}/admin/imagem/editar">
-	
+	<form:form method="POST" modelAttribute="imagem" action="${pageContext.request.contextPath}/admin/imagem/editar" onsubmit="return validarRequiredByName(['nome','endereco','enderecoMiniatura'])">
+	<ul id="messages"></ul>
 		<fieldset>
 			<legend>Dados Imagem</legend>
 			<form:input path="idEntidade" type="hidden" />
@@ -33,19 +34,21 @@
 			</jsp:include>
 			<br>
 			<jsp:include page="../includes/inputImage.jsp" >
-				<jsp:param value="endereco" name="path"/>
-				<jsp:param value="Imagem Ampliada" name="label"/>
-			</jsp:include>
-			<jsp:include page="../includes/inputImage.jsp" >
 				<jsp:param value="enderecoMiniatura" name="path"/>
 				<jsp:param value="Imagem Miniatura" name="label"/>
+			</jsp:include>
+			<jsp:include page="../includes/inputImage.jsp" >
+				<jsp:param value="endereco" name="path"/>
+				<jsp:param value="Imagem Ampliada" name="label"/>
 			</jsp:include>
 			<br>
 			<br>
 		</fieldset>
 
 		
-		<p><button type="submit" class="btn btn-primary">Concluir Edição</button></p>	
+		<p><jsp:include page="../includes/buttonConfirm.jsp">
+			<jsp:param value="Concluir Edição" name="label"/>
+		</jsp:include></p>	
 	</form:form>
 	
 </div>

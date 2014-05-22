@@ -1,7 +1,5 @@
 package br.com.cheklab.web.controllers.admin;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -78,7 +76,7 @@ public class AdmImagemController {
 		return model;
 	}
 	@RequestMapping(value = "/admin/imagem/editar", method = RequestMethod.POST)
-	public ModelAndView editarImagem(@Valid @ModelAttribute Imagem imagem) {
+	public ModelAndView editarImagem(@ModelAttribute Imagem imagem) {
 		crudImagem.alterar(imagem);
 		return gerenciarImagensProduto(imagem.getIdEntidade(),
 				imagem.getTipoEntidade());

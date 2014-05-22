@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,11 +19,20 @@ import org.hibernate.annotations.Filter;
 import org.hibernate.annotations.FilterDef;
 import org.hibernate.annotations.ParamDef;
 
+import br.com.cheklab.web.entity.interfaces.EntidadeComImagens;
+import br.com.cheklab.web.entity.interfaces.EntidadeComPosicao;
+import br.com.cheklab.web.entity.interfaces.EntidadeComStatus;
+import br.com.cheklab.web.entity.listeners.EntidadesComPosicaoListener;
+import br.com.cheklab.web.entity.listeners.EntidadesComStatusListener;
+
 @Entity
 @FilterDef(name = "produtoSomenteAtivos", parameters = @ParamDef(name = "ativo", type = "java.lang.Boolean"))
 @Filter(name = "produtoSomenteAtivos", condition = ":ativo = ativo")
+@EntityListeners({ EntidadesComStatusListener.class,
+		EntidadesComPosicaoListener.class })
 @Table(name = "produto")
-public class Produto implements EntidadeComImagens {
+public class Produto implements EntidadeComImagens, EntidadeComStatus,
+		EntidadeComPosicao {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

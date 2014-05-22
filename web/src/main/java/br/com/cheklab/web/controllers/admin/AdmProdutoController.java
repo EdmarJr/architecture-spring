@@ -1,7 +1,5 @@
 package br.com.cheklab.web.controllers.admin;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,7 +32,8 @@ public class AdmProdutoController {
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
-		binder.registerCustomEditor(Categoria.class, this.categoriaConverter);
+		binder.registerCustomEditor(Categoria.class, "categoria",
+				this.categoriaConverter);
 	}
 
 	@RequestMapping(value = "/admin/produtos**", method = RequestMethod.GET)
@@ -67,14 +66,16 @@ public class AdmProdutoController {
 			@RequestParam(value = "idProduto", required = true) Long idProduto) {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("admin/produto/editarProduto");
+		Produto produto = mediator.obterPorIdComInializacaoDeImagens(idProduto);
 		model.addObject("produto",
-				mediator.obterPorIdComInializacaoDeImagens(idProduto));
+				produto);
+		model.addObject("categoria", produto.getCategoria());
 		model.addObject("categoriasSelect", categoriaMediator.obterTodos());
 		return model;
 	}
 
 	@RequestMapping(value = "/admin/produto/editar**", method = RequestMethod.POST)
-	public ModelAndView alterarProduto(@Valid Produto produto,
+	public ModelAndView alterarProduto(Produto produto,
 			BindingResult result, Model model) {
 		alterarProduto(produto);
 		return paginaProdutos();

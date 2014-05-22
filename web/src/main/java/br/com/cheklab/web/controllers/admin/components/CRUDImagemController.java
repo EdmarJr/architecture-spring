@@ -5,8 +5,8 @@ import javax.servlet.ServletContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import br.com.cheklab.web.entity.EntidadeComImagens;
 import br.com.cheklab.web.entity.Imagem;
+import br.com.cheklab.web.entity.interfaces.EntidadeComImagens;
 import br.com.cheklab.web.enums.TipoInclusaoImagemEnum;
 import br.com.cheklab.web.mediators.ImagemMediator;
 import br.com.cheklab.web.mediators.Mediator;

@@ -43,7 +43,9 @@
 		</fieldset>
 		<br>
 
-		<button type="submit" class="btn btn-primary">Concluir Edição</button>
+		<jsp:include page="../includes/buttonConfirm.jsp">
+			<jsp:param value="Concluir Edição" name="label"/>
+		</jsp:include>
 		<button type="button"
 			onclick="gerenciarImagensComValidacao('${pageContext.request.contextPath}/admin/produto/editarAjax', '${pageContext.request.contextPath}', ['nome','categoria'])"
 			class="btn btn-primary">Gerenciar Imagens</button>

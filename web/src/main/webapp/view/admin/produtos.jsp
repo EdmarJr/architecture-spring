@@ -8,7 +8,7 @@
 <html>
 <script>
 	function acaoExclusao(idEntidade) {
-		var element = document.getElementById("td" + idEntidade);
+		var element = document.getElementById("tr" + idEntidade);
 		var parentNode = element.parentNode;
 		parentNode.removeChild(element);
 	}
@@ -20,6 +20,7 @@
 			<tr>
 				<th>Nome</th>
 				<th>Categoria</th>
+				<th>Posição</th>
 				<th>Código Identificação</th>
 				<th>Descrição</th>
 				<th>Ações</th>
@@ -27,29 +28,39 @@
 		</thead>
 		<tbody>
 			<c:forEach var="produto" items="${produtos}">
-				<tr id="td${produto.id}">
+				<tr id="tr${produto.id}">
 					<td>${produto.nome}</td>
 					<td>${produto.categoria.nome}</td>
+					<td>${produto.posicao}</td>
 					<td>${produto.codigoIdentificacao}</td>
 					<td>${produto.descricao}</td>
-					<td><a
-						href='${pageContext.request.contextPath}/admin/produto/editar?idProduto=${produto.id}'><span
-							class="linkEditar"></span></a> <jsp:include
-							page="includes/iconDelete.jsp">
+					<td>
+							<jsp:include page="includes/iconEdit.jsp">
+								<jsp:param
+									value="${pageContext.request.contextPath}/admin/produto/editar?idProduto=${produto.id}"
+									name="urlRedirect" />
+							</jsp:include> 
+							
+								
+						 <jsp:include
+								page="includes/iconDelete.jsp">
 							<jsp:param
 								value="${pageContext.request.contextPath}/admin/produto/excluir"
 								name="ajaxUrl" />
 							<jsp:param value="${produto.id}" name="idEntidade" />
-						</jsp:include> <span class="glyphicon glyphicon-pencil"></span></td>
+						</jsp:include></td>
 
 				</tr>
 			</c:forEach>
 		</tbody>
 
 	</table>
-	<a href="${pageContext.request.contextPath}/admin/produto/incluir">
-		<button class="btn btn-default">Incluir Produto</button>
-	</a>
+	<p> 
+		<jsp:include page="includes/buttonConfirm.jsp">
+			<jsp:param value="Incluir Produto" name="label"/>
+			<jsp:param value="${pageContext.request.contextPath}/admin/produto/incluir" name="urlRedirect"/>
+		</jsp:include>
+	</p>
 
 
 </c:if>

@@ -36,6 +36,6 @@ $("#${path}imgInp").change(function(){
 <img id="${path}target" src="#" width="150" height="150" class="img-thumbnail" alt="${label}" /><br/>
 <button type="button" id="${path}buttonUpload" title="${label}">${label}</button>
 <input style="visibility: hidden" type="file" id="${path}imgInp" />
-<form:input id="${path}inputHidden" path="${path}" type="hidden" />
+<form:input id="${path}inputHidden" name="${path}" path="${path}" type="hidden" />
 </div>
 

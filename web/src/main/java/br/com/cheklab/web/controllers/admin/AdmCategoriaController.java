@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.cheklab.web.converters.CategoriaConverter;
@@ -37,13 +38,15 @@ public class AdmCategoriaController {
 	}
 
 	@RequestMapping(value = "/admin/categoria/editar**", method = RequestMethod.GET)
-	public ModelAndView acionarEditarCategoria(@RequestParam(value = "idCategoria", required = true)Long idCategoria) {
+	public ModelAndView acionarEditarCategoria(
+			@RequestParam(value = "idCategoria", required = true) Long idCategoria) {
 		ModelAndView model = new ModelAndView();
 		model.addObject("categoria", mediator.obterPorId(idCategoria));
 		model.addObject("categoriasSelect", mediator.obterTodos());
 		model.setViewName("/admin/categoria/editarCategoria");
 		return model;
 	}
+
 	@RequestMapping(value = "/admin/categoria/incluir**", method = RequestMethod.GET)
 	public ModelAndView acionarIncluirCategoria() {
 		ModelAndView model = new ModelAndView();
@@ -52,24 +55,35 @@ public class AdmCategoriaController {
 		model.setViewName("/admin/categoria/incluirCategoria");
 		return model;
 	}
+
 	@RequestMapping(value = "/admin/categoria/visualizar**", method = RequestMethod.GET)
-	public ModelAndView acionarVisualizarCategoria(@RequestParam(value = "idCategoria", required = true)Long idCategoria) {
+	public ModelAndView acionarVisualizarCategoria(
+			@RequestParam(value = "idCategoria", required = true) Long idCategoria) {
 		ModelAndView model = new ModelAndView();
 		model.addObject("categoria", mediator.obterPorId(idCategoria));
 		model.setViewName("/admin/categoria/visualizarCategoria");
 		return model;
 	}
-	
+
 	@RequestMapping(value = "/admin/categoria/editar**", method = RequestMethod.POST)
 	public ModelAndView editarCategoria(@ModelAttribute Categoria categoria) {
 		mediator.alterar(categoria);
 		return carregarCategorias();
 	}
+
 	@RequestMapping(value = "/admin/categoria/incluir**", method = RequestMethod.POST)
 	public ModelAndView incluirCategoria(@ModelAttribute Categoria categoria) {
 		mediator.incluir(categoria);
 		return carregarCategorias();
 	}
-	
-	
+
+	@RequestMapping(value = "/admin/categoria/excluir", method = RequestMethod.POST)
+	@ResponseBody
+	public String excluir(Long idEntidade) {
+		Categoria categoria = new Categoria();
+		categoria.setId(idEntidade);
+		mediator.excluir(categoria);
+		return idEntidade.toString();
+	}
+
 }

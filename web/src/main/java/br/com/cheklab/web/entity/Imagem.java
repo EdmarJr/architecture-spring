@@ -13,14 +13,19 @@ import org.hibernate.annotations.Filter;
 import org.hibernate.annotations.FilterDef;
 import org.hibernate.annotations.ParamDef;
 
+import br.com.cheklab.web.entity.interfaces.EntidadeComPosicao;
+import br.com.cheklab.web.entity.interfaces.EntidadeComStatus;
 import br.com.cheklab.web.entity.listeners.ConversorImagemListener;
+import br.com.cheklab.web.entity.listeners.EntidadesComPosicaoListener;
+import br.com.cheklab.web.entity.listeners.EntidadesComStatusListener;
 
 @Entity
 @FilterDef(name = "imagemSomenteAtivos", parameters = @ParamDef(name = "ativo", type = "java.lang.Boolean"))
 @Filter(name = "imagemSomenteAtivos", condition = ":ativo = ativo")
-@EntityListeners(ConversorImagemListener.class)
+@EntityListeners({ ConversorImagemListener.class,
+		EntidadesComStatusListener.class, EntidadesComPosicaoListener.class })
 @Table(name = "imagem")
-public class Imagem {
+public class Imagem implements EntidadeComStatus, EntidadeComPosicao {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")

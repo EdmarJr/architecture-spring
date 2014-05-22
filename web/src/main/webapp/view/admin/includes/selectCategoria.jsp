@@ -16,14 +16,14 @@
 	</form:label>
 	<div class="col-lg-6">
 		<form:select class="form-control" path="${path}">
-			<form:option value="" label=""/>
+			<form:option value="${null}" label=""/>
 			<c:forEach items="${categoriasSelect}" var="categoria">
 				<form:option label="${categoria.nome}"
-					value="${categoria.id}" />
+					value="${categoria}" />
 				<c:if test="${not empty categoria.categoriasFilha}">
    				<c:forEach items="${categoria.categoriasFilha}" var="categoriaFilha">
    				<form:option label='--${categoriaFilha.nome}'
-					value="${categoriaFilha.id}" />
+					value="${categoriaFilha}" />
    				</c:forEach>
 			</c:if>
 			</c:forEach>

@@ -6,6 +6,13 @@
 <%@ page session="false"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br">
+<script>
+	function acaoExclusao(idEntidade) {
+		var element = document.getElementById("tr" + idEntidade);
+		var parentNode = element.parentNode;
+		parentNode.removeChild(element);
+	}
+</script>
 <c:if test="${pageContext.request.userPrincipal.name != null}">
 
 	<table class='table table-striped table-bordered table-condensed'>
@@ -13,36 +20,57 @@
 			<tr>
 				<th>Nome</th>
 				<th>Descrição</th>
+				<th>Posição</th>
 				<th>Ações</th>
 
 			</tr>
 		</thead>
 			<tbody>
 		<c:forEach var="categoria" items="${categorias}">
-				<tr>
+				<tr id="tr${categoria.id}">
 
 					<td>${categoria.nome}</td>
 					<td>${categoria.descricao}</td>
-					<td><a
-						href='${pageContext.request.contextPath}/admin/categoria/editar?idCategoria=${categoria.id}'><span
-							class="glyphicon glyphicon-pencil"></span></a> <span
-						class="glyphicon glyphicon-pencil"></span> <span
-						class="glyphicon glyphicon-pencil"></span></td>
+					<td>${categoria.posicao}</td>
+					<td>
+						<jsp:include page="includes/iconEdit.jsp">
+							<jsp:param
+								value="${pageContext.request.contextPath}/admin/categoria/editar?idCategoria=${categoria.id}"
+								name="urlRedirect" />
+						</jsp:include> 
+						
+						<jsp:include page="includes/iconDelete.jsp">
+							<jsp:param
+								value="${pageContext.request.contextPath}/admin/categoria/excluir"
+								name="ajaxUrl" />
+							<jsp:param value="${categoria.id}" name="idEntidade" />
+						</jsp:include>
+					</td>
 
 				</tr>
 
 				<c:if test="${not empty categoria.categoriasFilha}">
 					<c:forEach items="${categoria.categoriasFilha}"
 						var="categoriaFilha">
-						<tr>
+						<tr id="tr${categoriaFilha.id}">
 
 							<td> -- ${categoriaFilha.nome}</td>
 							<td>${categoriaFilha.descricao}</td>
-							<td><a
-								href='${pageContext.request.contextPath}/admin/categoria/editar?idCategoria=${categoriaFilha.id}'><span
-									class="glyphicon glyphicon-pencil"></span></a> <span
-								class="glyphicon glyphicon-pencil"></span> <span
-								class="glyphicon glyphicon-pencil"></span></td>
+							<td>${categoria.posicao}</td>
+							<td>
+								<jsp:include page="includes/iconEdit.jsp">
+									<jsp:param
+										value="${pageContext.request.contextPath}/admin/categoria/editar?idCategoria=${categoriaFilha.id}"
+										name="urlRedirect" />
+								</jsp:include> 
+								
+								<jsp:include page="includes/iconDelete.jsp">
+									<jsp:param
+										value="${pageContext.request.contextPath}/admin/categoria/excluir"
+										name="ajaxUrl" />
+									<jsp:param value="${categoriaFilha.id}" name="idEntidade" />
+								</jsp:include>
+							</td>
 
 						</tr>
 					</c:forEach>
@@ -51,9 +79,12 @@
 			</tbody>
 
 	</table>
-	<a href="${pageContext.request.contextPath}/admin/categoria/incluir">
-		<button class="btn btn-default">Incluir Categoria</button>
-	</a>
+	<p>
+		<jsp:include page="includes/buttonConfirm.jsp">
+			<jsp:param value="Incluir Categoria" name="label"/>
+			<jsp:param value="${pageContext.request.contextPath}/admin/categoria/incluir" name="urlRedirect"/>
+		</jsp:include>
+	</p>
 
 
 </c:if>
