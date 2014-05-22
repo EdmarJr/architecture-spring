@@ -36,7 +36,7 @@ public class Orcamento {
 	@Column(name = "horaRegistro")
 	private Date horaRegistro;
 
-	@Column(name = "horaRegistro")
+	@Column(name = "horaUltimaAtualizacao")
 	private Date ultimaAtualizacao;
 
 	public Long getId() {
