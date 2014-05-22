@@ -21,6 +21,8 @@ import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
+import br.com.cheklab.web.converters.CategoriaConverter;
+
 @Configuration
 @ComponentScan("br.com.cheklab.web.*")
 @EnableWebMvc
@@ -28,8 +30,10 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 @Import({ SecurityConfig.class })
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class Config extends WebMvcConfigurerAdapter {
-
-
+	
+	@Autowired
+	CategoriaConverter converter;
+	
 	@Bean
 	public UrlBasedViewResolver setupViewResolver() {
 		UrlBasedViewResolver resolver = new UrlBasedViewResolver();
@@ -86,7 +90,6 @@ public class Config extends WebMvcConfigurerAdapter {
 		b.setExceptionMappings(mappings);
 		return b;
 	}
-
 
 
 }

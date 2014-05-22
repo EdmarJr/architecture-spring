@@ -49,10 +49,10 @@ public class AdmImagemController {
 			@RequestParam(required = true, value = "idEntidade") Long idEntidade,
 			@RequestParam(required = true, value = "tipoEntidade") String tipoEntidade) {
 		ModelAndView model = new ModelAndView();
-		Imagem vo = new Imagem();
-		vo.setTipoEntidade(tipoEntidade);
-		vo.setIdEntidade(idEntidade);
-		model.addObject("imagem", vo);
+		Imagem imagem = new Imagem();
+		imagem.setTipoEntidade(tipoEntidade);
+		imagem.setIdEntidade(idEntidade);
+		model.addObject("imagem", imagem);
 		model.setViewName("/admin/imagem/incluirImagem");
 		return model;
 	}

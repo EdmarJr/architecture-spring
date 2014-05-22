@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.cheklab.web.dao.CategoriaDAO;
 import br.com.cheklab.web.dao.DAO;
@@ -24,20 +25,9 @@ public class CategoriaMediator extends Mediator<Categoria> {
 	protected DAO<Categoria> getDAO() {
 		return dao;
 	}
-
+	
 	@Override
-	public void incluir(Categoria entidade) {
-		entidade.setAtivo(Boolean.TRUE);
-		getDAO().incluir(entidade);
-	}
-
-	@Override
-	public void alterar(Categoria entidade) {
-		entidade.setAtivo(Boolean.TRUE);
-		getDAO().alterar(entidade);
-	}
-
-	@Override
+	@Transactional
 	public void excluir(Categoria entidade) {
 		entidade.setAtivo(Boolean.FALSE);
 		getDAO().alterar(entidade);

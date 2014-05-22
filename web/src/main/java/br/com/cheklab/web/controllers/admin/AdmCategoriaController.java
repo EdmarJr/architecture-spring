@@ -40,6 +40,7 @@ public class AdmCategoriaController {
 	public ModelAndView acionarEditarCategoria(@RequestParam(value = "idCategoria", required = true)Long idCategoria) {
 		ModelAndView model = new ModelAndView();
 		model.addObject("categoria", mediator.obterPorId(idCategoria));
+		model.addObject("categoriasSelect", mediator.obterTodos());
 		model.setViewName("/admin/categoria/editarCategoria");
 		return model;
 	}
