@@ -14,8 +14,9 @@
 		<thead>
 			<tr>
 				<th>Cliente</th>
-				<th>Produtos</th>
-				<th>Ações</th>
+				<th>Ticket</th>
+				<th>Status</th>
+				<th>Data Registro</th>
 			</tr>
 		</thead>
 		<c:forEach var="orcamento" items="${orcamentos}">
@@ -23,10 +24,16 @@
 				<tr>
 
 					<td>${orcamento.cliente.nome}</td>
-					<td>teste</td>
-					<td><a
-						href='${pageContext.request.contextPath}/admin/orcamento/processar?idOrcamento=${orcamento.id}'><span
-							class="glyphicon glyphicon-pencil"></span></a></td>
+					<td>${orcamento.id}</td>
+					<td>
+						<c:if test="${orcamento.emAberto}">
+							Em Aberto
+						</c:if>
+						<c:if test="${!orcamento.emAberto}">
+							Fechado
+						</c:if>
+					</td>
+					<td>${orcamento.horaRegistro}</td>
 
 				</tr>
 			</tbody>
@@ -35,7 +42,7 @@
 	</table>
 	<div style="margin:0 auto;">
 <div class="col-md-5">
-		<div class="panel panel-default">
+		<div class="panel panel-primary">
 			<div class="panel-heading">
 				<h3 class="panel-title">Informações Orçamento</h3>
 			</div>
@@ -70,7 +77,7 @@
 		</div>
 	</div>
 	<div class="col-md-4">
-		<div class="panel panel-default">
+		<div class="panel panel-primary">
 			<div class="panel-heading">
 				<h3 class="panel-title">Informações Cliente</h3>
 			</div>

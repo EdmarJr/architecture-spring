@@ -26,7 +26,7 @@ public class Orcamento {
 	@OneToMany(mappedBy = "orcamento", cascade=CascadeType.ALL)
 	private List<OrcamentoProdutos> produtosOrcamento;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "id_cliente", referencedColumnName = "id")
 	private Cliente cliente;
 	

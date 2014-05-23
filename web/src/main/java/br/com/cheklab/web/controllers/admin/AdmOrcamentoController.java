@@ -18,7 +18,8 @@ public class AdmOrcamentoController {
 	private OrcamentoMediator mediator;
 
 	@RequestMapping(value = "/admin/orcamentos", method = RequestMethod.GET)
-	public ModelAndView carregarOrcamentos() {
+	public ModelAndView carregarOrcamentos(
+			@RequestParam(value = "idOrcamento", required = false) Long idOrcamento) {
 		ModelAndView model = new ModelAndView();
 		model.addObject("orcamentos", mediator.obterTodos());
 		model.setViewName("/admin/orcamentos");
