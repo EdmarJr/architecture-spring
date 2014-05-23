@@ -33,7 +33,8 @@
 		</c:forEach>
 
 	</table>
-<div class="col-md-3">
+	<div style="margin:0 auto;">
+<div class="col-md-5">
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h3 class="panel-title">Informações Orçamento</h3>
@@ -68,12 +69,12 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-md-3">
+	<div class="col-md-4">
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h3 class="panel-title">Informações Cliente</h3>
 			</div>
-			<div class="panel-body">
+			<div class="panel-body" >
 				<ul class="list-group">
 					<li class="list-group-item">
 						<span>
@@ -97,25 +98,41 @@
 			</div>
 		</div>
 	</div>
+	<div class="col-md-3">
+		<div class="list-group">
+  <a href="#" class="list-group-item list-group-item-success">Dapibus ac facilisis in</a>
+  <a href="#" class="list-group-item list-group-item-info">Cras sit amet nibh libero</a>
+  <a href="#" class="list-group-item list-group-item-warning">Porta ac consectetur ac</a>
+  <a href="#" class="list-group-item list-group-item-danger">Vestibulum at eros</a>
+</div>
+	</div>
 	
-	<div class="col-md-8">
+	<div class="col-md-12">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
 				<h3 class="panel-title">Produtos Orçamento</h3>
 			</div>
 			<div class="panel-body">
-				<ul class="list-group">
-					<li class="list-group-item"><span class="badge">14</span>
-						Canetas2</li>
-					<li class="list-group-item"><span class="badge">14</span>
-						Canetas1</li>
-					<li class="list-group-item"><span class="badge">14</span>
-						Canetas3</li>
-					<li class="list-group-item"><span class="badge">14</span>
-						Canetas4</li>
-				</ul>
+			<table class='table table-striped table-bordered table-condensed'>
+		<thead>
+			<tr>
+				<th>Nome</th>
+				<th>Codigo Identificação</th>
+				<th>Quantidade</th>
+
+			</tr>
+		</thead>
+			<tbody>
+			<tr>
+			<td> Teste</td>
+			<td> Teste</td>
+			<td> Teste</td>
+			<tr>
+			</tbody>
+			</table>
 			</div>
 		</div>
+	</div>
 	</div>
 
 
