@@ -6,6 +6,16 @@
 <%@ page session="false"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<script>
+	function selecionarOrcamento(e) {
+		mudarBackGround(e.target, "gray");
+		};
+
+	function mudarBackGround(element, cor) {
+			
+		};
+
+</script>
 <c:if test="${pageContext.request.userPrincipal.name != null}">
 
 
