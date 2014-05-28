@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.cheklab.web.entity.Orcamento;
@@ -38,5 +39,15 @@ public class AdmOrcamentoController {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("/admin/orcamentos");
 		return model;
+	}
+
+	@RequestMapping(value = "/admin/orcamento/detalhar**", method = RequestMethod.POST)
+	@ResponseBody
+	public ModelAndView detalharOrcamento(Long idOrcamento) {
+		ModelAndView modelAndView = new ModelAndView();
+		Orcamento orcamento = mediator.obterPorId(idOrcamento);
+		modelAndView.addObject("orcamentoSelecionado", orcamento);
+		modelAndView.setViewName("/admin/orcamentos");
+		return modelAndView;
 	}
 }
