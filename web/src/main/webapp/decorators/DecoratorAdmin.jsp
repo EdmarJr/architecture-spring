@@ -50,6 +50,15 @@
 				<ul class="nav navbar-nav side-nav">
 					<li class="active"><a href="${pageContext.request.contextPath}/admin"><i
 							class="fa fa-dashboard"></i> Dashboard</a></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown"><i class="fa fa-caret-square-o-down"></i>
+							Configurações <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="${pageContext.request.contextPath}/admin/configuracao/gerais">Configurações Gerais</a></li>
+							<li><a href="#">Configurações Orçamento</a></li>
+							<li><a href="#">Configurações Página Inicial</a></li>
+							<li><a href="#">Configurações Página Produtos</a></li>
+						</ul></li>
 					<li><a href="${pageContext.request.contextPath}/admin/orcamentos"><i class="fa fa-bar-chart-o"></i>
 							Orçamentos</a></li>
 					<li><a href="${pageContext.request.contextPath}/admin/categorias"><i class="fa fa-table"></i>
@@ -63,15 +72,6 @@
 							Bootstrap Grid</a></li>
 					<li><a href="blank-page.html"><i class="fa fa-file"></i>
 							Blank Page</a></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown"><i class="fa fa-caret-square-o-down"></i>
-							Dropdown <b class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Dropdown Item</a></li>
-							<li><a href="#">Another Item</a></li>
-							<li><a href="#">Third Item</a></li>
-							<li><a href="#">Last Item</a></li>
-						</ul></li>
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right navbar-user">

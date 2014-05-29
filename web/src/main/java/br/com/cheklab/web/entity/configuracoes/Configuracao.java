@@ -2,6 +2,7 @@ package br.com.cheklab.web.entity.configuracoes;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,10 +14,11 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import br.com.cheklab.web.entity.Imagem;
+import br.com.cheklab.web.entity.interfaces.EntidadeComImagem;
 
 @Entity
 @Table(name = "configuracao")
-public class Configuracao {
+public class Configuracao implements EntidadeComImagem {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
@@ -29,9 +31,9 @@ public class Configuracao {
 	@OneToMany(mappedBy = "configuracao")
 	private List<ConfiguracaoOrcamento> configuracoesOrcamentos;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_logo_menu_superior")
-	private Imagem enderecoLogoMenuSuperior;
+	private Imagem logoMenuSuperior;
 
 	public Long getId() {
 		return id;
@@ -59,14 +61,6 @@ public class Configuracao {
 		this.configuracoesPaginaProdutos = configuracoesPaginaProdutos;
 	}
 
-	public Imagem getEnderecoLogoMenuSuperior() {
-		return enderecoLogoMenuSuperior;
-	}
-
-	public void setEnderecoLogoMenuSuperior(Imagem enderecoLogoMenuSuperior) {
-		this.enderecoLogoMenuSuperior = enderecoLogoMenuSuperior;
-	}
-
 	public List<ConfiguracaoOrcamento> getConfiguracoesOrcamentos() {
 		return configuracoesOrcamentos;
 	}
@@ -75,5 +69,19 @@ public class Configuracao {
 			List<ConfiguracaoOrcamento> configuracoesOrcamentos) {
 		this.configuracoesOrcamentos = configuracoesOrcamentos;
 	}
+
+	public Imagem getLogoMenuSuperior() {
+		return logoMenuSuperior;
+	}
+
+	public void setLogoMenuSuperior(Imagem logoMenuSuperior) {
+		this.logoMenuSuperior = logoMenuSuperior;
+	}
+
+	@Override
+	public Imagem getImagem() {
+		return getLogoMenuSuperior();
+	}
+
 
 }

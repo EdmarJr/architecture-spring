@@ -9,6 +9,8 @@
 		value='${param.path == null ? "categoria" : param.path}' />
 	<c:set var='label'
 		value='${param.label == null ? "Categoria" : param.label}' />
+	<c:set var='idIgnorado'
+		value='${param.idIgnorado == null ? "" : param.idIgnorado}' />
 
 	<form:label class="col-lg-2 control-label" path="${path}">
 		<c:out value='${label}' />

@@ -7,21 +7,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <script src='<c:url value="/resources/admin/js/aplicacao/table.js"/>'></script>
-<script>
-	function onClickTable() {
-				    $.ajax({url: '${pageContext.request.contextPath}/admin/orcamento/detalhar',
-				        data: { 'idOrcamento' : document.getElementsByClassName('active')[0].id},
-				        type: "POST",
-				        success: function(html) {
-				        	$('#conteudoDetalhar').empty();
-				        	var element = html;
-				        	$('body').html(element);
-				        }
-				    });
-				      
-				    event.preventDefault();
-	}
-</script>
+<script src='<c:url value="/resources/admin/js/aplicacao/orcamento/orcamento.js"/>'></script>
 <c:if test="${pageContext.request.userPrincipal.name != null}">
 
 
@@ -37,7 +23,8 @@
 		</thead>
 		<c:forEach var="orcamento" items="${orcamentos}">
 			<tbody>
-				<tr id="${orcamento.id}" onclick="selecionarRow(this,onClickTable)">
+				<tr id="${orcamento.id}"
+					onclick="mostrarOrcamentoTelaAjax(this, '${pageContext.request.contextPath}/admin/orcamento/detalhar')">
 
 					<td>${orcamento.cliente.nome}</td>
 					<td>${orcamento.id}</td>
@@ -106,13 +93,9 @@
 		</div>
 		<div class="col-md-3">
 			<div class="list-group">
-				<a href="#" class="list-group-item list-group-item-success">Dapibus
-					ac facilisis in</a> <a href="#"
-					class="list-group-item list-group-item-info">Cras sit amet nibh
-					libero</a> <a href="#" class="list-group-item list-group-item-warning">Porta
-					ac consectetur ac</a> <a href="#"
-					class="list-group-item list-group-item-danger">Vestibulum at
-					eros</a>
+			
+			<a href="#" class="list-group-item list-group-item-info">Fechar Orçamento</a>
+			 <a href="#" class="list-group-item list-group-item-info">Responder Orçamento</a>  
 			</div>
 		</div>
 
