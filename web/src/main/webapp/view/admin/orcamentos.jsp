@@ -14,8 +14,8 @@
 				        type: "POST",
 				        success: function(html) {
 				        	$('#conteudoDetalhar').empty();
-// 				        	var element = html.getElementById('conteudoDetalhar');
-				        	$('#conteudoDetalhar').replaceWith(html);
+				        	var element = html;
+				        	$('body').html(element);
 				        }
 				    });
 				      
