@@ -18,7 +18,7 @@ public class ImagemDAO extends DAO<Imagem> {
 	}
 
 	public Imagem obterRegistroMaiorId() {
-		Session session = abrirSessao();
+		Session session = obterSessao();
 		Criteria criteria = session.createCriteria(Imagem.class);
 		criteria.addOrder(Order.desc("id"));
 		criteria.setMaxResults(1);

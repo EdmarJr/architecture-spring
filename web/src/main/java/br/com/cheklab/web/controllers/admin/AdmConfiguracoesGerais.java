@@ -2,7 +2,6 @@ package br.com.cheklab.web.controllers.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,7 +23,6 @@ public class AdmConfiguracoesGerais {
 	public ModelAndView carregarConfiguracao() {
 		ModelAndView model = new ModelAndView();
 		Configuracao configuracao = mediator.obterConfiguracao();
-		configuracao.setLogoMenuSuperior(imagemMediator.obterImagemPorIdEnderecoBase64(configuracao.getLogoMenuSuperior().getId()));
 		model.addObject("configuracao", configuracao);
 		model.setViewName("/admin/configuracao/gerais");
 		return model;
@@ -32,13 +30,13 @@ public class AdmConfiguracoesGerais {
 
 	@RequestMapping(method = RequestMethod.POST, value = "/admin/configuracao/gerais")
 	@ResponseBody
-	public String alterarConfiguracao(@ModelAttribute Configuracao configuracao) {
+	public String alterarConfiguracao(Configuracao configuracao) {
 		configuracao.getImagem().setEnderecoMiniatura(configuracao.getImagem().getEndereco());
 		configuracao.getImagem().setTipoEntidade("configuracao");
 		configuracao.getImagem().setNome("logo");
 		configuracao.getImagem().setIdEntidade(configuracao.getId());
 		mediator.alterar(configuracao);
-		return "sucesso";
+		return "Configurações alteradas com sucesso.";
 	}
 
 }

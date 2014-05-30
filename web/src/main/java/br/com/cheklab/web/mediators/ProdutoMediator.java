@@ -36,6 +36,11 @@ public class ProdutoMediator extends Mediator<Produto> {
 		getDAO().alterar(entidade);
 	}
 
+	@Transactional(readOnly = true)
+	public List<Produto> filtrar(Produto produto) {
+		return dao.filtrar(produto);
+	}
+
 	@Override
 	@Transactional
 	public void alterar(Produto entidade) {

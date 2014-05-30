@@ -5,3 +5,5 @@ INSERT INTO PRODUTO VALUES (1,'1728718', 'TESTE','TESTANDO',1);
 INSERT INTO imagem VALUES (2, 'TESTaaaa', 'produtos/canetinhas.jpg', 'teste', true, null, 1);
 insert into orcamento (id, emAberto, id_cliente) VALUES (1, TRUE, 1); 
 insert into cliente values (1, 'edmarfagunde@gmail.com', 'marlene', 'Edmar Fagundes', '6282887475');
+insert into configuracao (id) values (1);
+insert into configuracao_orcamento (id, configuracao_id, indicacao_habilitada) values (1,1,FALSE);

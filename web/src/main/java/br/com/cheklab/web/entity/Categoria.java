@@ -160,11 +160,6 @@ public class Categoria implements EntidadeComImagens, EntidadeComStatus,
 			return false;
 		return true;
 	}
-
-	@Override
-	public String toString() {
-		return descricao;
-	}
 	
 	
 

@@ -15,7 +15,7 @@ import br.com.cheklab.web.entity.Produto;
 public class ProdutoDAO extends DAO<Produto> {
 	@SuppressWarnings("unchecked")
 	public List<Produto> obterProdutos() {
-		Session sessao = abrirSessao();
+		Session sessao = obterSessao();
 		Criteria criteria = sessao.createCriteria(Produto.class);
 		return criteria.list();
 	}

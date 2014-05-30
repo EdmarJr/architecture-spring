@@ -14,10 +14,19 @@ public class ConfiguracaoMediator extends Mediator<Configuracao> {
 
 	@Autowired
 	private ConfiguracaoDAO dao;
+	@Autowired
+	private ImagemMediator imagemMediator;
 
 	@Transactional(readOnly = true)
 	public Configuracao obterConfiguracao() {
-		return dao.buscarPorId(TipoConfiguracao.DEFAULT.getId());
+		Configuracao configuracao = dao.buscarPorId(TipoConfiguracao.DEFAULT
+				.getId());
+		if (configuracao.getLogoMenuSuperior() != null) {
+			configuracao.setLogoMenuSuperior(imagemMediator
+					.obterImagemPorIdEnderecoBase64(configuracao
+							.getLogoMenuSuperior().getId()));
+		}
+		return configuracao;
 	}
 
 	@Transactional(readOnly = true)

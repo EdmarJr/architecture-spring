@@ -12,11 +12,11 @@
 <script src='<c:url value="/resources/admin/js/utils/validation.js"/>'></script>
 <script src='<c:url value="/resources/admin/js/aplicacao/configuracao/configuracao.js"/>'></script>
 <div id="formsContent">
-	<form:form method="POST" modelAttribute="configuracao" onsubmit="salvarConfiguracaoAJax(this,'${pageContext.request.contextPath}/admin/configuracao/gerais'); return false;">
+	<form:form method="POST" id="formConfiguracao" modelAttribute="configuracao">
 		<ul id="messages"></ul>
 		<form:input path="id" type="hidden" />
 		<div>
-			<div class="col-md-12">
+			<div class="col-md-13">
 				<div class="panel panel-primary">
 					<div class="panel-heading">	
 						<h3 class="panel-title">Configurações Gerais</h3>
@@ -32,9 +32,9 @@
 			</div>
 		</div>
 
-		<p><jsp:include page="../includes/buttonConfirm.jsp">
-				<jsp:param value="Concluir Alteração" name="label" />
-			</jsp:include></p>
+		<p><button type="button"
+			onclick="salvarConfiguracaoAJax(document.getElementById('formConfiguracao'),'${pageContext.request.contextPath}/admin/configuracao/gerais',this);"
+			class="btn btn-primary">Concluir Alteração</button></p>
 	</form:form>
 
 </div>

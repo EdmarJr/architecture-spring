@@ -12,7 +12,7 @@ import br.com.cheklab.web.entity.Usuario;
 public class UsuarioDAO extends DAO<Usuario> {
 	
 	public Usuario obterPorEmail(String email) {
-		Criteria criteria = abrirSessao().createCriteria(Usuario.class);
+		Criteria criteria = obterSessao().createCriteria(Usuario.class);
 		criteria.add(Restrictions.eq("email", email));
 		Usuario usuario = (Usuario) criteria.uniqueResult();
 		return usuario;

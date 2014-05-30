@@ -22,7 +22,7 @@ public class CategoriaDAO extends DAO<Categoria> {
 
 	@Transactional(readOnly = true)
 	public List<Categoria> obterCategoriasEFilhas() {
-		Session session = abrirSessao();
+		Session session = obterSessao();
 		Criteria criteria = session.createCriteria(clazz);
 		criteria.add(Restrictions.isNull("categoriaPai"));
 		criteria.add(Restrictions.eq("ativo", true));

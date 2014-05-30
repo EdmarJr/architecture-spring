@@ -55,7 +55,7 @@
 							Configurações <b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li><a href="${pageContext.request.contextPath}/admin/configuracao/gerais">Configurações Gerais</a></li>
-							<li><a href="#">Configurações Orçamento</a></li>
+							<li><a href="${pageContext.request.contextPath}/admin/configuracao/orcamento">Configurações Orçamento</a></li>
 							<li><a href="#">Configurações Página Inicial</a></li>
 							<li><a href="#">Configurações Página Produtos</a></li>
 						</ul></li>

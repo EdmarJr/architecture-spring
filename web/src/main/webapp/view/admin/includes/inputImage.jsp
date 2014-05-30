@@ -17,7 +17,7 @@ function readURL(input) {
         var reader = new FileReader();            
         reader.onload = function (e) {
         	document.getElementById('${path}target').src = e.target.result;
-        	document.getElementById('${path}inputHidden').src = e.target.result;
+        	document.getElementById('${path}inputHidden').value = e.target.result;
         };
         
         reader.readAsDataURL(input.files[0]);

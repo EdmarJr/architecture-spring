@@ -38,9 +38,14 @@ public class AdmProdutoController {
 
 	@RequestMapping(value = "/admin/produtos**", method = RequestMethod.GET)
 	public ModelAndView paginaProdutos() {
+		ModelAndView model = paginaExibirProdutos();
+		model.addObject("produtos", mediator.obterProdutos());
+		return model;
+	}
+
+	private ModelAndView paginaExibirProdutos() {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("admin/produtos");
-		model.addObject("produtos", mediator.obterProdutos());
 		return model;
 	}
 
@@ -102,6 +107,14 @@ public class AdmProdutoController {
 	public String alterarProdutoAjax(Produto produto) {
 		alterarProduto(produto);
 		return produto.getId().toString();
+	}
+
+	@RequestMapping(value = "/admin/produto/filtrar", method = RequestMethod.POST)
+	@ResponseBody
+	public ModelAndView filtrarPesquisa(Produto filtro) {
+		ModelAndView model = paginaExibirProdutos();
+		model.addObject("produtos", mediator.filtrar(filtro));
+		return model;
 	}
 
 	private void alterarProduto(Produto produto) {
