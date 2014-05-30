@@ -16,8 +16,8 @@ function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();            
         reader.onload = function (e) {
-            $('#${path}target').attr('src', e.target.result);
-            $('#${path}inputHidden').attr('value', e.target.result);
+        	document.getElementById('${path}target').src = e.target.result;
+        	document.getElementById('${path}inputHidden').src = e.target.result;
         };
         
         reader.readAsDataURL(input.files[0]);
@@ -27,9 +27,9 @@ function readURL(input) {
     document.getElementById("${path}buttonUpload").onclick = function() {
     	document.getElementById("${path}imgInp").click();
     };
-$("#${path}imgInp").change(function(){
+document.getElementById('${path}imgInp').onchange = function(){
     readURL(this);
-});
+};
 		});
 </script>
 <div style="display: inline-block;">

@@ -1,5 +1,5 @@
-package br.com.cheklab.web.controllers.admin;
 
+package br.com.cheklab.web.controllers.admin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
