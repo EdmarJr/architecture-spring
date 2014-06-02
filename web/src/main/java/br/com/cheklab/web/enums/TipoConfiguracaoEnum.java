@@ -1,11 +1,11 @@
 package br.com.cheklab.web.enums;
 
-public enum TipoConfiguracao {
+public enum TipoConfiguracaoEnum {
 	DEFAULT(1), MOBILE(2);
 
 	private Long id;
 
-	private TipoConfiguracao(long codigo) {
+	private TipoConfiguracaoEnum(long codigo) {
 		this.id = codigo;
 	}
 

@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import br.com.cheklab.web.dao.ConfiguracaoOrcamentoDAO;
 import br.com.cheklab.web.dao.DAO;
 import br.com.cheklab.web.entity.configuracoes.ConfiguracaoOrcamento;
-import br.com.cheklab.web.enums.TipoConfiguracao;
+import br.com.cheklab.web.enums.TipoConfiguracaoEnum;
 
 @Service
 public class ConfiguracaoOrcamentoMediator extends
@@ -21,7 +21,7 @@ public class ConfiguracaoOrcamentoMediator extends
 	@Transactional(readOnly = true)
 	public ConfiguracaoOrcamento obterConfiguracaoOrcamento() {
 		ConfiguracaoOrcamento configuracao = dao
-				.buscarPorId(TipoConfiguracao.DEFAULT.getId());
+				.buscarPorId(TipoConfiguracaoEnum.DEFAULT.getId());
 		return configuracao;
 	}
 

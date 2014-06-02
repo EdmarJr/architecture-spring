@@ -14,27 +14,43 @@
 	}
 
 	function adicionarFiltro() {
-		var input = createElement("input");
+		var input = document.createElement("input");
+		input.setAttribute("class", "form-control")
+		var label = document.createElement("label");
+		var divInput = document.createElement("div");
+		divInput.setAttribute("class","col-lg-6");
+		label.setAttribute("class", "col-lg-2 control-label");
 		var select = document.getElementById("selectFiltro");
 		var inputFiltro = document.getElementById("inputFiltro");
-		input.setAttribute("disabled", "disabled");
 		input.setAttribute("name", select.value);
-		input.setAttribute("value", inputFiltro. value);
-		document.getElementById("formFiltro").appendChild(input);
+		input.setAttribute("id", select.value);
+		var elemento = document.getElementById("option" + select.value);
+		var labelText = document.createTextNode(elemento.label);
+		label.appendChild(labelText);
+		var paiElemento = elemento.parentNode;
+		paiElemento.removeChild(elemento);
+		input.setAttribute("value", inputFiltro.value);
+		divInput.appendChild(input);
+		document.getElementById("formFiltro").appendChild(label);
+		document.getElementById("formFiltro").appendChild(document.createElement("br"));
+		document.getElementById("formFiltro").appendChild(divInput);
+		document.getElementById("formFiltro").appendChild(document.createElement("br"));
+		document.getElementById("formFiltro").appendChild(document.createElement("br"));
 	}
 
 	function submeterFiltroAjax(botao, urlAjax) {
-		botao.setAttribute("disabled", disabled);
+		botao.setAttribute("disabled", "disabled");
 		$.ajax({
-			url: urlAjax,
-			data: $("#formFiltro").serialize(),
-			type: "POST",
-			sucess: function(pagina) {
-					botao.removeAttribute("disabled");
-					$("#resultadoPesquisa").html($('#resultadoPesquisa', $(pagina)));
-				}
-			});
-				
+			url : urlAjax,
+			data : $("#formFiltro").serialize(),
+			type : "POST",
+			success : function(html) {
+				botao.removeAttribute("disabled");
+				$("#resultadoPesquisa").html(
+						$('#resultadoPesquisa', $(html)));
+			}
+		});
+
 	}
 </script>
 
@@ -51,22 +67,35 @@
 					<div class="col-sm-6 col-md-8">
 						<div class="thumbnail">
 							<h3>Filtro Pesquisa</h3>
-							<form:form modelAttribute="formFiltro">
-							</form:form>
-							<label></label> <input type="text" id="inputFiltro"> <select
-								class="form-control" id="selectFiltro">
-								<c:forEach items="${parametrosFiltro}" var="nomeFiltro"></c:forEach>
-								<option value="${nomeFiltro.codigo}"
-									label="${nomeFiltro.descricao}" />
-							</select>
+							<div style="display: flex">
+								<input type="text" id="inputFiltro"> <select
+									style="width: inherit;" class="form-control" id="selectFiltro">
+									<c:forEach items="${parametrosFiltro}" var="nomeFiltro">
+										<option id="option${nomeFiltro.codigo}"
+											value="${nomeFiltro.codigo}" label="${nomeFiltro.descricao}" />
+									</c:forEach>
+								</select>
+								<button type="button" onclick="adicionarFiltro()"
+									class="btn btn-sucess">Adicionar Filtro</button>
+							</div>
 							<button type="button"
-								onclick="submeterFiltroAjax(this,${pageContext.request.contextPath}/admin/produto/filtrar)"
-								class="btn btn-sucess">Adicionar Filtro</button>
+								onclick="submeterFiltroAjax(this,'${pageContext.request.contextPath}/admin/produto/filtrar')"
+								class="btn btn-sucess">Pesquisar</button>
 
 
 
 						</div>
 					</div>
+					<div class="col-sm-4 col-md-4">
+						<div class="thumbnail">
+							<h3>Filtros</h3>
+							<div style="display: flex">
+								<form:form id="formFiltro" modelAttribute="formFiltro">
+							</form:form>
+							</div>
+						</div>
+					</div>
+					
 				</div>
 			</div>
 

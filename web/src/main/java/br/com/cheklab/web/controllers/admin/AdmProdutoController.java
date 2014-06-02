@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import br.com.cheklab.web.converters.CategoriaConverter;
 import br.com.cheklab.web.entity.Categoria;
 import br.com.cheklab.web.entity.Produto;
+import br.com.cheklab.web.enums.filtros.ParametrosFiltroProdutoEnum;
 import br.com.cheklab.web.mediators.CategoriaMediator;
 import br.com.cheklab.web.mediators.ProdutoMediator;
 
@@ -45,6 +46,8 @@ public class AdmProdutoController {
 
 	private ModelAndView paginaExibirProdutos() {
 		ModelAndView model = new ModelAndView();
+		model.addObject("parametrosFiltro",
+				ParametrosFiltroProdutoEnum.values());
 		model.setViewName("admin/produtos");
 		return model;
 	}
@@ -111,9 +114,9 @@ public class AdmProdutoController {
 
 	@RequestMapping(value = "/admin/produto/filtrar", method = RequestMethod.POST)
 	@ResponseBody
-	public ModelAndView filtrarPesquisa(Produto filtro) {
+	public ModelAndView filtrarPesquisa(Produto formFiltro) {
 		ModelAndView model = paginaExibirProdutos();
-		model.addObject("produtos", mediator.filtrar(filtro));
+		model.addObject("produtos", mediator.filtrar(formFiltro));
 		return model;
 	}
 

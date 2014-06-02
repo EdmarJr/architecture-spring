@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import br.com.cheklab.web.dao.ConfiguracaoDAO;
 import br.com.cheklab.web.dao.DAO;
 import br.com.cheklab.web.entity.configuracoes.Configuracao;
-import br.com.cheklab.web.enums.TipoConfiguracao;
+import br.com.cheklab.web.enums.TipoConfiguracaoEnum;
 
 @Service
 public class ConfiguracaoMediator extends Mediator<Configuracao> {
@@ -19,7 +19,7 @@ public class ConfiguracaoMediator extends Mediator<Configuracao> {
 
 	@Transactional(readOnly = true)
 	public Configuracao obterConfiguracao() {
-		Configuracao configuracao = dao.buscarPorId(TipoConfiguracao.DEFAULT
+		Configuracao configuracao = dao.buscarPorId(TipoConfiguracaoEnum.DEFAULT
 				.getId());
 		if (configuracao.getLogoMenuSuperior() != null) {
 			configuracao.setLogoMenuSuperior(imagemMediator
@@ -31,7 +31,7 @@ public class ConfiguracaoMediator extends Mediator<Configuracao> {
 
 	@Transactional(readOnly = true)
 	public Configuracao obterConfiguracaoCarregada() {
-		return dao.obterConfiguracaoCarregadaPorId(TipoConfiguracao.DEFAULT
+		return dao.obterConfiguracaoCarregadaPorId(TipoConfiguracaoEnum.DEFAULT
 				.getId());
 	}
 
