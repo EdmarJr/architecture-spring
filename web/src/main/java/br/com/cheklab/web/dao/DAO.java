@@ -10,6 +10,7 @@ import javax.persistence.PersistenceContext;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -67,8 +68,9 @@ public abstract class DAO<T> {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
-			if (retornoGet != null) {
+			if(retornoGet != null && retornoGet instanceof String) {
+				criteria.add(Restrictions.like(nameField, (String) retornoGet, MatchMode.ANYWHERE));
+			} else if (retornoGet != null && !retornoGet.equals("")) {
 				criteria.add(Restrictions.eq(nameField, retornoGet));
 			}
 		}
