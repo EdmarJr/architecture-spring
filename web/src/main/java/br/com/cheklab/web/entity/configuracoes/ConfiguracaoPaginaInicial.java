@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import br.com.cheklab.web.entity.Imagem;
+
 @Entity
 @Table(name = "configuracao_pagina_inicial")
 public class ConfiguracaoPaginaInicial {
@@ -16,6 +18,8 @@ public class ConfiguracaoPaginaInicial {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Long id;
+
+	private Imagem imagemPaginaInicial;
 
 	@ManyToOne
 	@JoinColumn(name = "configuracao_id", referencedColumnName = "id")
@@ -35,6 +39,14 @@ public class ConfiguracaoPaginaInicial {
 
 	public void setConfiguracao(Configuracao configuracao) {
 		this.configuracao = configuracao;
+	}
+
+	public Imagem getPaginaInicial() {
+		return imagemPaginaInicial;
+	}
+
+	public void setPaginaInicial(Imagem paginaInicial) {
+		this.imagemPaginaInicial = paginaInicial;
 	}
 
 }

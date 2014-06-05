@@ -41,6 +41,7 @@ public class AdmProdutoController {
 	public ModelAndView paginaProdutos() {
 		ModelAndView model = paginaExibirProdutos();
 		model.addObject("produtos", mediator.obterProdutos());
+		model.addObject("categoriasSelect", categoriaMediator.obterTodos());
 		return model;
 	}
 

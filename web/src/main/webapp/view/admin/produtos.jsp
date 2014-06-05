@@ -6,7 +6,19 @@
 <%@ page session="false"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<script type="text/javascript" src='<c:url value="/resources/admin/js/jquery.mask.min.js"/>'></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	
+$('#inputFiltro').mask('99999');
+});
+</script>
 <script>
+var options;
+	$(document).ready(function() {
+		options = $('#selectFiltro').children();
+		adicionarInput(document.getElementById('selectFiltro'));
+	});
 	function acaoExclusao(idEntidade) {
 		var element = document.getElementById("tr" + idEntidade);
 		var parentNode = element.parentNode;
@@ -15,13 +27,26 @@
 
 	function adicionarFiltro() {
 		var input = document.createElement("input");
-		input.setAttribute("class", "form-control")
+		input.setAttribute("class", "form-control");
 		var label = document.createElement("label");
 		var divInput = document.createElement("div");
-		divInput.setAttribute("class","col-lg-6");
+		divInput.setAttribute("class", "col-lg-6");
 		label.setAttribute("class", "col-lg-2 control-label");
 		var select = document.getElementById("selectFiltro");
 		var inputFiltro = document.getElementById("inputFiltro");
+		if(select.value=="ativo") {
+			var rates = document.getElementsByName('ativo');
+			var rate_value = null;
+			for(var i = 0; i < rates.length; i++){
+			    if(rates[i].checked){
+			        rate_value = rates[i];
+			    }
+			}
+			if(rate_value == null) {
+				return;
+				}
+			inputFiltro = rate_value;
+		}
 		input.setAttribute("name", select.value);
 		input.setAttribute("id", select.value);
 		var elemento = document.getElementById("option" + select.value);
@@ -32,10 +57,12 @@
 		input.setAttribute("value", inputFiltro.value);
 		divInput.appendChild(input);
 		document.getElementById("formFiltro").appendChild(label);
-		document.getElementById("formFiltro").appendChild(document.createElement("br"));
 		document.getElementById("formFiltro").appendChild(divInput);
-		document.getElementById("formFiltro").appendChild(document.createElement("br"));
-		document.getElementById("formFiltro").appendChild(document.createElement("br"));
+		document.getElementById("formFiltro").appendChild(
+				document.createElement("br"));
+		document.getElementById("formFiltro").appendChild(
+				document.createElement("br"));
+		adicionarInput(document.getElementById('selectFiltro'));
 	}
 
 	function submeterFiltroAjax(botao, urlAjax) {
@@ -46,11 +73,60 @@
 			type : "POST",
 			success : function(html) {
 				botao.removeAttribute("disabled");
-				$("#resultadoPesquisa").html(
-						$('#resultadoPesquisa', $(html)));
+				$("#resultadoPesquisa").html($('#resultadoPesquisa', $(html)));
 			}
 		});
 
+	}
+
+	function adicionarInput(select) {
+		$('#input').empty();
+		if(select.value == "id") {
+			var input = document.createElement("input");
+			input.setAttribute("type", "text");
+			input.setAttribute("id", "inputFiltro");
+			input.setAttribute("class", "form-control");
+			$(input).mask('99999');
+			$('#input').append(input);
+		} else if(select.value=="nome") {
+			var input = document.createElement("input");
+			input.setAttribute("type", "text");
+			input.setAttribute("id", "inputFiltro");
+			input.setAttribute("class", "form-control");
+			$('#input').append(input);
+		} else if(select.value=="ativo") {
+			var input = document.createElement("input");
+			input.setAttribute("type", "radio");
+			input.setAttribute("name", "ativo");
+			input.setAttribute("id", "inputFiltro");
+			input.setAttribute("value", "true");
+			var labelInput = document.createTextNode("Ativos");
+			$('#input').append(input);
+			$('#input').append(labelInput);
+			var input2 = document.createElement("input");
+			input2.setAttribute("type", "radio");
+			input2.setAttribute("name", "ativo");
+			input2.setAttribute("id", "inputFiltro");
+			input2.setAttribute("value", "false");
+			var labelInput = document.createTextNode("Inativos");
+			$('#input').append(input2);
+			$('#input').append(labelInput);
+		}else if(select.value=="codigoIdentificacao") {
+			var input = document.createElement("input");
+			input.setAttribute("type", "text");
+			input.setAttribute("id", "inputFiltro");
+			input.setAttribute("class", "form-control");
+			$('#input').append(input);
+		}
+
+		}
+
+	function limparFiltros() {
+		$('#selectFiltro').empty();
+		$('#selectFiltro').append(options);
+		document.getElementById("selectFiltro").value="id";
+		$('#formFiltro').empty();
+		adicionarInput(document.getElementById('selectFiltro'));
 	}
 </script>
 
@@ -67,35 +143,34 @@
 					<div class="col-sm-6 col-md-8">
 						<div class="thumbnail">
 							<h3>Filtro Pesquisa</h3>
-							<div style="display: flex">
-								<input type="text" id="inputFiltro"> <select
-									style="width: inherit;" class="form-control" id="selectFiltro">
-									<c:forEach items="${parametrosFiltro}" var="nomeFiltro">
-										<option id="option${nomeFiltro.codigo}"
-											value="${nomeFiltro.codigo}" label="${nomeFiltro.descricao}" />
-									</c:forEach>
+							<div>
+								<div>
+									<form:form id="formFiltro" modelAttribute="formFiltro">
+									</form:form>
+								</div>
+								<span style="display: flex"> <span id="input"></span> <select style="width: inherit;" onchange="adicionarInput(this)"
+									class="form-control" id="selectFiltro">
+										<c:forEach items="${parametrosFiltro}" var="nomeFiltro">
+											<option id="option${nomeFiltro.codigo}"
+												value="${nomeFiltro.codigo}" label="${nomeFiltro.descricao}" />
+										</c:forEach>
 								</select>
-								<button type="button" onclick="adicionarFiltro()"
-									class="btn btn-sucess">Adicionar Filtro</button>
+									<button type="button" onclick="adicionarFiltro()"
+										class="btn btn-success">Adicionar Filtro</button>
+								</span>
+
 							</div>
+							<br />
 							<button type="button"
 								onclick="submeterFiltroAjax(this,'${pageContext.request.contextPath}/admin/produto/filtrar')"
-								class="btn btn-sucess">Pesquisar</button>
+								class="btn btn-success">Pesquisar</button>
+							<button type="button" onclick="limparFiltros()"
+								class="btn btn-sucess">Limpar Filtros</button>
 
 
 
 						</div>
 					</div>
-					<div class="col-sm-4 col-md-4">
-						<div class="thumbnail">
-							<h3>Filtros</h3>
-							<div style="display: flex">
-								<form:form id="formFiltro" modelAttribute="formFiltro">
-							</form:form>
-							</div>
-						</div>
-					</div>
-					
 				</div>
 			</div>
 
@@ -150,7 +225,6 @@
 			<br>
 		</div>
 	</div>
-</div>
 </div>
 
 

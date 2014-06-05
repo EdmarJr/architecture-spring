@@ -1,8 +1,7 @@
 package br.com.cheklab.web.enums.filtros;
 
 public enum ParametrosFiltroProdutoEnum {
-	ID("Id", "id"), NOME("Nome", "nome"), ATIVO("Ativo", "ativo"), CATEGORIA(
-			"Categoria", "categoria"), COD_IDENTIFICACAO(
+	ID("Id", "id"), NOME("Nome", "nome"), ATIVO("Ativo", "ativo"), COD_IDENTIFICACAO(
 			"Código Identificação", "codigoIdentificacao");
 
 	private String codigo;
