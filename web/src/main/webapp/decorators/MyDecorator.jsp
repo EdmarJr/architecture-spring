@@ -12,7 +12,7 @@
 <link rel="shortcut icon" href="assets/ico/favicon.png">
 
 <title><decorator:title default="SPOT - Free Bootstrap 3 Theme"/></title>
-
+<script src='<c:url value="/resources/js/jquery-1.11.0.min.js"/>'></script>
 <!-- Bootstrap core CSS -->
 <link href='<c:url value="/resources/css/bootstrap.css"/>' rel="stylesheet" type="text/css">
 <link href='<c:url value="/resources/css/font-awesome.min.css"/>' rel="stylesheet" type="text/css">
@@ -119,7 +119,7 @@
  <!-- Bootstrap core JavaScript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
-	<script src='<c:url value="/resources/js/jquery-1.11.0.min.js"/>'></script>
+	
 	<script src='<c:url value="/resources/js/bootstrap.min.js"/>'></script>
 </body>
 </html>

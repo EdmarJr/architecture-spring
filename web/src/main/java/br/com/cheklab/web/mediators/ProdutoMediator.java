@@ -8,26 +8,38 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.cheklab.web.dao.DAO;
 import br.com.cheklab.web.dao.ProdutoDAO;
+import br.com.cheklab.web.entity.Categoria;
 import br.com.cheklab.web.entity.Produto;
 
 @Service
 public class ProdutoMediator extends Mediator<Produto> {
-	
+
 	@Autowired
 	private ProdutoDAO dao;
 	@Autowired
 	private ImagemMediator imagemMediator;
-	
+
 	@Transactional(readOnly = true)
 	public List<Produto> obterProdutos() {
 		return dao.obterProdutos();
+	}
+
+	public List<Produto> obterProdutosPorCategoriaPaginaComInicializacaoDeImagens(
+			Categoria categoria, Long pagina) {
+		List<Produto> produtos = dao
+				.obterProdutosPorCategoriaComInicializacaoDeImagens(categoria,
+						(((pagina * 20) - 20) + 1), 20L);
+		// for (Produto p : produtos) {
+		// p.setImagemPrincipal(p.getImagens().get(0));
+		// }
+		return produtos;
 	}
 
 	@Transactional(readOnly = true)
 	public Produto obterPorIdComInializacaoDeImagens(Long id) {
 		return dao.obterPorIdComInializacaoDeImagens(id);
 	}
-	
+
 	@Override
 	@Transactional
 	public void excluir(Produto entidade) {

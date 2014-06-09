@@ -14,6 +14,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.Filter;
 import org.hibernate.annotations.FilterDef;
@@ -61,6 +62,9 @@ public class Produto implements EntidadeComImagens, EntidadeComStatus,
 
 	@Column(name = "posicao")
 	private Integer posicao;
+
+	@Transient
+	private Imagem imagemPrincipal;
 
 	public Long getId() {
 		return id;
@@ -124,6 +128,13 @@ public class Produto implements EntidadeComImagens, EntidadeComStatus,
 
 	public void setAtivo(Boolean ativo) {
 		this.ativo = ativo;
+	}
+
+	public Imagem getImagemPrincipal() {
+		if (!getImagens().isEmpty()) {
+			return getImagens().get(0);
+		}
+		return null;
 	}
 
 }
