@@ -31,6 +31,17 @@ public class ProdutoController {
 				categoriaMediator.obterPorId(idCategoria), idPagina);
 		model.addObject("produtos",
 				produtos);
+		model.addObject("categorias", categoriaMediator.obterTodos());
+		return model;
+	}
+
+	@RequestMapping(value = "/produtos/detalhar**", method = RequestMethod.GET)
+	public ModelAndView paginaDetalharProduto(
+			@RequestParam(value = "idProduto", required = false, defaultValue = "1") Long idProduto) {
+		ModelAndView model = new ModelAndView();
+		model.setViewName("produtos/detalharProduto");
+		Produto produto = mediator.obterPorId(idProduto);
+		model.addObject("produto", produto);
 		return model;
 	}
 }

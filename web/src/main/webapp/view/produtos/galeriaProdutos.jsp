@@ -89,10 +89,10 @@
 		<div class="panel-body">
 			<nav>
 				<ul class="nav nav-pills nav-stacked span2">
-					<li><a href="#">Home estourando layout o que ele vai
-							fazer?</a></li>
-					<li><a href="#">About</a></li>
-					<li><a href="#">Contact</a></li>
+					<c:forEach items="${categorias}" var="categoria">
+						<li><a
+							href="${pageContext.request.contextPath}/produtos?idCategoria=${categoria.id}">${categoria.nome}</a></li>
+					</c:forEach>
 				</ul>
 			</nav>
 		</div>
@@ -105,10 +105,8 @@
 			<c:forEach items="${produtos}" var="produto">
 				<div class="col-md-3" style="margin-top: 2%;">
 					<div class="panel panel-primary">
-						<div class="panel-heading">
-							${produto.nome}
-						</div>
-						<div class="panel-body" style="width:80%; margin: 0 auto;">
+						<div class="panel-heading">${produto.nome}</div>
+						<div class="panel-body" style="width: 80%; margin: 0 auto;">
 							<a class="fancybox-thumbs" data-fancybox-group="thumb"
 								title="${produto.imagemPrincipal.nome}"
 								href='<c:url value="/resources/${produto.imagemPrincipal.endereco}"/>'><img
@@ -116,7 +114,15 @@
 								src='<c:url value="/resources/${produto.imagemPrincipal.enderecoMiniatura}"/>' /></a>
 						</div>
 						<div class="panel-footer">
-							${produto.nome}
+							<div style="display: flex">
+								<jsp:include page="../includes/buttonConfirm.jsp">
+									<jsp:param
+										value="${pageContext.request.contextPath}/produtos/detalhar?idProduto=${produto.id}"
+										name="urlRedirect" />
+									<jsp:param value="Detalhar" name="label" />
+								</jsp:include>
+								<button type="submit" class="btn btn-primary">Orçamentar</button>
+							</div>
 						</div>
 					</div>
 				</div>

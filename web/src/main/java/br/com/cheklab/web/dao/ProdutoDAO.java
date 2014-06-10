@@ -36,6 +36,7 @@ public class ProdutoDAO extends DAO<Produto> {
 		Session sessao = obterSessao();
 		Criteria criteria = sessao.createCriteria(Produto.class);
 		criteria.add(Restrictions.eq("categoria", categoria));
+		criteria.add(Restrictions.eq("ativo", true));
 		criteria.add(Restrictions.ge("id", idStart));
 		criteria.setMaxResults(20);
 		List<Produto> list = criteria.list();
