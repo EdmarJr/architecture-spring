@@ -44,7 +44,7 @@ public class Imagem implements EntidadeComStatus, EntidadeComPosicao {
 	private String descricao;
 	@Column(name = "posicao")
 	private Integer posicao;
-	
+
 	@Column(name = "ativo")
 	private Boolean ativo;
 
@@ -71,6 +71,13 @@ public class Imagem implements EntidadeComStatus, EntidadeComPosicao {
 
 	public String getEndereco() {
 		return endereco;
+	}
+
+	public String getEnderecoSeparator() {
+		if (endereco != null) {
+			return endereco.replaceAll("\\\\", "/");
+		}
+		return null;
 	}
 
 	public void setEndereco(String endereco) {
@@ -105,12 +112,17 @@ public class Imagem implements EntidadeComStatus, EntidadeComPosicao {
 		return enderecoMiniatura;
 	}
 
+	public String getEnderecoMiniaturaSeparator() {
+		if (enderecoMiniatura != null) {
+			return enderecoMiniatura.replaceAll("\\\\", "/");
+		}
+		return null;
+	}
+
 	public void setEnderecoMiniatura(String enderecoMiniatura) {
 		this.enderecoMiniatura = enderecoMiniatura;
 	}
-	
-	
-	
+
 	public Long getIdEntidade() {
 		return idEntidade;
 	}
@@ -151,5 +163,5 @@ public class Imagem implements EntidadeComStatus, EntidadeComPosicao {
 			return false;
 		return true;
 	}
-	
+
 }

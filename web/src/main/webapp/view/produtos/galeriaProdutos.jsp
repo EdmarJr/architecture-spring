@@ -98,7 +98,7 @@
 		</div>
 	</div>
 </div>
-<div class="col-md-9" style="margin-top: 2%;">
+<div class="col-md-9" style="margin-top: 2%; float: left;">
 	<div class="panel panel-primary">
 
 		<div class="panel-body">

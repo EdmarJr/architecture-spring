@@ -15,30 +15,35 @@ import br.com.cheklab.web.mediators.ProdutoMediator;
 
 @Controller
 public class ProdutoController {
-	
+
 	@Autowired
 	private ProdutoMediator mediator;
 	@Autowired
 	private CategoriaMediator categoriaMediator;
-	
+
+	private ModelAndView obterView() {
+		ModelAndView model = new ModelAndView();
+		model.addObject("categorias", categoriaMediator.obterTodos());
+		return model;
+	}
+
 	@RequestMapping(value = "/produtos**", method = RequestMethod.GET)
 	public ModelAndView paginaProdutos(
 			@RequestParam(value = "idCategoria", required = false, defaultValue = "1") Long idCategoria,
 			@RequestParam(value = "idPagina", required = false, defaultValue = "1") Long idPagina) {
-		ModelAndView model = new ModelAndView();
+		ModelAndView model = obterView();
+		List<Produto> produtos = mediator
+				.obterProdutosPorCategoriaPaginaComInicializacaoDeImagens(
+						categoriaMediator.obterPorId(idCategoria), idPagina);
+		model.addObject("produtos", produtos);
 		model.setViewName("produtos/galeriaProdutos");
-		List<Produto> produtos = mediator.obterProdutosPorCategoriaPaginaComInicializacaoDeImagens(
-				categoriaMediator.obterPorId(idCategoria), idPagina);
-		model.addObject("produtos",
-				produtos);
-		model.addObject("categorias", categoriaMediator.obterTodos());
 		return model;
 	}
 
 	@RequestMapping(value = "/produtos/detalhar**", method = RequestMethod.GET)
 	public ModelAndView paginaDetalharProduto(
 			@RequestParam(value = "idProduto", required = false, defaultValue = "1") Long idProduto) {
-		ModelAndView model = new ModelAndView();
+		ModelAndView model = obterView();
 		model.setViewName("produtos/detalharProduto");
 		Produto produto = mediator.obterPorId(idProduto);
 		model.addObject("produto", produto);

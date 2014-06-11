@@ -40,7 +40,8 @@ public class ConversorImagemListener {
 
 	private String definirEnderecoImagem(Imagem imagem, String tipoImagem) {
 		AutowireHelper.autowire(this, this.servletContext);
-		return servletContext.getRealPath("/") + "resources" + File.separator
+		return servletContext.getRealPath(File.separator) + "resources"
+				+ File.separator
 				+ "images" + File.separator + imagem.getTipoEntidade()
 				+ File.separator + tipoImagem + File.separator
 				+ imagem.getNome();
