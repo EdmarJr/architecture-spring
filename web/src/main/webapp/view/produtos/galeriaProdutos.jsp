@@ -101,10 +101,10 @@
 <div class="col-md-9" style="margin-top: 2%; float: left;">
 	<div class="panel panel-primary">
 
-		<div class="panel-body">
+		<div class="panel-body panel-primary">
 			<c:forEach items="${produtos}" var="produto">
 				<div class="col-md-3" style="margin-top: 2%;">
-					<div class="panel panel-primary">
+					<div class="panel panel-default">
 						<div class="panel-heading">${produto.nome}</div>
 						<div class="panel-body" style="width: 80%; margin: 0 auto;">
 							<a class="fancybox-thumbs" data-fancybox-group="thumb"
@@ -113,7 +113,7 @@
 								class="imgMiniaturaFancy" width="150px"
 								src='<c:url value="/resources/${produto.imagemPrincipal.enderecoMiniatura}"/>' /></a>
 						</div>
-						<div class="panel-footer">
+						<div class="panel-footer panel-primary">
 							<div style="display: flex">
 								<jsp:include page="../includes/buttonConfirm.jsp">
 									<jsp:param

@@ -31,6 +31,14 @@ a:hover {
 	height: auto;
 	width: 50px;
 }
+
+img {
+	border-radius:4px;
+}
+
+#body{
+	min-height: 500px;
+}
 </style>
 
 <script type="text/javascript">
@@ -64,50 +72,50 @@ a:hover {
 		</div>
 	</div>
 </div>
-<div class="col-md-9" style="margin-top: 2%;">
+<div class="col-md-9"  style="margin-top: 2%;">
 	<div class="panel panel-primary">
 
-		<div class="panel-body">
+		<div class="panel-body" id="body">
 			<div class="col-md-5" style="margin-top: 2%;">
-				<div class="panel panel-primary">
-					<div class="panel-body" style="width: 80%; margin: 0 auto;">
+			<div class="list-group list-group-primary"  style="width: 80%; margin: 0 auto;">
+							<div class="list-group-item" style="margin-left: 0px; margin-right: 0px;">
 						<img class="imgZoom" style="margin-left: 0px; margin-right: 0px;"
 							data-zoom-image='<c:url value="/resources/${produto.imagemPrincipal.enderecoSeparator}"/>'
 							src='<c:url value="/resources/${produto.imagemPrincipal.enderecoSeparator}"/>' />
 					</div>
-					
-				</div>
+					</div>
 			</div>
 			<div class="col-md-5" style="margin-top: 2%; ">
-				<div class="list-group list-group-primary" style="border:1px solid;border-color: #428bca;border-radius:4px;">
+				<div class="list-group list-group-primary">
 							<div class="list-group-item"><span> <span
-									class="label label-default" style="text-size: 10">Nome:</span>
+									class="label label-primary" style="text-size: 10">Nome:</span>
 									<span style="float: right">${produto.nome}</span>
 							</span></div>
 							<div class="list-group-item"><span> <span
-									class="label label-default" style="text-size: 10">Código Identificação:</span>
+									class="label label-primary" style="text-size: 10">Código Identificação:</span>
 									<span style="float: right">${produto.codigoIdentificacao}</span>
-							</span></div>
-							<div class="list-group-item"><span> <span
-									class="label label-default" style="text-size: 10">Email:</span>
-									<span style="float: right">${orcamentoSelecionado.cliente.email}</span>
 							</span></div>
 				</div>
 			</div>	
 			<div class="col-md-2" style="margin-top: 2%; ">
-				<div class="list-group list-group-primary" style="border:1px solid;border-color: #428bca;border-radius:4px;">
+				<div class="list-group list-group-primary" >
 
-					<a href="#" class="list-group-item list-group-item-info">Fechar
-						Orçamento</a> <a href="#" class="list-group-item list-group-item-info">Responder
-						Orçamento</a>
+					<a href="#" class="list-group-item" >Orçamentar</a> <a href="#" class="list-group-item">Voltar</a>
 				</div>
 			</div>	
-			<div class="col-md-7" style="margin-top: 2%; border:1px solid;border-color: #428bca;border-radius:4px;">
+			<div class="col-md-7" >
+			<div class="list-group list-group-primary">
+							
 				<c:forEach items="${produto.imagens}" var="imagem">
+				<div class="list-group-item">
 							<img class="imgZoom-mini"
 								src='<c:url value="/resources/${imagem.enderecoMiniaturaSeparator}"/>'
 								data-zoom-image='<c:url value="/resources/${imagem.enderecoSeparator}"/>' />
+								</div>
 						</c:forEach>
+						
+						</div>
+						
 			</div>	
 
 		</div>
