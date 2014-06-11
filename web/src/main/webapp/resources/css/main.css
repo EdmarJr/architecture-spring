@@ -46,7 +46,7 @@ p {
 
 /* Links */
 a {
-    color: #f85c37;
+    color: #ffffff;
     word-wrap: break-word;
 
     -webkit-transition: color 0.1s ease-in, background 0.1s ease-in;
@@ -95,7 +95,7 @@ a:after {
 }
 
 .navbar-inverse .navbar-nav > .active > a {
-	background: #ff7878
+	background: #428bca;
 }
 
 .navbar-inverse .navbar-brand {
@@ -231,7 +231,7 @@ a:after {
 
 /* Footer Wrap */
 #f {
-	background: #2d2d2d;
+	background: d0d2d4;
 	padding-top: 30px;
 	padding-bottom: 30px;
 }

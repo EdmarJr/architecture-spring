@@ -10,6 +10,8 @@
 	src='<c:url value="/resources/admin/js/fancy/source/jquery.fancybox.js?v=2.1.5"/>'></script>
 <link rel="stylesheet" type="text/css"
 	href='<c:url value="/resources/admin/js/fancy/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7"/>' />
+<script
+	src='<c:url value="/resources/admin/js/bootbox/bootbox.min.js"/>'></script>
 <script type="text/javascript"
 	src='<c:url value="/resources/admin/js/fancy/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"/>'></script>
 <script type="text/javascript"
@@ -28,6 +30,20 @@
 	transition: all .2s ease-in-out;
 	position: relative;
 	z-index: 1;
+}
+
+.categorias {
+	margin-bottom: 20px;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+	background-color: #f2f2f2
+}
+
+.itemCategoria {
+	border-radius: 4px;
+	background-color: #428bca;
 }
 </style>
 <script type="text/javascript">
@@ -81,17 +97,53 @@
 				});
 
 			});
+
+	function comandoOrcamentar(idProduto,urlPostAjax) {
+		
+			
+		    $.ajax({url: urlPostAjax,
+		        data: { 'idProduto' : idProduto},
+		        type: "POST",
+		        success: function(idEntidade) {
+			        if(idEntidade == 'sucesso') {
+			        	bootbox.alert("Produto adicionado a sua lista de solicitações de orçamentos, entre no menu \"Gerenciar Orcamentos\" para enviar a solicitação de orçamento.", function() {
+			        		});
+				        }
+		        	
+		        }
+		    });
+		      
+		    event.preventDefault();
+		  
+	}
 </script>
 
 <div class="col-md-3" style="margin-top: 2%;">
-	<div class="panel panel-primary">
+	<div class="categorias">
 
 		<div class="panel-body">
 			<nav>
 				<ul class="nav nav-pills nav-stacked span2">
 					<c:forEach items="${categorias}" var="categoria">
-						<li><a
-							href="${pageContext.request.contextPath}/produtos?idCategoria=${categoria.id}">${categoria.nome}</a></li>
+						<c:if test="${not empty categoria.categoriasFilha}">
+							<li class="itemCategoria"><a class="dropdown-toggle"
+								data-toggle="dropdown" href="#">${categoria.nome}<b
+									class="caret"></b></a>
+								<ul class="dropdown-menu">
+									<c:forEach items="${categoria.categoriasFilha}"
+										var="categoriaF">
+										<li><a
+											href="${pageContext.request.contextPath}/produtos?idCategoria=${categoriaF.id}">${categoriaF.nome}</a></li>
+
+									</c:forEach>
+								</ul></li>
+						</c:if>
+						<c:if test="${empty categoria.categoriasFilha}">
+							<li class="itemCategoria"><a
+								href="${pageContext.request.contextPath}/produtos?idCategoria=${categoria.id}">${categoria.nome}</a></li>
+						</c:if>
+
+
 					</c:forEach>
 				</ul>
 			</nav>
@@ -102,26 +154,27 @@
 	<div class="panel panel-primary">
 
 		<div class="panel-body panel-primary">
-			<c:forEach items="${produtos}" var="produto">
+			<c:forEach items="${produtos}" var="produtoTemp">
 				<div class="col-md-3" style="margin-top: 2%;">
-					<div class="panel panel-default">
-						<div class="panel-heading">${produto.nome}</div>
+					<div class="panel panel-primary">
+						<div class="panel-heading">${produtoTemp.nome}</div>
 						<div class="panel-body" style="width: 80%; margin: 0 auto;">
 							<a class="fancybox-thumbs" data-fancybox-group="thumb"
-								title="${produto.imagemPrincipal.nome}"
-								href='<c:url value="/resources/${produto.imagemPrincipal.endereco}"/>'><img
+								title="${produtoTemp.imagemPrincipal.nome}"
+								href='<c:url value="/resources/${produtoTemp.imagemPrincipal.endereco}"/>'><img
 								class="imgMiniaturaFancy" width="150px"
-								src='<c:url value="/resources/${produto.imagemPrincipal.enderecoMiniatura}"/>' /></a>
+								src='<c:url value="/resources/${produtoTemp.imagemPrincipal.enderecoMiniatura}"/>' /></a>
 						</div>
 						<div class="panel-footer panel-primary">
 							<div style="display: flex">
 								<jsp:include page="../includes/buttonConfirm.jsp">
 									<jsp:param
-										value="${pageContext.request.contextPath}/produtos/detalhar?idProduto=${produto.id}"
+										value="${pageContext.request.contextPath}/produtos/detalhar?idProduto=${produtoTemp.id}"
 										name="urlRedirect" />
 									<jsp:param value="Detalhar" name="label" />
 								</jsp:include>
-								<button type="submit" class="btn btn-primary">Orçamentar</button>
+								<button type="button" class="btn btn-primary"
+									onclick="comandoOrcamentar('${produtoTemp.id}','${pageContext.request.contextPath}/adicionarProdutoOrcamento')">Orçamentar</button>
 							</div>
 						</div>
 					</div>
