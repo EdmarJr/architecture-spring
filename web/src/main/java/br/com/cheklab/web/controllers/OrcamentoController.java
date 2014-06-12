@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.cheklab.web.entity.Cliente;
 import br.com.cheklab.web.entity.Orcamento;
 import br.com.cheklab.web.entity.OrcamentoProdutos;
 import br.com.cheklab.web.mediators.OrcamentoMediator;
@@ -48,7 +47,8 @@ public class OrcamentoController {
 			@RequestParam(value = "idPagina", required = false, defaultValue = "1") Long idPagina) {
 		ModelAndView model = obterView();
 		model.addObject("orcamentos", orcamentos);
-		model.setViewName("orcamentos/gerenciarOrcamentos");
+		model.addObject("orcamento", orcamento);
+		model.setViewName("/orcamento/gerenciarOrcamentos");
 		return model;
 	}
 
@@ -65,9 +65,7 @@ public class OrcamentoController {
 
 	@RequestMapping(value = "/incluirOrcamento**", method = RequestMethod.POST)
 	@ResponseBody
-	public String enviarOrcamento(Cliente cliente) {
-		orcamento.setProdutosOrcamento(orcamentos);
-		orcamento.setCliente(cliente);
+	public String enviarOrcamento(Orcamento orcamento) {
 		mediator.incluir(orcamento);
 		return "sucesso";
 	}
