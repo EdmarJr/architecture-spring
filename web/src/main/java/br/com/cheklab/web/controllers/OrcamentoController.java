@@ -58,7 +58,8 @@ public class OrcamentoController {
 		OrcamentoProdutos orcamentoTemp = new OrcamentoProdutos();
 		orcamentoTemp.setQuantidadeProdutos(1L);
 		orcamentoTemp.setOrcamento(orcamento);
-		orcamentoTemp.setProduto(produtorMediator.obterPorId(idProduto));
+		orcamentoTemp.setProduto(produtorMediator
+				.obterPorIdComInializacaoDeImagens(idProduto));
 		orcamentos.add(orcamentoTemp);
 		return "sucesso";
 	}

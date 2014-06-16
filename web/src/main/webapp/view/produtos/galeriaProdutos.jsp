@@ -10,10 +10,10 @@
 	src='<c:url value="/resources/admin/js/fancy/source/jquery.fancybox.js?v=2.1.5"/>'></script>
 <link rel="stylesheet" type="text/css"
 	href='<c:url value="/resources/admin/js/fancy/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7"/>' />
-<script
-	src='<c:url value="/resources/admin/js/bootbox/bootbox.min.js"/>'></script>
 <script type="text/javascript"
 	src='<c:url value="/resources/admin/js/fancy/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"/>'></script>
+<script
+	src='<c:url value="/resources/admin/js/bootbox/bootbox.min.js"/>'></script>
 <script type="text/javascript"
 	src='<c:url value="/resources/admin/js/fancy/jquery.mousewheel-3.0.6.pack.js"/>'></script>
 <style>
