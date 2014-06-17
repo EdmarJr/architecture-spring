@@ -1,5 +1,6 @@
 package br.com.cheklab.web.controllers;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +22,13 @@ import br.com.cheklab.web.mediators.ProdutoMediator;
 
 @Controller
 @Scope("session")
-public class OrcamentoController {
+public class OrcamentoController implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Autowired
 	private OrcamentoMediator mediator;
 	@Autowired

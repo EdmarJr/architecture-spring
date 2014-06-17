@@ -29,9 +29,6 @@ public class ProdutoMediator extends Mediator<Produto> {
 		List<Produto> produtos = dao
 				.obterProdutosPorCategoriaComInicializacaoDeImagens(categoria,
 						(((pagina * 20) - 20) + 1), 20L);
-		// for (Produto p : produtos) {
-		// p.setImagemPrincipal(p.getImagens().get(0));
-		// }
 		return produtos;
 	}
 

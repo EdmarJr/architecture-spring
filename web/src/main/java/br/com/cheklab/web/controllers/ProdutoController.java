@@ -40,6 +40,13 @@ public class ProdutoController {
 		return model;
 	}
 
+	public void proximaPagina(Long idPagina, Long idCategoria) {
+		List<Produto> produtos = mediator
+				.obterProdutosPorCategoriaPaginaComInicializacaoDeImagens(
+						categoriaMediator.obterPorId(idCategoria), idPagina);
+		model.addObject("produtos", produtos);
+	}
+
 	@RequestMapping(value = "/produtos/detalhar**", method = RequestMethod.GET)
 	public ModelAndView paginaDetalharProduto(
 			@RequestParam(value = "idProduto", required = false, defaultValue = "1") Long idProduto) {

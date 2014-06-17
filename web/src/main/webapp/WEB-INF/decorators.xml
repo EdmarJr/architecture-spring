@@ -3,6 +3,9 @@
     <decorator name="admin" page="DecoratorAdmin.jsp">
         <pattern>/admin*</pattern>
     </decorator>
+    <decorator name="withoutTemplate" page="">
+        <pattern>/withoutTemplate*</pattern>
+    </decorator>
     <decorator name="default" page="MyDecorator.jsp">
         <pattern>/*</pattern>
     </decorator>
