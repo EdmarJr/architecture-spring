@@ -3,7 +3,14 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-
+<script type="text/javascript"
+	src='<c:url value="/resources/js/jquery.jscroll.min.js"/>'></script>
+	<script>
+	$(document).ready(function() {
+		$('.conteudoProdutos').jscroll();
+	});
+	
+	</script>
 <style>
 
 .categorias {
@@ -60,6 +67,7 @@
 		<div class="panel-body panel-primary">
 			<div class="conteudoProdutos">
 				<jsp:include page="../withoutTemplate/paginacaoProdutos.jsp"></jsp:include>
+				<a href="${pageContext.request.contextPath}/produtos/pagina?idPagina=2"></a>
 			</div>
 
 
