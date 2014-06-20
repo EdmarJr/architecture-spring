@@ -40,11 +40,11 @@ public class ProdutoController {
 		return model;
 	}
 	
-	@RequestMapping(value = "/produtos/pagina**", method = RequestMethod.GET)
+	@RequestMapping(value = "/produtosPaginados/pagina**", method = RequestMethod.GET)
 	public ModelAndView proximaPagina(Long idPagina, @RequestParam(value = "idCategoria", required = false, defaultValue = "1") Long idCategoria) {
 		List<Produto> produtos = mediator
 				.obterProdutosPorCategoriaPaginaComInicializacaoDeImagens(
-						categoriaMediator.obterPorId(idCategoria), idPagina);
+						categoriaMediator.obterPorId(idCategoria), 1L);
 		ModelAndView model = new ModelAndView();
 		model.addObject("produtos", produtos);
 		model.setViewName("withoutTemplate/paginacaoProdutos");

@@ -98,52 +98,58 @@
 
 			});
 
-	function comandoOrcamentar(idProduto,urlPostAjax) {
-		
-			
-		    $.ajax({url: urlPostAjax,
-		        data: { 'idProduto' : idProduto},
-		        type: "POST",
-		        success: function(idEntidade) {
-			        if(idEntidade == 'sucesso') {
-			        	bootbox.alert("Produto adicionado a sua lista de solicitações de orçamentos, entre no menu \"Gerenciar Orcamentos\" para enviar a solicitação de orçamento.", function() {
-			        		});
-				        }
-		        	
-		        }
-		    });
-		      
-		    event.preventDefault();
-		  
+	function comandoOrcamentar(idProduto, urlPostAjax) {
+
+		$
+				.ajax({
+					url : urlPostAjax,
+					data : {
+						'idProduto' : idProduto
+					},
+					type : "POST",
+					success : function(idEntidade) {
+						if (idEntidade == 'sucesso') {
+							bootbox
+									.alert(
+											"Produto adicionado a sua lista de solicitações de orçamentos, entre no menu \"Gerenciar Orcamentos\" para enviar a solicitação de orçamento.",
+											function() {
+											});
+						}
+
+					}
+				});
+
+		event.preventDefault();
+
 	}
 </script>
 
-			
-			<c:forEach items="${produtos}" var="produtoTemp">
-				<div class="col-md-3" style="margin-top: 2%;">
-					<div class="panel panel-primary">
-						<div class="panel-heading">${produtoTemp.nome}</div>
-						<div class="panel-body" style="width: 80%; margin: 0 auto;">
-							<a class="fancybox-thumbs" data-fancybox-group="thumb"
-								title="${produtoTemp.imagemPrincipal.nome}"
-								href='<c:url value="/resources/${produtoTemp.imagemPrincipal.endereco}"/>'><img
-								class="imgMiniaturaFancy" width="150px"
-								src='<c:url value="/resources/${produtoTemp.imagemPrincipal.enderecoMiniatura}"/>' /></a>
-						</div>
-						<div class="panel-footer panel-primary">
-							<div style="display: flex">
-								<jsp:include page="../includes/buttonConfirm.jsp">
-									<jsp:param
-										value="${pageContext.request.contextPath}/produtos/detalhar?idProduto=${produtoTemp.id}"
-										name="urlRedirect" />
-									<jsp:param value="Detalhar" name="label" />
-								</jsp:include>
-								<button type="button" class="btn btn-primary"
-									onclick="comandoOrcamentar('${produtoTemp.id}','${pageContext.request.contextPath}/adicionarProdutoOrcamento')">Orçamentar</button>
-							</div>
-						</div>
+	<c:forEach items="${produtos}" var="produtoTemp">
+		<div class="col-md-3" style="margin-top: 2%;">
+			<div class="panel panel-primary">
+				<div class="panel-heading">${produtoTemp.nome}</div>
+				<div class="panel-body" style="width: 80%; margin: 0 auto;">
+					<a class="fancybox-thumbs" data-fancybox-group="thumb"
+						title="${produtoTemp.imagemPrincipal.nome}"
+						href='<c:url value="/resources/${produtoTemp.imagemPrincipal.endereco}"/>'><img
+						class="imgMiniaturaFancy" width="150px"
+						src='<c:url value="/resources/${produtoTemp.imagemPrincipal.enderecoMiniatura}"/>' /></a>
+				</div>
+				<div class="panel-footer panel-primary">
+					<div style="display: flex">
+						<jsp:include page="../includes/buttonConfirm.jsp">
+							<jsp:param
+								value="${pageContext.request.contextPath}/produtos/detalhar?idProduto=${produtoTemp.id}"
+								name="urlRedirect" />
+							<jsp:param value="Detalhar" name="label" />
+						</jsp:include>
+						<button type="button" class="btn btn-primary"
+							onclick="comandoOrcamentar('${produtoTemp.id}','${pageContext.request.contextPath}/adicionarProdutoOrcamento')">Orçamentar</button>
 					</div>
 				</div>
-			</c:forEach>
-			
-			
+			</div>
+		</div>
+	</c:forEach>
+	
+
+
