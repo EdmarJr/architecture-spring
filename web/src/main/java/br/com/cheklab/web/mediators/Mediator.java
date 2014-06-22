@@ -1,12 +1,13 @@
 package br.com.cheklab.web.mediators;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.cheklab.web.dao.DAO;
 
-public abstract class Mediator<T> {
+public abstract class Mediator<T> implements Serializable {
 	@Transactional
 	public void incluir(T entidade) {
 		getDAO().incluir(entidade);

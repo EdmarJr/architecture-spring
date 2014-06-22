@@ -36,19 +36,19 @@
 		<div class="container">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
-					data-target=".navbar-collapse">
+					data-target="#navbarPrincipal">
 					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="#">GRANDBRINDES
 				</a>
 			</div>
-			<div class="navbar-collapse collapse">
+			<div id="navbarPrincipal" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
 					<li class="active"><a href="inicio">INÍCIO</a></li>
 					<li><a href="sobre">SOBRE</a></li>
 					<li><a href="${pageContext.request.contextPath}/produtos">PRODUTOS</a></li>
-					<li><a href="services.html">FALE CONOSCO</a></li>
+					<li><a href="services.html">NOSSOS TRABALHOS</a></li>
 					<li><a href="${pageContext.request.contextPath}/orcamentos">ORÇAMENTOS</a></li>
 					<li><a data-toggle="modal" data-target="#myModal"
 						href="#myModal"><i class="fa fa-envelope-o"></i></a></li>
@@ -89,25 +89,24 @@
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
 						aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="myModalLabel">contact us</h4>
+					<h4 class="modal-title" id="myModalLabel">${configuracaoEndereco.tituloJanelaEndereco}</h4>
 				</div>
 				<div class="modal-body">
 					<div class="row centered">
-						<p>We are available 24/7, so don't hesitate to contact us.</p>
+						<p>${configuracaoEndereco.texto1}</p>
 						<p>
-							Somestreet Ave, 987<br /> London, UK.<br /> +44 8948-4343<br />
-							hi@blacktie.co
+							${configuracaoEndereco.texto2}<br />${configuracaoEndereco.texto3}<br /> ${configuracaoEndereco.texto4}<br />
+							${configuracaoEndereco.texto5}
 						</p>
 						<div id="mapwrap">
 							<iframe height="300" width="100%" frameborder="0" scrolling="no"
 								marginheight="0" marginwidth="0"
-								src="https://www.google.es/maps?t=m&amp;ie=UTF8&amp;ll=52.752693,22.791016&amp;spn=67.34552,156.972656&amp;z=2&amp;output=embed"></iframe>
+								src="${configuracaoEndereco.enderecoGoogleMaps}"></iframe>
 						</div>
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-danger" data-dismiss="modal">Save
-						& Go</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal">${configuracaoEndereco.tituloBotao}</button>
 				</div>
 			</div>
 			<!-- /.modal-content -->

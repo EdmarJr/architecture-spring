@@ -12,7 +12,7 @@ import br.com.cheklab.web.mediators.ConfiguracaoMediator;
 import br.com.cheklab.web.mediators.ImagemMediator;
 
 @Controller
-public class AdmConfiguracoesGerais {
+public class AdmConfiguracoesGeraisController {
 
 	@Autowired
 	private ConfiguracaoMediator mediator;

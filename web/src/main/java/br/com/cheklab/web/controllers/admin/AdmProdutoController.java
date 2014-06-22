@@ -124,7 +124,7 @@ public class AdmProdutoController {
 	private void alterarProduto(Produto produto) {
 		Produto produtoTemp = mediator.obterPorId(produto.getId());
 		produto.setImagens(produtoTemp.getImagens());
-		mediator.alterar(produtoTemp);
+		mediator.alterar(produto);
 	}
 
 	private void incluirProduto(Produto produto) {

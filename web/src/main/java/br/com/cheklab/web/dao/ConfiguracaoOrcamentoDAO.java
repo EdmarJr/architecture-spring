@@ -2,14 +2,14 @@ package br.com.cheklab.web.dao;
 
 import org.springframework.stereotype.Repository;
 
-import br.com.cheklab.web.entity.configuracoes.ConfiguracaoOrcamento;
+import br.com.cheklab.web.entity.configuracoes.ConfiguracaoPaginaOrcamento;
 
 @Repository
-public class ConfiguracaoOrcamentoDAO extends DAO<ConfiguracaoOrcamento> {
+public class ConfiguracaoOrcamentoDAO extends DAO<ConfiguracaoPaginaOrcamento> {
 
 	@Override
-	public Class<ConfiguracaoOrcamento> getEntidade() {
-		return ConfiguracaoOrcamento.class;
+	public Class<ConfiguracaoPaginaOrcamento> getEntidade() {
+		return ConfiguracaoPaginaOrcamento.class;
 	}
 
 }

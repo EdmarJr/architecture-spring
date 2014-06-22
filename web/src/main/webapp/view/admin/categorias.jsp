@@ -56,7 +56,7 @@
 
 							<td> -- ${categoriaFilha.nome}</td>
 							<td>${categoriaFilha.descricao}</td>
-							<td>${categoria.posicao}</td>
+							<td>${categoriaFilha.posicao}</td>
 							<td>
 								<jsp:include page="includes/iconEdit.jsp">
 									<jsp:param

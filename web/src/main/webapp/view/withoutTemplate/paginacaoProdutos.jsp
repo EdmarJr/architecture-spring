@@ -98,7 +98,7 @@
 
 			});
 
-	function comandoOrcamentar(idProduto, urlPostAjax) {
+	function comandoOrcamentar(idProduto, urlPostAjax, element) {
 
 		$
 				.ajax({
@@ -109,11 +109,7 @@
 					type : "POST",
 					success : function(idEntidade) {
 						if (idEntidade == 'sucesso') {
-							bootbox
-									.alert(
-											"Produto adicionado a sua lista de solicitações de orçamentos, entre no menu \"Gerenciar Orcamentos\" para enviar a solicitação de orçamento.",
-											function() {
-											});
+							$(element).fadeToggle('slow');
 						}
 
 					}
@@ -125,9 +121,11 @@
 </script>
 
 	<c:forEach items="${produtos}" var="produtoTemp">
+	<div class="produto">
 		<div class="col-md-3" style="margin-top: 2%;">
 			<div class="panel panel-primary">
-				<div class="panel-heading">${produtoTemp.nome}</div>
+				<div class="panel-heading" style="max-height: 42px;">
+				<div class="resizeFonte">${produtoTemp.nome}</div></div>
 				<div class="panel-body" style="width: 80%; margin: 0 auto;">
 					<a class="fancybox-thumbs" data-fancybox-group="thumb"
 						title="${produtoTemp.imagemPrincipal.nome}"
@@ -143,11 +141,12 @@
 								name="urlRedirect" />
 							<jsp:param value="Detalhar" name="label" />
 						</jsp:include>
-						<button type="button" class="btn btn-primary"
-							onclick="comandoOrcamentar('${produtoTemp.id}','${pageContext.request.contextPath}/adicionarProdutoOrcamento')">Orçamentar</button>
+						<button type="button" id="botaoOrcamentar" class="btn btn-primary"
+							onclick="comandoOrcamentar('${produtoTemp.id}','${pageContext.request.contextPath}/adicionarProdutoOrcamento',this)">Orçamentar</button>
 					</div>
 				</div>
 			</div>
+		</div>
 		</div>
 	</c:forEach>
 	

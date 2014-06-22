@@ -1,5 +1,7 @@
 package br.com.cheklab.web.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -10,9 +12,17 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "orcamento_has_produto")
-public class OrcamentoProdutos {
+public class OrcamentoProdutos implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@EmbeddedId
 	private OrcamentoProdutosId id;
+	
+	public OrcamentoProdutos() {
+		id = new OrcamentoProdutosId();
+	}
 
 	@ManyToOne
 	@JoinColumn(name = "produto_id", referencedColumnName = "id")

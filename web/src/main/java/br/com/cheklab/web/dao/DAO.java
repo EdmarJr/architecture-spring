@@ -11,6 +11,7 @@ import javax.persistence.PersistenceContext;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -50,9 +51,16 @@ public abstract class DAO<T> {
 	@SuppressWarnings("unchecked")
 	@Transactional(readOnly = true)
 	public List<T> filtrar(T entidade) {
+		return filtrar(entidade, null, false, false, null, null);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Transactional(readOnly = true)
+	public List<T> filtrar(T entidade, String order, Boolean asc,
+			boolean paginacao, Integer rowStart, Integer qntdRegistros) {
 		Criteria criteria = obterSessao().createCriteria(clazz);
 		Field[] fields = entidade.getClass().getDeclaredFields();
-		for(Field field : fields) {
+		for (Field field : fields) {
 			String nameField = field.getName();
 			StringBuilder sb = new StringBuilder("get");
 			sb.append(StringUtils.primeiraLetraMaiuscula(nameField));
@@ -68,20 +76,33 @@ public abstract class DAO<T> {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			if(retornoGet != null && retornoGet instanceof String) {
-				criteria.add(Restrictions.like(nameField, (String) retornoGet, MatchMode.ANYWHERE));
+			if (retornoGet != null && retornoGet instanceof String) {
+				criteria.add(Restrictions.like(nameField, (String) retornoGet,
+						MatchMode.ANYWHERE));
 			} else if (retornoGet != null && !retornoGet.equals("")) {
 				criteria.add(Restrictions.eq(nameField, retornoGet));
 			}
 		}
-
+		if (order != null) {
+			if (asc) {
+				criteria.addOrder(Order.asc(order));
+			} else {
+				criteria.addOrder(Order.desc(order));
+			}
+		}
+		if (paginacao) {
+			criteria.setFirstResult(rowStart);
+			criteria.setMaxResults(qntdRegistros);
+		}
 		return criteria.list();
 	}
 
-
-
 	public void alterar(T entidade) {
 		entityManager.merge(entidade);
+	}
+
+	public void desligar(T entidade) {
+		entityManager.detach(entidade);
 	}
 
 	@SuppressWarnings("unchecked")

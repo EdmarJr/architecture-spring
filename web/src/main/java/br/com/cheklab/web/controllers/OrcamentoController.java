@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.com.cheklab.web.entity.Cliente;
 import br.com.cheklab.web.entity.Orcamento;
 import br.com.cheklab.web.entity.OrcamentoProdutos;
 import br.com.cheklab.web.mediators.OrcamentoMediator;
@@ -33,17 +34,21 @@ public class OrcamentoController implements Serializable {
 	private OrcamentoMediator mediator;
 	@Autowired
 	private ProdutoMediator produtorMediator;
+	@Autowired
+	private MasterController controller;
 	private List<OrcamentoProdutos> orcamentos;
 	private Orcamento orcamento;
+	private Cliente cliente;
 
 	@PostConstruct
 	private void init() {
 		orcamento = new Orcamento();
+		cliente = new Cliente();
 		orcamentos = new ArrayList<OrcamentoProdutos>();
 	}
 
 	private ModelAndView obterView() {
-		ModelAndView model = new ModelAndView();
+		ModelAndView model = controller.obterModelAndView();
 		model.addObject("orcamentos", orcamentos);
 		return model;
 	}
@@ -55,6 +60,7 @@ public class OrcamentoController implements Serializable {
 		ModelAndView model = obterView();
 		model.addObject("orcamentos", orcamentos);
 		model.addObject("orcamento", orcamento);
+		model.addObject("cliente", cliente);
 		model.setViewName("/orcamento/gerenciarOrcamentos");
 		return model;
 	}
@@ -73,8 +79,10 @@ public class OrcamentoController implements Serializable {
 
 	@RequestMapping(value = "/incluirOrcamento**", method = RequestMethod.POST)
 	@ResponseBody
-	public String enviarOrcamento(Orcamento orcamento) {
+	public String enviarOrcamento(Cliente cliente, Orcamento orcamento) {
+		orcamento.setCliente(cliente);
 		mediator.incluir(orcamento);
-		return "sucesso";
+		init();
+		return "OK";
 	}
 }

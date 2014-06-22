@@ -13,12 +13,27 @@ import br.com.cheklab.web.entity.Categoria;
 @Service
 public class CategoriaMediator extends Mediator<Categoria> {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Autowired
 	private CategoriaDAO dao;
 
 	@Override
+	@Transactional(readOnly=true)
 	public List<Categoria> obterTodos() {
 		return dao.obterCategoriasEFilhas();
+	}
+	
+	@Transactional(readOnly=true)
+	public Categoria obterPorPosicao(Integer posicao) {
+		return dao.obterPorPosicao(posicao);
+	}
+	
+	@Transactional(readOnly=true)
+	public Categoria obterCategoriaPrincipal() {
+		return obterPorPosicao(1);
 	}
 
 	@Override
@@ -31,6 +46,27 @@ public class CategoriaMediator extends Mediator<Categoria> {
 	public void excluir(Categoria entidade) {
 		entidade.setAtivo(Boolean.FALSE);
 		getDAO().alterar(entidade);
+	}
+	
+	@Override
+	@Transactional
+	public void alterar(Categoria categoria) {
+		if(categoria.getPosicao() == 1 && seExisteCategoriaComPosicaoUm()) {
+			Categoria categoriaPosicao = obterPorPosicao(1);
+			categoriaPosicao.setPosicao(2);
+			getDAO().alterar(categoriaPosicao);
+		}
+		getDAO().alterar(categoria);
+
+	}
+	
+	private Boolean seExisteCategoriaComPosicaoUm() {
+		Categoria categoriaPosicao = obterPorPosicao(1);
+		if(categoriaPosicao != null) {
+			getDAO().desligar(categoriaPosicao);
+			return true;
+		}
+		return false;
 	}
 
 }

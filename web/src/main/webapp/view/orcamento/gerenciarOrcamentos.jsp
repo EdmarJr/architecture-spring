@@ -14,59 +14,57 @@
 <script type="text/javascript"
 	src='<c:url value="/resources/admin/js/fancy/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"/>'></script>
 <script>
-		$(document).ready(
-				function() {
+	$(document).ready(
+			function() {
 
-					$('.fancybox').fancybox();
+				$('.fancybox').fancybox();
 
-					$('.fancybox-thumbs')
-							.fancybox(
-									{
-										openEffect : 'none',
-										closeEffect : 'none',
+				$('.fancybox-thumbs')
+						.fancybox(
+								{
+									openEffect : 'none',
+									closeEffect : 'none',
 
-										prevEffect : 'none',
-										nextEffect : 'none',
+									prevEffect : 'none',
+									nextEffect : 'none',
 
-										closeBtn : false,
+									closeBtn : false,
 
-										helpers : {
-											title : {
-												type : 'inside'
-											},
-											buttons : {}
+									helpers : {
+										title : {
+											type : 'inside'
 										},
+										buttons : {}
+									},
 
-										afterLoad : function() {
-											this.title = 'Image '
-													+ (this.index + 1)
-													+ ' of '
-													+ this.group.length
-													+ (this.title ? ' - '
-															+ this.title : '');
-										}
-									});
+									afterLoad : function() {
+										this.title = 'Image '
+												+ (this.index + 1)
+												+ ' of '
+												+ this.group.length
+												+ (this.title ? ' - '
+														+ this.title : '');
+									}
+								});
 
-					$('.fancybox-thumbs').fancybox({
-						prevEffect : 'none',
-						nextEffect : 'none',
+				$('.fancybox-thumbs').fancybox({
+					prevEffect : 'none',
+					nextEffect : 'none',
 
-						closeBtn : true,
-						arrows : false,
-						nextClick : true,
+					closeBtn : true,
+					arrows : false,
+					nextClick : true,
 
-						helpers : {
-							thumbs : {
-								width : 20,
-								height : 20
-							}
+					helpers : {
+						thumbs : {
+							width : 20,
+							height : 20
 						}
-					});
-
+					}
 				});
-			
 
-	</script>
+			});
+</script>
 <div class="container w">
 
 	<div class="row centered">
@@ -79,9 +77,8 @@
 					</h3>
 				</div>
 				<div class="panel-body">
-					<form:form method="post"
-						action="${pageContext.request.contextPath}/incluirOrcamento"
-						modelAttribute="orcamento">
+					<form:form method="post" modelAttribute="orcamento"
+						id="formProdutos">
 						<div class="table-responsive">
 
 							<table class="table">
@@ -94,9 +91,9 @@
 								<c:forEach items="${orcamentos}" var="orcamentoTemp"
 									varStatus="status">
 									<tr align="left">
-											<form:input type="hidden"
-												path="produtosOrcamento[${status.index}].produto.id"
-												value="${orcamentoTemp.produto.id}"/>
+										<form:input type="hidden"
+											path="produtosOrcamento[${status.index}].produto.id"
+											value="${orcamentoTemp.produto.id}" />
 										<td>${orcamentoTemp.produto.codigoIdentificacao}</td>
 										<td>${orcamentoTemp.produto.nome}</td>
 										<td><a class="fancybox-thumbs"
@@ -105,15 +102,66 @@
 											href='<c:url value="/resources/${orcamentoTemp.produto.imagemPrincipal.endereco}"/>'><img
 												class="imgMiniaturaFancy" width="50px"
 												src='<c:url value="/resources/${orcamentoTemp.produto.imagemPrincipal.enderecoMiniatura}"/>' /></a></td>
-										<td><form:input
-												path="produtosOrcamento[${status.index}].quantidadeProdutos"/></td>
+										<td><form:input id="quantidadeProdutos" class="quantidadeProdutos"
+												path="produtosOrcamento[${status.index}].quantidadeProdutos" /></td>
 									</tr>
 								</c:forEach>
 							</table>
 						</div>
-						<form:button class="btn btn-primary"> Solicitar Orçamento </form:button>
-						<button type="button" class="btn btn-default" onclick="window.location.href = '${pageContext.request.contextPath}/produtos'"> Adicionar Mais Produtos </button>
+						<button type="button" class="btn btn-primary"
+							onclick="solicitarOrcamento()">Solicitar Orçamento</button>
+						<button type="button" class="btn btn-default"
+							onclick="window.location.href = '${pageContext.request.contextPath}/produtos'">
+							Adicionar Mais Produtos</button>
 					</form:form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="basicModal" tabindex="-1" role="dialog"
+		aria-labelledby="basicModal" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">Informações do
+						Cliente</h4>
+				</div>
+				<div class="modal-body">
+					<form:form id="formCliente" modelAttribute="cliente">
+						<div class="input-group">
+							<span class="input-group-addon">Nome</span> <input type="text"
+								class="form-control" placeholder="Digite seu nome completo"
+								name="nome">
+						</div>
+						<div class="input-group">
+							<span class="input-group-addon">Telefone</span> <input
+								id="telefone" type="text" class="form-control"
+								placeholder="Digite um telefone para contato" name="telefone">
+						</div>
+						<div class="input-group">
+							<span class="input-group-addon">E-Mail</span> <input type="text"
+								class="form-control"
+								placeholder="Digite um endereço de e-mail para contato"
+								name="email">
+						</div>
+						<c:if test="${configuracaoPaginaOrcamento.indicacaoHabilitada}">
+							<div class="input-group">
+								<span class="input-group-addon">Indicação</span> <input
+									type="text" class="form-control"
+									placeholder="Digite o nome de quem te indicou a comprar com a nossa empresa"
+									name="indicacao">
+							</div>
+						</c:if>
+					</form:form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+					<button type="button"
+						onclick="enviarSolicitacaoOrcamento('${pageContext.request.contextPath}/incluirOrcamento')"
+						class="btn btn-primary">Enviar Solicitação de Orçamento</button>
 				</div>
 			</div>
 		</div>
@@ -121,3 +169,91 @@
 	<!-- row -->
 	<br> <br>
 </div>
+<script
+	src='<c:url value="/resources/admin/js/bootbox/bootbox.min.js"/>'></script>
+<script type="text/javascript"
+	src='<c:url value="/resources/admin/js/jquery.mask.min.js"/>'></script>
+<script type="text/javascript">
+	$('#quantidadeProdutos').mask('9999999999');
+	$('#telefone').mask("(99) 9999-99999");
+</script>
+<script>
+	function solicitarOrcamento() {
+		camposPreenchidos = true;
+		$('.quantidadeProdutos').each(function(index) {
+			$(this).css({
+				'border-color' : ''
+			});
+		});
+		$('.quantidadeProdutos').each(function(index) {
+			if ($(this).val() == '') {
+				$(this).css({
+					'border-color' : 'red'
+				});
+				camposPreenchidos = false;
+			}
+		});
+		if (camposPreenchidos) {
+			$('#basicModal').modal('show');
+		}
+	}
+
+	function validarCampos() {
+		$('input[name=nome]').css({
+			'border-color' : '#cccccc'
+		});
+		$('input[name=telefone]').css({
+			'border-color' : '#cccccc'
+		});
+		$('input[name=email]').css({
+			'border-color' : '#cccccc'
+		});
+		if ($('input[name=nome]').val() == '') {
+			$('input[name=nome]').css({
+				'border-color' : 'red'
+			});
+			return false;
+		}
+		if ($('input[name=telefone]').val() == '') {
+			$('input[name=telefone]').css({
+				'border-color' : 'red'
+			});
+			return false;
+		}
+		if ($('input[name=email]').val() == '') {
+			$('input[name=email]').css({
+				'border-color' : 'red'
+			});
+			return false;
+		}
+		
+		return true;
+	}
+
+	function enviarSolicitacaoOrcamento(ajaxUrl) {
+		if (!validarCampos()) {
+			return;
+		}
+		var dataString = $("#formProdutos, #formCliente").serialize();
+
+		$
+				.ajax({
+					url : ajaxUrl,
+					data : dataString,
+					type : "POST",
+					success : function(data) {
+						$('#basicModal').modal('hide');
+						bootbox
+								.alert(
+										"Solicitacao de orçamento enviado com sucesso!.",
+										function() {
+											window.location.href = '${pageContext.request.contextPath}/orcamentos'
+										});
+					}
+				});
+		event.preventDefault();
+
+	}
+
+	
+</script>

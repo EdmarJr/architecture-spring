@@ -23,7 +23,7 @@ public class Orcamento {
 	@Column(name = "id")
 	private Long id;
 
-	@OneToMany(mappedBy = "orcamento", cascade=CascadeType.ALL)
+	@OneToMany(mappedBy = "orcamento")
 	private List<OrcamentoProdutos> produtosOrcamento;
 
 	@ManyToOne(cascade = CascadeType.PERSIST)

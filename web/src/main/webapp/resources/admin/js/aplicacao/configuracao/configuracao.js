@@ -7,7 +7,7 @@ function salvarConfiguracaoAJax(form, enderecoAjax) {
 		url : enderecoAjax,
 		data : $(form).serialize(),
 		type : "POST",
-		sucess : function(mensagemSucesso) {
+		success : function(mensagemSucesso) {
 			bootbox.alert(mensagemSucesso, function(){});
 		}
 		

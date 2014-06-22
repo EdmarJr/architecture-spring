@@ -7,3 +7,5 @@ insert into orcamento (id, emAberto, id_cliente) VALUES (1, TRUE, 1);
 insert into cliente values (1, 'edmarfagunde@gmail.com', 'marlene', 'Edmar Fagundes', '6282887475');
 insert into configuracao (id) values (1);
 insert into configuracao_orcamento (id, configuracao_id, indicacao_habilitada) values (1,1,FALSE);
+insert into configuracao_endereco values (1,'https://www.google.es/maps?t=m&amp;ie=UTF8&amp;ll=52.752693,22.791016&amp;spn=67.34552,156.972656&amp;z=2&amp;output=embed','We are available 24/7, so don\'t hesitate to contact us.','Somestreet Ave, 987',' London, UK.','+44 8948-4343','contact us','Save
+						& Go','hi@blacktie.co');

@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.cheklab.web.entity.configuracoes.ConfiguracaoOrcamento;
+import br.com.cheklab.web.entity.configuracoes.ConfiguracaoPaginaOrcamento;
 import br.com.cheklab.web.mediators.ConfiguracaoOrcamentoMediator;
 
 @Controller
-public class AdmConfiguracoesOrcamento {
+public class AdmConfiguracoesOrcamentoController {
 
 	@Autowired
 	private ConfiguracaoOrcamentoMediator mediator;
@@ -19,8 +19,8 @@ public class AdmConfiguracoesOrcamento {
 	@RequestMapping(method = RequestMethod.GET, value = "/admin/configuracao/orcamento")
 	public ModelAndView carregarConfiguracao() {
 		ModelAndView model = new ModelAndView();
-		ConfiguracaoOrcamento configuracaoOrcamento = mediator
-				.obterConfiguracaoOrcamento();
+		ConfiguracaoPaginaOrcamento configuracaoOrcamento = mediator
+				.obterConfiguracao();
 		model.addObject("configuracaoOrcamento", configuracaoOrcamento);
 		model.setViewName("/admin/configuracao/configuracaoOrcamento");
 		return model;
@@ -29,7 +29,7 @@ public class AdmConfiguracoesOrcamento {
 	@RequestMapping(method = RequestMethod.POST, value = "/admin/configuracao/orcamento")
 	@ResponseBody
 	public String alterarConfiguracao(
-			ConfiguracaoOrcamento configuracaoOrcamento) {
+			ConfiguracaoPaginaOrcamento configuracaoOrcamento) {
 		mediator.alterar(configuracaoOrcamento);
 		return "Configurações alteradas com sucesso.";
 	}

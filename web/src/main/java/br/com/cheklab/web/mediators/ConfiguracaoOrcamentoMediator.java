@@ -6,12 +6,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.cheklab.web.dao.ConfiguracaoOrcamentoDAO;
 import br.com.cheklab.web.dao.DAO;
-import br.com.cheklab.web.entity.configuracoes.ConfiguracaoOrcamento;
+import br.com.cheklab.web.entity.configuracoes.ConfiguracaoPaginaOrcamento;
 import br.com.cheklab.web.enums.TipoConfiguracaoEnum;
 
 @Service
 public class ConfiguracaoOrcamentoMediator extends
-		Mediator<ConfiguracaoOrcamento> {
+		Mediator<ConfiguracaoPaginaOrcamento> {
 
 	@Autowired
 	private ConfiguracaoOrcamentoDAO dao;
@@ -19,14 +19,14 @@ public class ConfiguracaoOrcamentoMediator extends
 	private ImagemMediator imagemMediator;
 
 	@Transactional(readOnly = true)
-	public ConfiguracaoOrcamento obterConfiguracaoOrcamento() {
-		ConfiguracaoOrcamento configuracao = dao
+	public ConfiguracaoPaginaOrcamento obterConfiguracao() {
+		ConfiguracaoPaginaOrcamento configuracao = dao
 				.buscarPorId(TipoConfiguracaoEnum.DEFAULT.getId());
 		return configuracao;
 	}
 
 	@Override
-	protected DAO<ConfiguracaoOrcamento> getDAO() {
+	protected DAO<ConfiguracaoPaginaOrcamento> getDAO() {
 		return dao;
 	}
 

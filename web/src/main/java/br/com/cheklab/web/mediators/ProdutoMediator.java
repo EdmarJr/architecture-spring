@@ -28,8 +28,18 @@ public class ProdutoMediator extends Mediator<Produto> {
 			Categoria categoria, Long pagina) {
 		List<Produto> produtos = dao
 				.obterProdutosPorCategoriaComInicializacaoDeImagens(categoria,
-						(((pagina * 20) - 20) + 1), 20L);
+						obterRowStart(pagina), 20L);
 		return produtos;
+	}
+
+	private int obterRowStart(Long pagina) {
+		return Integer
+				.parseInt(Long.valueOf((((pagina * 20) - 20))).toString());
+	}
+
+	@Transactional(readOnly = true)
+	public List<Produto> filtrarComPaginacao(Integer pagina, Produto produto) {
+		return dao.filtrarComPaginacao(produto, pagina, 20);
 	}
 
 	@Transactional(readOnly = true)
