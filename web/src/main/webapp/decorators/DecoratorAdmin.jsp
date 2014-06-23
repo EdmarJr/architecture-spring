@@ -56,7 +56,8 @@
 						<ul class="dropdown-menu">
 							<li><a href="${pageContext.request.contextPath}/admin/configuracao/gerais">Configurações Gerais</a></li>
 							<li><a href="${pageContext.request.contextPath}/admin/configuracao/orcamento">Configurações Orçamento</a></li>
-							<li><a href="${pageContext.request.contextPath}/admin/configuracao/endereco">Configurações Endereço</a></li>
+							<li><a href="${pageContext.request.contextPath}/admin/configuracao/endereco">Configurações Endereço</a></li>	
+							<li><a href="${pageContext.request.contextPath}/admin/configuracao/nossosTrabalhos">Configurações Nossos Trabalhos</a></li>
 							<li><a href="#">Configurações Página Inicial</a></li>
 							<li><a href="#">Configurações Página Produtos</a></li>
 						</ul></li>

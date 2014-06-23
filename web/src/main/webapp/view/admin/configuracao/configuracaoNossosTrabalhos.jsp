@@ -19,107 +19,113 @@
 	width: 100%;
 }
 </style>
+<script>
+	function acaoExclusao(idEntidade) {
+
+	}
+</script>
 <div id="formsContent">
 	<form:form method="POST" id="formConfiguracao"
-		modelAttribute="configuracaoEndereco">
+		modelAttribute="configuracaoNossosTrabalhos">
 		<ul id="messages"></ul>
 		<form:input path="id" type="hidden" />
 		<div>
 			<div class="col-md-13">
 				<div class="panel panel-primary">
 					<div class="panel-heading">
-						<h3 class="panel-title">Configurações Páginas Nossos Trabalhos</h3>
+						<h3 class="panel-title">Configurações Páginas Nossos
+							Trabalhos</h3>
 					</div>
 					<div class="panel-body">
 						<div class="linha">
-							<form:label class="col-lg-2 control-label"
-								path="tituloJanelaEndereco">
-								<c:out value='Titulo Janela:' />
-								<span><h6>Define o titulo da janela de endereço (Janela que se abre quando clica no icone de mensagem no menu).</h6></span>
+							<form:label class="col-lg-2 control-label" path="tituloPagina">
+								<c:out value='Titulo Página:' />
+								<span><h6>Define o titulo da página "Nossos
+										Trabalhos"</h6></span>
 
 							</form:label>
 							<div class="col-lg-6">
-								<form:input class="form-control" path="tituloJanelaEndereco"/>
+								<form:input class="form-control" path="tituloPagina" />
 							</div>
 						</div>
 						<div class="linha">
-							<form:label class="col-lg-2 control-label"
-								path="texto1">
-								<c:out value='Primeira Frase:' />
-								<span><h6>Define a primeira frase da janela de endereço (Janela que se abre quando clica no icone de mensagem no menu).</h6></span>
+							<form:label class="col-lg-2 control-label" path="subTituloPagina">
+								<c:out value='Subtitulo da Página:' />
+								<span><h6>Define o subtitulo da página "Nossos
+										Trabalhos"</h6></span>
 
 							</form:label>
 							<div class="col-lg-6">
-								<form:input class="form-control" path="texto1"/>
+								<form:input class="form-control" path="subTituloPagina" />
 							</div>
 						</div>
 						<div class="linha">
-							<form:label class="col-lg-2 control-label"
-								path="texto2">
-								<c:out value='Segunda Frase:' />
-								<span><h6>Define a segunda frase da janela de endereço (Janela que se abre quando clica no icone de mensagem no menu).</h6></span>
+							<div id="tabelaTrabalhos">
+								<div class="panel panel-default">
+									<div class="panel-heading">Trabalhos Realizados</div>
+										
+									<div class="panel-body">
+
+
+										<table class="table">
+											<thead>
+												<tr>
+													<th>Nome Cliente</th>
+													<th>Imagem</th>
+													<th>Ações</th>
+												</tr>
+											</thead>
+											<tbody>
+												<c:forEach
+													items="${configuracaoNossosTrabalhos.trabalhosRealizados}"
+													var="trabalhoRealizado">
+													<tr>
+														<td>${trabalhoRealizado.nomeCliente}
+														<td><img src="${trabalhoRealizado.imagemTrabalho}"
+															class="img-rounded" width="150px" />
+														<td><jsp:include page="../includes/iconDelete.jsp">
+																<jsp:param value="${trabalhoRealizado.id}"
+																	name="idEntidade" />
+																<jsp:param
+																	value="${pageContext.request.contextPath}/admin/trabalhoRealizado/excluir"
+																	name="ajaxUrl" />
+															</jsp:include>
+													</tr>
+												</c:forEach>
+											</tbody>
+										</table>
+										<button type="button" class="btn btn-primary"
+								onclick="$('#basicModal').modal('show');">Incluir Novo
+								Trabalho</button>
+									</div>
+								</div>
+							</div>
+							
+						</div>
+						<div class="linha">
+							<form:label class="col-lg-2 control-label" path="tituloRodape">
+								<c:out value='Título Rodapé:' />
+								<span><h6>Define o titulo do rodapé da página
+										"Nossos Trabalhos"</h6></span>
 
 							</form:label>
 							<div class="col-lg-6">
-								<form:input class="form-control" path="texto2"/>
+								<form:input class="form-control" path="tituloRodape" />
 							</div>
 						</div>
 						<div class="linha">
-							<form:label class="col-lg-2 control-label"
-								path="texto3">
-								<c:out value='Terceira Frase:' />
-								<span><h6>Define a terceira frase da janela de endereço (Janela que se abre quando clica no icone de mensagem no menu).</h6></span>
+							<form:label class="col-lg-2 control-label" path="subTituloRodape">
+								<c:out value='SubTítulo Rodapé:' />
+								<span><h6>Define o subtítulo do rodapé da página
+										"Nossos Trabalhos"</h6></span>
 
 							</form:label>
 							<div class="col-lg-6">
-								<form:input class="form-control" path="texto3"/>
+								<form:input class="form-control" path="subTituloRodape" />
 							</div>
 						</div>
-						<div class="linha">
-							<form:label class="col-lg-2 control-label"
-								path="texto4">
-								<c:out value='Quarta Frase:' />
-								<span><h6>Define a quarta frase da janela de endereço (Janela que se abre quando clica no icone de mensagem no menu).</h6></span>
 
-							</form:label>
-							<div class="col-lg-6">
-								<form:input class="form-control" path="texto4"/>
-							</div>
-						</div>
-						<div class="linha">
-							<form:label class="col-lg-2 control-label"
-								path="texto5">
-								<c:out value='Quinta Frase:' />
-								<span><h6>Define a quinta frase da janela de endereço (Janela que se abre quando clica no icone de mensagem no menu).</h6></span>
 
-							</form:label>
-							<div class="col-lg-6">
-								<form:input class="form-control" path="texto5"/>
-							</div>
-						</div>
-						<div class="linha">
-							<form:label class="col-lg-2 control-label"
-								path="enderecoGoogleMaps">
-								<c:out value='Endereço Google Maps:' />
-								<span><h6>Define o endereço que vai ser utilizado para mostrar a representação do mapa na janela de endereço (Janela que se abre quando clica no icone de mensagem no menu).</h6></span>
-
-							</form:label>
-							<div class="col-lg-6">
-								<form:input class="form-control" path="enderecoGoogleMaps"/>
-							</div>
-						</div>
-						<div class="linha">
-							<form:label class="col-lg-2 control-label"
-								path="tituloBotao">
-								<c:out value='Titulo do botão de fechar:' />
-								<span><h6>Define o nome do botão de fechar da janela de endereço (Janela que se abre quando clica no icone de mensagem no menu).</h6></span>
-
-							</form:label>
-							<div class="col-lg-6">
-								<form:input class="form-control" path="tituloBotao"/>
-							</div>
-						</div>
-						
 
 						<br>
 					</div>
@@ -129,12 +135,102 @@
 
 		<p>
 			<button type="button"
-				onclick="salvarConfiguracaoAJax(document.getElementById('formConfiguracao'),'${pageContext.request.contextPath}/admin/configuracao/endereco',this);"
+				onclick="salvarConfiguracaoAJax(document.getElementById('formConfiguracao'),'${pageContext.request.contextPath}/admin/configuracao/nossosTrabalhos',this);"
 				class="btn btn-primary">Concluir Alteração</button>
 		</p>
 	</form:form>
 
 </div>
-<script type="text/javascript"
-	src='<c:url value="/resources/admin/js/jquery.mask.min.js"/>'></script>
+
+<div class="modal fade" id="basicModal" tabindex="-1" role="dialog"
+	aria-labelledby="basicModal" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">Novo Trabalho
+					Realizado</h4>
+			</div>
+			<div class="modal-body">
+				<form:form id="formTrabalhoRealizado"
+					modelAttribute="trabalhoRealizado">
+					<div class="input-group">
+						<span class="input-group-addon">Nome Cliente</span> <input
+							type="text" class="form-control"
+							placeholder="Digite o nome do cliente" name="nomeCliente">
+					</div>
+					<div class="input-group">
+						<jsp:include page="../includes/inputImage.jsp">
+							<jsp:param value="imagemTrabalho.endereco" name="path" />
+							<jsp:param value="Imagem" name="label" />
+						</jsp:include>
+					</div>
+					<div class="input-group">
+						<span class="input-group-addon">Descrição 1</span> <input
+							id="telefone" type="text" class="form-control"
+							placeholder="Digite a descrição do trabalho."
+							name="descricaoTrabalho1">
+					</div>
+					<div class="input-group">
+						<span class="input-group-addon">Descrição 2</span> <input
+							id="telefone" type="text" class="form-control"
+							placeholder="Digite a descrição do trabalho."
+							name="descricaoTrabalho2">
+					</div>
+					<div class="input-group">
+						<span class="input-group-addon">Característica 1</span> <input
+							type="text" class="form-control"
+							placeholder="Digite uma característica do trabalho"
+							name="caracteristica1">
+					</div>
+					<div class="input-group">
+						<span class="input-group-addon">Característica 2</span> <input
+							type="text" class="form-control"
+							placeholder="Digite uma característica do trabalho"
+							name="caracteristica2">
+					</div>
+					<div class="input-group">
+						<span class="input-group-addon">Característica 3</span> <input
+							type="text" class="form-control"
+							placeholder="Digite uma característica do trabalho"
+							name="caracteristica3">
+					</div>
+				</form:form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+				<button type="button"
+					onclick="incluirNovoTrabalho('${pageContext.request.contextPath}/admin/trabalhoRealizado/incluir','${pageContext.request.contextPath}/admin/configuracao/nossosTrabalhos')"
+					class="btn btn-primary">Incluir Trabalho Realizado</button>
+			</div>
+		</div>
+	</div>
+</div>
+<script
+	src='<c:url value="/resources/admin/js/bootbox/bootbox.min.js"/>'></script>
+<script>
+	function incluirNovoTrabalho(ajaxUrl, urlThisPage) {
+		$.ajax({
+			url : ajaxUrl,
+			type : 'POST',
+			data : $('#formTrabalhoRealizado').serialize(),
+			success : function(mensagem) {
+				bootbox.alert(mensagem, function() {
+					$.ajax({
+						url : urlThisPage,
+						type : 'GET',
+						success : function(html) {
+							$('#tabelaTrabalhos').html(
+									$('#tabelaTrabalhos', $(html)));
+							$('#basicModal').modal('hide');
+						}
+
+					});
+
+				});
+			}
+		});
+	}
+</script>
 </html>

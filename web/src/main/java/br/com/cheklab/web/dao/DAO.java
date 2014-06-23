@@ -1,5 +1,6 @@
 package br.com.cheklab.web.dao;
 
+import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -17,7 +18,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.cheklab.web.utils.StringUtils;
 
-public abstract class DAO<T> {
+public abstract class DAO<T> implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@PersistenceContext
 	private EntityManager entityManager;
 

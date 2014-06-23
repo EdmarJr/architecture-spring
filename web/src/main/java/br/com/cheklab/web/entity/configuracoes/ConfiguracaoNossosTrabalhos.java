@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,7 +32,7 @@ public class ConfiguracaoNossosTrabalhos implements Serializable {
 
 	private String tituloPagina;
 	private String subTituloPagina;
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "configuracao_nossos_trabalhos_has_trabalho_realizado", joinColumns = { @JoinColumn(name = "configuracao_nossos_trabalhos_id") }, inverseJoinColumns = { @JoinColumn(name = "trabalho_realizado_id") })
 	private List<TrabalhoRealizado> trabalhosRealizados;
 	private String tituloRodape;

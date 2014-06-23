@@ -36,6 +36,21 @@ public class TrabalhoRealizado implements Serializable {
 	private String caracteristica2;
 	private String caracteristica3;
 	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Imagem getImagemTrabalho() {
+		return imagemTrabalho;
+	}
+
+	public void setImagemTrabalho(Imagem imagemTrabalho) {
+		this.imagemTrabalho = imagemTrabalho;
+	}
 	public String getNomeCliente() {
 		return nomeCliente;
 	}

@@ -24,8 +24,9 @@ public class AdmConfiguracoesNossosTrabalhosController {
 	public ModelAndView carregarConfiguracao() {
 		ModelAndView model = new ModelAndView();
 		ConfiguracaoNossosTrabalhos configuracao = mediator.obterConfiguracao();
-		model.addObject("configuracao", configuracao);
-		model.setViewName("/admin/configuracao/gerais");
+		model.addObject("configuracaoNossosTrabalhos", configuracao);
+		model.addObject("trabalhoRealizado", new TrabalhoRealizado());
+		model.setViewName("/admin/configuracao/configuracaoNossosTrabalhos");
 		return model;
 	}
 
@@ -34,11 +35,6 @@ public class AdmConfiguracoesNossosTrabalhosController {
 	public String alterarConfiguracao(ConfiguracaoNossosTrabalhos configuracaoNossosTrabalhos) {
 		mediator.alterar(configuracaoNossosTrabalhos);
 		return "Configurações alteradas com sucesso.";
-	}
-	
-	@RequestMapping(method = RequestMethod.POST, value = "/admin/configuracao/incluirNovoTrabalho")
-	public void incluirNovoTrabalho(TrabalhoRealizado trabalho) {
-		
 	}
 
 }
