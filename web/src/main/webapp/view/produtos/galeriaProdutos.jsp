@@ -66,8 +66,6 @@ function validarMinimoTresLetrasNaPesquisa() {
 	}
 </script>
 
-
-
 <div class="col-md-9" style="margin-top: 3%; margin-bottom: 0px;">
 
 	<div class="panel panel-primary" style="background: #428bca;">
