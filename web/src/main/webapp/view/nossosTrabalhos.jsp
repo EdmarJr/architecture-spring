@@ -1,9 +1,10 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <div id="blue">
 		<div class="container">
 			<div class="row centered">
 				<div class="col-lg-8 col-lg-offset-2">
-				<h4>WE WORK HARD TO ACHIEVE EXCELLENCE</h4>
-				<p>AND WE ARE HAPPY TO DO IT</p>
+				<h4>${configuracaoNossosTrabalhos.tituloPagina}</h4>
+				<p>${configuracaoNossosTrabalhos.subTituloPagina}</p>
 				</div>
 			</div><!-- row -->
 		</div><!-- container -->
@@ -11,73 +12,36 @@
 
 
 	<div class="container desc">
+		<c:forEach items="${configuracaoNossosTrabalhos.trabalhosRealizados}" var="trabalhoRealizado">
 		<div class="row">
 			<br><br>
 			<div class="col-lg-6 centered">
-				<img src="assets/img/p03.png" alt="">
+				<img width="300px" src='<c:url value="/resources/${trabalhoRealizado.imagemTrabalho.endereco}"/>' alt="">
 			</div><!-- col-lg-6 -->
 			<div class="col-lg-6">
-				<h4>CLIENT NAME</h4>
-				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-				<p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+				<h4>${trabalhoRealizado.nomeCliente}</h4>
+				<p>${trabalhoRealizado.descricaoTrabalho1}</p>
+				<p>${trabalhoRealizado.descricaoTrabalho2}</p>
 				<p>
-					<i class="fa fa-circle-o"></i> Mobile Design<br/>
-					<i class="fa fa-circle-o"></i> Web Design<br/>
-					<i class="fa fa-circle-o"></i> Development<br/>
-					<i class="fa fa-link"></i> <a href="#">BlackTie.co</a>
+					<i class="fa fa-circle-o"></i>${trabalhoRealizado.caracteristica1}<br/>
+					<i class="fa fa-circle-o"></i>${trabalhoRealizado.caracteristica2}<br/>
+					<i class="fa fa-circle-o"></i>${trabalhoRealizado.caracteristica3}<br/>
 				</p>
 			</div>
 		</div><!-- row -->
+		<br><br>
+		<hr>
+		</c:forEach>
 		
-		<br><br>
-		<hr>
-		<br><br>
-		<div class="row">
-			<div class="col-lg-6 centered">
-				<img src="assets/img/p01.png" alt="">
-			</div><!-- col-lg-6 -->
-			<div class="col-lg-6">
-				<h4>CLIENT NAME</h4>
-				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-				<p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-				<p>
-					<i class="fa fa-circle-o"></i> Mobile Design<br/>
-					<i class="fa fa-circle-o"></i> Web Design<br/>
-					<i class="fa fa-circle-o"></i> Development<br/>
-					<i class="fa fa-link"></i> <a href="#">BlackTie.co</a>
-				</p>
-			</div>
-		</div><!-- row -->
-
-		<br><br>
-		<hr>
-		<br><br>
-		<div class="row">
-			<div class="col-lg-6 centered">
-				<img src="assets/img/p02.png" alt="">
-			</div><!-- col-lg-6 -->
-			<div class="col-lg-6">
-				<h4>CLIENT NAME</h4>
-				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-				<p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-				<p>
-					<i class="fa fa-circle-o"></i> Mobile Design<br/>
-					<i class="fa fa-circle-o"></i> Web Design<br/>
-					<i class="fa fa-circle-o"></i> Development<br/>
-					<i class="fa fa-link"></i> <a href="#">BlackTie.co</a>
-				</p>
-			</div>
-		</div><!-- row -->
-		<br><br>
-	</div><!-- container -->
+			</div><!-- container -->
 
 	
 	<div id="r">
 		<div class="container">
 			<div class="row centered">
 				<div class="col-lg-8 col-lg-offset-2">
-					<h4>WE ARE STORYTELLERS. BRANDS ARE OUR SUBJECTS. DESIGN IS OUR VOICE.</h4>
-					<p>We believe ideas come from everyone, everywhere. At BlackTie, everyone within our agency walls is a designer in their own right. And there are a few principles we believe—and we believe everyone should believe—about our design craft. These truths drive us, motivate us, and ultimately help us redefine the power of design.</p>
+					<h4>${configuracaoNossosTrabalhos.tituloRodape}</h4>
+					<p>${configuracaoNossosTrabalhos.subTituloRodape}</p>
 				</div>
 			</div><!-- row -->
 		</div><!-- container -->

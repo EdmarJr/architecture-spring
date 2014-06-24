@@ -16,6 +16,8 @@ public class MasterController implements Serializable{
 		model.addObject("configuracaoPaginaInicial", ConfiguracoesUtils.getConfiguracaoPaginaInicial());
 		model.addObject("configuracaoPaginaProdutos", ConfiguracoesUtils.getConfiguracaoPaginaProdutos());
 		model.addObject("configuracaoEndereco", ConfiguracoesUtils.getConfiguracaoEndereco());
+		model.addObject("configuracaoNossosTrabalhos",
+				ConfiguracoesUtils.getConfiguracaoNossosTrabalhos());
 		return model;
 	}
 }

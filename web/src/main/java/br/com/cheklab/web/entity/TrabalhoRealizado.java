@@ -33,7 +33,9 @@ public class TrabalhoRealizado implements Serializable {
 	@OneToOne
 	@JoinColumn(name="imagem_trabalho",referencedColumnName="id")
 	private Imagem imagemTrabalho;
+	@Column(length = 5000)
 	private String descricaoTrabalho1;
+	@Column(length = 5000)
 	private String descricaoTrabalho2;
 	private String caracteristica1;
 	private String caracteristica2;

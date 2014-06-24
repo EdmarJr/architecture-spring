@@ -2,6 +2,7 @@ package br.com.cheklab.web.utils;
 
 import br.com.cheklab.web.entity.configuracoes.Configuracao;
 import br.com.cheklab.web.entity.configuracoes.ConfiguracaoEndereco;
+import br.com.cheklab.web.entity.configuracoes.ConfiguracaoNossosTrabalhos;
 import br.com.cheklab.web.entity.configuracoes.ConfiguracaoPaginaInicial;
 import br.com.cheklab.web.entity.configuracoes.ConfiguracaoPaginaOrcamento;
 import br.com.cheklab.web.entity.configuracoes.ConfiguracaoPaginaProdutos;
@@ -12,6 +13,7 @@ public class ConfiguracoesUtils {
 	private static ConfiguracaoPaginaInicial configuracaoPaginaInicial;
 	private static ConfiguracaoPaginaProdutos configuracaoPaginaProdutos;
 	private static ConfiguracaoEndereco configuracaoEndereco;
+	private static ConfiguracaoNossosTrabalhos configuracaoNossosTrabalhos;
 	
 	public static Configuracao getConfiguracao() {
 		return configuracao;
@@ -46,6 +48,15 @@ public class ConfiguracoesUtils {
 	public static void setConfiguracaoEndereco(
 			ConfiguracaoEndereco configuracaoEndereco) {
 		ConfiguracoesUtils.configuracaoEndereco = configuracaoEndereco;
+	}
+
+	public static ConfiguracaoNossosTrabalhos getConfiguracaoNossosTrabalhos() {
+		return configuracaoNossosTrabalhos;
+	}
+
+	public static void setConfiguracaoNossosTrabalhos(
+			ConfiguracaoNossosTrabalhos configuracaoNossosTrabalhos) {
+		ConfiguracoesUtils.configuracaoNossosTrabalhos = configuracaoNossosTrabalhos;
 	}
 	
 	

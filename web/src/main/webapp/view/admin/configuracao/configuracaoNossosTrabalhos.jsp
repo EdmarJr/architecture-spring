@@ -82,7 +82,7 @@
 													var="trabalhoRealizado">
 													<tr id="trabalhoRealizado${trabalhoRealizado.id}">
 														<td>${trabalhoRealizado.nomeCliente}
-														<td><img src="${pageContext.request.contextPath}/${trabalhoRealizado.imagemTrabalho.endereco}"
+														<td><img src='<c:url value="/resources/${trabalhoRealizado.imagemTrabalho.endereco}"/>'
 															class="img-rounded" width="150px" />
 														<td><jsp:include page="../includes/iconDelete.jsp">
 																<jsp:param value="${trabalhoRealizado.id}"
@@ -168,16 +168,16 @@
 						</jsp:include>
 					</div>
 					<div class="input-group">
-						<span class="input-group-addon">Descrição 1</span> <input
-							id="telefone" type="text" class="form-control"
+						<span class="input-group-addon">Descrição 1</span> <textarea rows="4"
+							 class="form-control"
 							placeholder="Digite a descrição do trabalho."
-							name="descricaoTrabalho1">
+							name="descricaoTrabalho1"></textarea>
 					</div>
 					<div class="input-group">
-						<span class="input-group-addon">Descrição 2</span> <input
-							id="telefone" type="text" class="form-control"
+						<span class="input-group-addon">Descrição 2</span> <textarea rows="4"
+							 class="form-control"
 							placeholder="Digite a descrição do trabalho."
-							name="descricaoTrabalho2">
+							name="descricaoTrabalho2"></textarea>
 					</div>
 					<div class="input-group">
 						<span class="input-group-addon">Característica 1</span> <input
@@ -201,7 +201,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-				<button type="button"
+				<button type="button" id="butaoIncluirTrabalhoRealizado"
 					onclick="incluirNovoTrabalho('${pageContext.request.contextPath}/admin/trabalhoRealizado/incluir','${pageContext.request.contextPath}/admin/configuracao/nossosTrabalhos')"
 					class="btn btn-primary">Incluir Trabalho Realizado</button>
 			</div>
@@ -212,11 +212,13 @@
 	src='<c:url value="/resources/admin/js/bootbox/bootbox.min.js"/>'></script>
 <script>
 	function incluirNovoTrabalho(ajaxUrl, urlThisPage) {
+		
 		$.ajax({
 			url : ajaxUrl,
 			type : 'POST',
 			data : $('#formTrabalhoRealizado,#formConfiguracao').serialize(),
 			success : function(mensagem) {
+				$('#basicModal').modal('hide');
 				bootbox.alert(mensagem, function() {
 					$.ajax({
 						url : urlThisPage,
@@ -224,9 +226,7 @@
 						success : function(html) {
 							$('#tabelaTrabalhos').html(
 									$('#tabelaTrabalhos', $(html)));
-							$('#basicModal').html(
-									$('#basicModal', $(html)));
-							$('#basicModal').modal('hide');
+							
 						}
 
 					});

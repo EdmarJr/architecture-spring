@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import br.com.cheklab.web.mediators.ConfiguracaoEnderecoMediator;
 import br.com.cheklab.web.mediators.ConfiguracaoMediator;
+import br.com.cheklab.web.mediators.ConfiguracaoNossosTrabalhosMediator;
 import br.com.cheklab.web.mediators.ConfiguracaoOrcamentoMediator;
 import br.com.cheklab.web.mediators.ConfiguracaoPaginaInicialMediator;
 import br.com.cheklab.web.mediators.ConfiguracaoPaginaProdutosMediator;
@@ -28,6 +29,8 @@ public class Inicializacao implements InitializingBean {
 	private ConfiguracaoOrcamentoMediator configuracaoOrcamentoMediator;
 	@Autowired
 	private ConfiguracaoEnderecoMediator configuracaoEnderecoMediator;
+	@Autowired
+	private ConfiguracaoNossosTrabalhosMediator configuracaoNossosTrabalhosMediator;
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
@@ -35,6 +38,7 @@ public class Inicializacao implements InitializingBean {
 		AutowireHelper.autowire(this, this.configuracaoMediator);
 		AutowireHelper.autowire(this, this.configuracaoPaginaProdutosMediator);
 		AutowireHelper.autowire(this, this.configuracaoOrcamentoMediator);
+		AutowireHelper.autowire(this, this.configuracaoNossosTrabalhosMediator);
 		GerenciadorImagem.contadorImagem = imagemMediator.obterContadorImagem();
 		carregarConfiguracoes();
 	}
@@ -53,6 +57,9 @@ public class Inicializacao implements InitializingBean {
 						.obterConfiguracao());
 		ConfiguracoesUtils.setConfiguracaoEndereco(configuracaoEnderecoMediator
 				.obterConfiguracao());
+		ConfiguracoesUtils
+				.setConfiguracaoNossosTrabalhos(configuracaoNossosTrabalhosMediator
+						.obterConfiguracao());
 	}
 
 }

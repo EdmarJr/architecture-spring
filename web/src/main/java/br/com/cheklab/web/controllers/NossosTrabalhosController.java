@@ -1,13 +1,26 @@
 package br.com.cheklab.web.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class NossosTrabalhosController { 
+
+	@Autowired
+	private MasterController controller;
+
+	private ModelAndView obterView() {
+		ModelAndView model = controller.obterModelAndView();
+		return model;
+	}
+
 	@RequestMapping(value="/nossosTrabalhos**")
-	private String obterPagina() {
-		return "nossosTrabalhos";
+	private ModelAndView obterPagina() {
+		ModelAndView model = obterView();
+		model.setViewName("nossosTrabalhos");
+		return model;
 	}
 
 }
