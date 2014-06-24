@@ -8,6 +8,11 @@ import org.springframework.transaction.annotation.Transactional;
 import br.com.cheklab.web.dao.DAO;
 
 public abstract class Mediator<T> implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Transactional
 	public void incluir(T entidade) {
 		getDAO().incluir(entidade);

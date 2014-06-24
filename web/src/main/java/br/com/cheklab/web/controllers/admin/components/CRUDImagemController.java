@@ -1,5 +1,5 @@
-package br.com.cheklab.web.controllers.admin.components;
 
+package br.com.cheklab.web.controllers.admin.components;
 import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;

@@ -8,8 +8,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import br.com.cheklab.web.entity.configuracoes.ConfiguracaoNossosTrabalhos;
 
 @Table(name="trabalho_realizado")
 @Entity
@@ -35,7 +38,21 @@ public class TrabalhoRealizado implements Serializable {
 	private String caracteristica1;
 	private String caracteristica2;
 	private String caracteristica3;
+	@ManyToOne
+	@JoinColumn(referencedColumnName="id",name="configuracaoNossosTrabalhos_id")
+	private ConfiguracaoNossosTrabalhos configuracaoNossosTrabalhos;
 	
+	
+	
+	public ConfiguracaoNossosTrabalhos getConfiguracaoNossosTrabalhos() {
+		return configuracaoNossosTrabalhos;
+	}
+
+	public void setConfiguracaoNossosTrabalhos(
+			ConfiguracaoNossosTrabalhos configuracaoNossosTrabalhos) {
+		this.configuracaoNossosTrabalhos = configuracaoNossosTrabalhos;
+	}
+
 	public Long getId() {
 		return id;
 	}

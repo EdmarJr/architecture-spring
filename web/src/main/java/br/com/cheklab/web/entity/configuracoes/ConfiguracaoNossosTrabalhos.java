@@ -10,9 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import br.com.cheklab.web.entity.TrabalhoRealizado;
@@ -32,11 +30,12 @@ public class ConfiguracaoNossosTrabalhos implements Serializable {
 
 	private String tituloPagina;
 	private String subTituloPagina;
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinTable(name = "configuracao_nossos_trabalhos_has_trabalho_realizado", joinColumns = { @JoinColumn(name = "configuracao_nossos_trabalhos_id") }, inverseJoinColumns = { @JoinColumn(name = "trabalho_realizado_id") })
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "configuracaoNossosTrabalhos")
 	private List<TrabalhoRealizado> trabalhosRealizados;
 	private String tituloRodape;
 	private String subTituloRodape;
+	
+	
 
 	public Long getId() {
 		return id;

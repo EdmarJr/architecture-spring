@@ -11,6 +11,11 @@
 <script
 	src='<c:url value="/resources/admin/js/bootbox/bootbox.min.js"/>'></script>
 <script src='<c:url value="/resources/admin/js/utils/validation.js"/>'></script>
+<script>
+	function acaoExclusao(idEntidade) {
+		$('#trabalhoRealizado'+idEntidade).remove();
+	};
+</script>
 <script
 	src='<c:url value="/resources/admin/js/aplicacao/configuracao/configuracao.js"/>'></script>
 <style>
@@ -19,16 +24,12 @@
 	width: 100%;
 }
 </style>
-<script>
-	function acaoExclusao(idEntidade) {
 
-	}
-</script>
 <div id="formsContent">
 	<form:form method="POST" id="formConfiguracao"
 		modelAttribute="configuracaoNossosTrabalhos">
 		<ul id="messages"></ul>
-		<form:input path="id" type="hidden" />
+		<form:input path="id" type="hidden"  />
 		<div>
 			<div class="col-md-13">
 				<div class="panel panel-primary">
@@ -74,14 +75,14 @@
 													<th>Imagem</th>
 													<th>Ações</th>
 												</tr>
-											</thead>
+											</thead> 
 											<tbody>
 												<c:forEach
 													items="${configuracaoNossosTrabalhos.trabalhosRealizados}"
 													var="trabalhoRealizado">
-													<tr>
+													<tr id="trabalhoRealizado${trabalhoRealizado.id}">
 														<td>${trabalhoRealizado.nomeCliente}
-														<td><img src="${trabalhoRealizado.imagemTrabalho}"
+														<td><img src="${pageContext.request.contextPath}/${trabalhoRealizado.imagemTrabalho.endereco}"
 															class="img-rounded" width="150px" />
 														<td><jsp:include page="../includes/iconDelete.jsp">
 																<jsp:param value="${trabalhoRealizado.id}"
@@ -214,7 +215,7 @@
 		$.ajax({
 			url : ajaxUrl,
 			type : 'POST',
-			data : $('#formTrabalhoRealizado').serialize(),
+			data : $('#formTrabalhoRealizado,#formConfiguracao').serialize(),
 			success : function(mensagem) {
 				bootbox.alert(mensagem, function() {
 					$.ajax({
@@ -223,6 +224,8 @@
 						success : function(html) {
 							$('#tabelaTrabalhos').html(
 									$('#tabelaTrabalhos', $(html)));
+							$('#basicModal').html(
+									$('#basicModal', $(html)));
 							$('#basicModal').modal('hide');
 						}
 
