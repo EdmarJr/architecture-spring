@@ -2,6 +2,7 @@ package br.com.cheklab.web.config;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import br.com.cheklab.web.mediators.ConfiguracaoEnderecoMediator;
@@ -15,6 +16,7 @@ import br.com.cheklab.web.utils.ConfiguracoesUtils;
 import br.com.cheklab.web.utils.GerenciadorImagem;
 
 @Component
+@Scope("singleton")
 public class Inicializacao implements InitializingBean {
 
 	@Autowired

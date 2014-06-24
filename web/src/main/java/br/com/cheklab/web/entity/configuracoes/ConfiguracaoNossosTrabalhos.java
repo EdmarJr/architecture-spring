@@ -17,7 +17,8 @@ import br.com.cheklab.web.entity.TrabalhoRealizado;
 
 @Entity
 @Table(name = "configuracao_nossos_trabalhos")
-public class ConfiguracaoNossosTrabalhos implements Serializable {
+public class ConfiguracaoNossosTrabalhos extends ConfiguracaoGeneric implements
+		Serializable {
 	/**
 	 * 
 	 */

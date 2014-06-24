@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "configuracao_pagina_produtos")
-public class ConfiguracaoPaginaProdutos {
+public class ConfiguracaoPaginaProdutos extends ConfiguracaoGeneric {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")

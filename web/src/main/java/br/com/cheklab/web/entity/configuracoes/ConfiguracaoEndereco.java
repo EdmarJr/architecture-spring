@@ -11,7 +11,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "configuracao_endereco")
-public class ConfiguracaoEndereco implements Serializable{
+public class ConfiguracaoEndereco extends ConfiguracaoGeneric implements
+		Serializable {
 	
 	/**
 	 * 

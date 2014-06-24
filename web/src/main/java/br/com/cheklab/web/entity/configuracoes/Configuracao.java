@@ -15,7 +15,8 @@ import br.com.cheklab.web.entity.interfaces.EntidadeComImagem;
 
 @Entity
 @Table(name = "configuracao")
-public class Configuracao implements EntidadeComImagem {
+public class Configuracao extends ConfiguracaoGeneric implements
+		EntidadeComImagem {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")

@@ -15,7 +15,8 @@ import br.com.cheklab.web.entity.Imagem;
 
 @Entity
 @Table(name = "configuracao_pagina_inicial")
-public class ConfiguracaoPaginaInicial implements Serializable{
+public class ConfiguracaoPaginaInicial extends ConfiguracaoGeneric implements
+		Serializable {
 	/**
 	 * 
 	 */
