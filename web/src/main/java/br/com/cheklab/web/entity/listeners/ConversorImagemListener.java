@@ -25,6 +25,10 @@ public class ConversorImagemListener {
 	@PrePersist
 	@PreUpdate
 	public void converterImagem(Imagem entidade) {
+		if (entidade.getEndereco() != null
+				&& entidade.getEnderecoMiniatura() == null) {
+			entidade.setEnderecoMiniatura(entidade.getEndereco());
+		}
 		if (entidade.getEndereco() == null
 				|| entidade.getEnderecoMiniatura() == null) {
 			return;

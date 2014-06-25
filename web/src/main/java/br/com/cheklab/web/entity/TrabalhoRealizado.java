@@ -13,10 +13,11 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import br.com.cheklab.web.entity.configuracoes.ConfiguracaoNossosTrabalhos;
+import br.com.cheklab.web.entity.interfaces.EntidadeComImagem;
 
 @Table(name="trabalho_realizado")
 @Entity
-public class TrabalhoRealizado implements Serializable {
+public class TrabalhoRealizado implements Serializable, EntidadeComImagem {
 	
 	/**
 	 * 
@@ -105,6 +106,11 @@ public class TrabalhoRealizado implements Serializable {
 	}
 	public void setCaracteristica3(String caracteristica3) {
 		this.caracteristica3 = caracteristica3;
+	}
+
+	@Override
+	public Imagem getImagem() {
+		return getImagemTrabalho();
 	}
 	
 	

@@ -2,6 +2,7 @@ package br.com.cheklab.web.entity;
 
 import java.util.List;
 
+import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,6 +33,7 @@ import br.com.cheklab.web.entity.listeners.EntidadesComStatusListener;
 @EntityListeners({ EntidadesComStatusListener.class,
 		EntidadesComPosicaoListener.class })
 @Table(name = "produto")
+@Cacheable(true)
 public class Produto implements EntidadeComImagens, EntidadeComStatus,
 		EntidadeComPosicao {
 

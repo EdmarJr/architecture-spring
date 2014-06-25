@@ -23,7 +23,7 @@ public class Inicializacao implements InitializingBean {
 	private ImagemMediator imagemMediator;
 	@Autowired
 	private ConfiguracaoMediator configuracaoMediator;
-	@Autowired
+	@Autowired(required = true)
 	private ConfiguracaoPaginaInicialMediator configuracaoPaginaInicialMediator;
 	@Autowired
 	private ConfiguracaoPaginaProdutosMediator configuracaoPaginaProdutosMediator;

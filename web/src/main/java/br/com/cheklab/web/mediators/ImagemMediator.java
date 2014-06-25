@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import br.com.cheklab.web.dao.DAO;
 import br.com.cheklab.web.dao.ImagemDAO;
 import br.com.cheklab.web.entity.Imagem;
+import br.com.cheklab.web.entity.interfaces.EntidadeComImagem;
 import br.com.cheklab.web.utils.GerenciadorImagem;
 
 @Service
@@ -44,6 +45,16 @@ public class ImagemMediator extends Mediator<Imagem> {
 			return 0L;
 		}
 		return registro.getId();
+	}
+
+	@Transactional
+	public void gerenciarEntidadeComImagem(EntidadeComImagem entidade) {
+		Imagem imagemPaginaInicial = entidade.getImagem();
+		imagemPaginaInicial.setEnderecoMiniatura(imagemPaginaInicial
+				.getEndereco());
+		imagemPaginaInicial.setTipoEntidade("ImagemComEntidade");
+		imagemPaginaInicial.setNome("Imagem");
+		dao.incluir(imagemPaginaInicial);
 	}
 
 	@Override

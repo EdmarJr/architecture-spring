@@ -2,7 +2,8 @@ package br.com.cheklab.web.enums;
 
 public enum TipoInclusaoImagemEnum {
 	PRODUTO(1,"produto"),
-	CATEGORIA(2,"categoria");
+ CATEGORIA(2, "categoria"), CONFIGURACAO_PAGINA_INICIAL(
+			3, "configuracaoPaginaInicial");
 	
 	private String descricao;
 	private Integer codigo;

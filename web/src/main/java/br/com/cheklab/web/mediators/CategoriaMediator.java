@@ -64,7 +64,8 @@ public class CategoriaMediator extends Mediator<Categoria> {
 	}
 
 	private void validarPosicoes(Categoria categoria) {
-		if(categoria.getPosicao() == 1 && seExisteCategoriaComPosicaoUm()) {
+		if (categoria.getPosicao() != null && categoria.getPosicao() == 1
+				&& seExisteCategoriaComPosicaoUm()) {
 			ajustarAntigoRegistroComPosicaoUm();
 		}
 	}

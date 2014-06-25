@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -16,8 +17,12 @@ import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.stereotype.Component;
 
 @Component
-public class GerenciadorImagem {
+public class GerenciadorImagem implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private final static String PREFIXO_PRIMEIRA_PARTE_BASE64 = "data:image/";
 	private final static String PREFIXO_SEGUNDA_PARTE_BASE64 = ";base64,";
 	public static Long contadorImagem;

@@ -1,5 +1,6 @@
 package br.com.cheklab.web.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,9 +14,12 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class MainController { 
 	
+	@Autowired
+	private MasterController controller;
+
 	@RequestMapping(value = { "/", "/inicio**" }, method = RequestMethod.GET)
 	public ModelAndView defaultPage() {
-	  ModelAndView model = new ModelAndView();
+		ModelAndView model = controller.obterModelAndView();
 		model.setViewName("inicio");
 	  return model;
 	}

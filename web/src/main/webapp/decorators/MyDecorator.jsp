@@ -11,7 +11,7 @@
 <meta name="author" content="">
 <link rel="shortcut icon" href="assets/ico/favicon.png">
 
-<title><decorator:title default="SPOT - Free Bootstrap 3 Theme"/></title>
+<title><decorator:title default="GrandBrindes"/></title>
 <script src='<c:url value="/resources/js/jquery-1.11.0.min.js"/>'></script>
 <!-- Bootstrap core CSS -->
 <link href='<c:url value="/resources/css/bootstrap.css"/>' rel="stylesheet" type="text/css">
@@ -40,7 +40,7 @@
 					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">GRANDBRINDES
+				<a class="navbar-brand" style="padding: 0px 0px 0px 0px;" href="${pageContext.request.contextPath}"><img width="50px" alt="GrandBrindes" src="<c:url value='/resources/img/grandbrindes/Logo.png'/>"> GRANDBRINDES
 				</a>
 			</div>
 			<div id="navbarPrincipal" class="navbar-collapse collapse">

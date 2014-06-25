@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import br.com.cheklab.web.entity.Imagem;
 import br.com.cheklab.web.entity.TrabalhoRealizado;
 import br.com.cheklab.web.entity.configuracoes.ConfiguracaoNossosTrabalhos;
 import br.com.cheklab.web.mediators.ConfiguracaoNossosTrabalhosMediator;
@@ -26,18 +25,10 @@ public class AdmTrabalhoRealizadoController {
 	@RequestMapping(method = RequestMethod.POST, value = "/admin/trabalhoRealizado/incluir")
 	@ResponseBody
 	public String incluirTrabalhoRealizado(TrabalhoRealizado trabalhoRealizado, ConfiguracaoNossosTrabalhos configuracaoNossosTrabalhos) {
-		Imagem imagemTrabalho = trabalhoRealizado.getImagemTrabalho();
 		trabalhoRealizado.setId(null);
-		trabalhoRealizado.setImagemTrabalho(null);
 		trabalhoRealizado.setConfiguracaoNossosTrabalhos(configMediator.obterPorId(configuracaoNossosTrabalhos.getId()));
+		imagemMediator.gerenciarEntidadeComImagem(trabalhoRealizado);
 		mediator.incluir(trabalhoRealizado);
-		imagemTrabalho.setEnderecoMiniatura(imagemTrabalho.getEndereco());
-		imagemTrabalho.setTipoEntidade("configuracao");
-		imagemTrabalho.setNome("TrabalhoRealizado");
-		imagemTrabalho.setIdEntidade(trabalhoRealizado.getId());
-		imagemMediator.incluir(imagemTrabalho);
-		trabalhoRealizado.setImagemTrabalho(imagemTrabalho);
-		imagemMediator.alterar(imagemTrabalho);
 		return "Inclusão realizada com sucesso.";
 	}
 

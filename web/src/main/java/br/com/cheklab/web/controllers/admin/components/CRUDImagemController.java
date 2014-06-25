@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import br.com.cheklab.web.entity.Imagem;
 import br.com.cheklab.web.entity.interfaces.EntidadeComImagens;
 import br.com.cheklab.web.enums.TipoInclusaoImagemEnum;
+import br.com.cheklab.web.mediators.ConfiguracaoPaginaInicialMediator;
 import br.com.cheklab.web.mediators.ImagemMediator;
 import br.com.cheklab.web.mediators.Mediator;
 import br.com.cheklab.web.mediators.ProdutoMediator;
@@ -20,11 +21,16 @@ public class CRUDImagemController {
 	@Autowired
 	private ImagemMediator imagemMediator;
 	@Autowired
+	private ConfiguracaoPaginaInicialMediator configuracaoPaginaInicialMediator;
+	@Autowired
 	private ServletContext context;
 
 	public void incluir(Imagem imagem) {
 		if (TipoInclusaoImagemEnum.obterPorDescricao(imagem.getTipoEntidade()) == TipoInclusaoImagemEnum.PRODUTO) {
 			incluir(imagem, produtoMediator);
+		} else if (TipoInclusaoImagemEnum.obterPorDescricao(imagem
+				.getTipoEntidade()) == TipoInclusaoImagemEnum.CONFIGURACAO_PAGINA_INICIAL) {
+			incluir(imagem, configuracaoPaginaInicialMediator);
 		}
 	}
 	public void alterar(Imagem imagem) {
@@ -33,6 +39,9 @@ public class CRUDImagemController {
 	public void excluir(Imagem imagem) {
 		if (TipoInclusaoImagemEnum.obterPorDescricao(imagem.getTipoEntidade()) == TipoInclusaoImagemEnum.PRODUTO) {
 			excluir(imagem, produtoMediator);
+		} else if (TipoInclusaoImagemEnum.obterPorDescricao(imagem
+				.getTipoEntidade()) == TipoInclusaoImagemEnum.CONFIGURACAO_PAGINA_INICIAL) {
+			excluir(imagem, configuracaoPaginaInicialMediator);
 		}
 	}
 
