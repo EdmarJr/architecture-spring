@@ -2,12 +2,14 @@ package br.com.cheklab.web.controllers;
 
 import java.io.Serializable;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.cheklab.web.utils.ConfiguracoesUtils;
 
 @Component
+@Scope()
 public class MasterController implements Serializable{
 	public ModelAndView obterModelAndView() {
 		ModelAndView model = new ModelAndView();

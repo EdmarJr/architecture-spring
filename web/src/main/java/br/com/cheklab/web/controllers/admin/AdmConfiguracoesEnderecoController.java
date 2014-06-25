@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.com.cheklab.web.config.Inicializacao;
 import br.com.cheklab.web.entity.configuracoes.ConfiguracaoEndereco;
 import br.com.cheklab.web.mediators.ConfiguracaoEnderecoMediator;
 import br.com.cheklab.web.mediators.ImagemMediator;
@@ -18,6 +19,8 @@ public class AdmConfiguracoesEnderecoController {
 	private ConfiguracaoEnderecoMediator mediator;
 	@Autowired
 	private ImagemMediator imagemMediator;
+	@Autowired
+	private Inicializacao inicializacao;
 
 	@RequestMapping(method = RequestMethod.GET, value = "/admin/configuracao/endereco")
 	public ModelAndView carregarConfiguracao() {
@@ -32,6 +35,7 @@ public class AdmConfiguracoesEnderecoController {
 	@ResponseBody
 	public String alterarConfiguracao(ConfiguracaoEndereco configuracaoEndereco) {
 		mediator.alterar(configuracaoEndereco);
+		inicializacao.carregarConfiguracoes();
 		return "Configurações alteradas com sucesso.";
 	}
 

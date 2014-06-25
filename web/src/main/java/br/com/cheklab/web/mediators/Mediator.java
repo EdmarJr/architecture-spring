@@ -23,6 +23,10 @@ public abstract class Mediator<T> implements Serializable {
 		getDAO().alterar(entidade);
 
 	}
+	@Transactional
+	public void desligar(T entidade) {
+		getDAO().desligar(entidade);
+	}
 
 	@Transactional
 	public void excluir(T entidade) {

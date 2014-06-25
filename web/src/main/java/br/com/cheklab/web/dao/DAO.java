@@ -107,7 +107,7 @@ public abstract class DAO<T> implements Serializable {
 		entityManager.merge(entidade);
 	}
 
-	public void desligar(T entidade) {
+	public void desligar(Object entidade) {
 		entityManager.detach(entidade);
 	}
 

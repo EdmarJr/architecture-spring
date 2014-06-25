@@ -43,6 +43,13 @@ public class CategoriaMediator extends Mediator<Categoria> {
 	
 	@Override
 	@Transactional
+	public void incluir(Categoria entidade) {
+		validarPosicoes(entidade);
+		dao.incluir(entidade);
+	}
+	
+	@Override
+	@Transactional
 	public void excluir(Categoria entidade) {
 		entidade.setAtivo(Boolean.FALSE);
 		getDAO().alterar(entidade);
@@ -51,13 +58,21 @@ public class CategoriaMediator extends Mediator<Categoria> {
 	@Override
 	@Transactional
 	public void alterar(Categoria categoria) {
-		if(categoria.getPosicao() == 1 && seExisteCategoriaComPosicaoUm()) {
-			Categoria categoriaPosicao = obterPorPosicao(1);
-			categoriaPosicao.setPosicao(2);
-			getDAO().alterar(categoriaPosicao);
-		}
+		validarPosicoes(categoria);
 		getDAO().alterar(categoria);
 
+	}
+
+	private void validarPosicoes(Categoria categoria) {
+		if(categoria.getPosicao() == 1 && seExisteCategoriaComPosicaoUm()) {
+			ajustarAntigoRegistroComPosicaoUm();
+		}
+	}
+
+	private void ajustarAntigoRegistroComPosicaoUm() {
+		Categoria categoriaPosicao = obterPorPosicao(1);
+		categoriaPosicao.setPosicao(2);
+		getDAO().alterar(categoriaPosicao);
 	}
 	
 	private Boolean seExisteCategoriaComPosicaoUm() {

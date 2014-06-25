@@ -28,12 +28,14 @@ public class ConfiguracaoNossosTrabalhos extends ConfiguracaoGeneric implements
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Long id;
-
+	
 	private String tituloPagina;
+	@Column(length=5000)
 	private String subTituloPagina;
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "configuracaoNossosTrabalhos")
 	private List<TrabalhoRealizado> trabalhosRealizados;
 	private String tituloRodape;
+	@Column(length=5000)
 	private String subTituloRodape;
 	
 	

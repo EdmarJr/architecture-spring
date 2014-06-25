@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.com.cheklab.web.config.Inicializacao;
 import br.com.cheklab.web.entity.TrabalhoRealizado;
 import br.com.cheklab.web.entity.configuracoes.ConfiguracaoNossosTrabalhos;
 import br.com.cheklab.web.mediators.ConfiguracaoNossosTrabalhosMediator;
@@ -17,6 +18,8 @@ public class AdmConfiguracoesNossosTrabalhosController {
 
 	@Autowired
 	private ConfiguracaoNossosTrabalhosMediator mediator;
+	@Autowired
+	private Inicializacao inicializacao;
 	@Autowired
 	private ImagemMediator imagemMediator;
 	
@@ -34,6 +37,7 @@ public class AdmConfiguracoesNossosTrabalhosController {
 	@ResponseBody
 	public String alterarConfiguracao(ConfiguracaoNossosTrabalhos configuracaoNossosTrabalhos) {
 		mediator.alterar(configuracaoNossosTrabalhos);
+		inicializacao.carregarConfiguracoes();
 		return "Configurações alteradas com sucesso.";
 	}
 

@@ -7,13 +7,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.com.cheklab.web.config.Inicializacao;
 import br.com.cheklab.web.entity.configuracoes.Configuracao;
 import br.com.cheklab.web.mediators.ConfiguracaoMediator;
 import br.com.cheklab.web.mediators.ImagemMediator;
 
 @Controller
 public class AdmConfiguracoesGeraisController {
-
+	@Autowired
+	private Inicializacao inicializacao;
 	@Autowired
 	private ConfiguracaoMediator mediator;
 	@Autowired
@@ -36,6 +38,7 @@ public class AdmConfiguracoesGeraisController {
 		configuracao.getImagem().setNome("logo");
 		configuracao.getImagem().setIdEntidade(configuracao.getId());
 		mediator.alterar(configuracao);
+		inicializacao.carregarConfiguracoes();
 		return "Configurações alteradas com sucesso.";
 	}
 
