@@ -120,12 +120,12 @@
 	}
 </script>
 
-	<c:forEach items="${produtos}" var="produtoTemp">
+<c:forEach items="${produtos}" var="produtoTemp">
 	<div class="produto">
 		<div class="col-md-3" style="margin-top: 2%;">
 			<div class="panel panel-primary">
 				<div class="panel-heading" style="max-height: 42px;">
-				<div class="resizeFonte">${produto	Temp.nome}</div></div>
+				<div class="resizeFonte">${produtoTemp.nome}</div></div>
 				<div class="panel-body" style="width: 80%; margin: 0 auto;">
 					<a class="fancybox-thumbs" data-fancybox-group="thumb"
 						title="${produtoTemp.imagemPrincipal.nome}"
@@ -147,8 +147,8 @@
 				</div>
 			</div>
 		</div>
-		</div>
-	</c:forEach>
+	</div>
+</c:forEach>
 	
 
 

@@ -78,20 +78,13 @@
 	<div class="row centered">
 		<br> <br>
 		<div class="col-lg-8 col-lg-offset-2">
-			<h4>WE CREATE FIRST CLASS DESIGN</h4>
-			<p>By being true to the brand we represent, we elevate the
-				audiences’ relationship to it. Like becomes love becomes a
-				passion. Passion becomes advocacy. And we see the brand blossom from
-				within, creating a whole story the audience embraces. That’s when
-				the brand can truly flex its muscles.</p>
+			<h4>${configuracaoPaginaInicial.tituloTexto1}</h4>
+			<p>${configuracaoPaginaInicial.texto1}</p>
 			<p>
 				<br /> <br />
 			</p>
 		</div>
 		<div class="col-lg-2"></div>
-		<div class="col-lg-10 col-lg-offset-1">
-			<img class="img-responsive" src="assets/img/munter.png" alt="">
-		</div>
 	</div>
 	<!-- row -->
 </div>
@@ -103,20 +96,17 @@
 		<div class="row centered">
 			<h4>PRINCIPAIS CLIENTES</h4>
 			<div class="col-lg-2 col-lg-offset-1">
-				<img src="assets/img/c01.gif" alt="">
-			</div>
-			<div class="col-lg-2">
-				<img src="assets/img/c02.gif" alt="">
-			</div>
-			<div class="col-lg-2">
-				<img src="assets/img/c03.gif" alt="">
-			</div>
-			<div class="col-lg-2">
-				<img src="assets/img/c04.gif" alt="">
-			</div>
-			<div class="col-lg-2">
-				<img src="assets/img/c05.gif" alt="">
-			</div>
+					<img src='<c:url value="/resources/${configuracaoPaginaInicial.imagensPrincipaisClientes[0].endereco}"/>' alt="">
+				</div>
+			<c:forEach
+				items="${configuracaoPaginaInicial.imagensPrincipaisClientes}" varStatus="loop"
+				var="imagem">
+				<c:if test="${loop.index != 0}">
+				<div class="col-lg-2">
+					<img src='<c:url value="/resources/${imagem.endereco}"/>' alt="">
+				</div>
+				</c:if>
+			</c:forEach>
 		</div>
 		<!-- row -->
 	</div>
@@ -129,13 +119,8 @@
 	<div class="container">
 		<div class="row centered">
 			<div class="col-lg-8 col-lg-offset-2">
-				<h4>WE ARE STORYTELLERS. BRANDS ARE OUR SUBJECTS. DESIGN IS OUR
-					VOICE.</h4>
-				<p>We believe ideas come from everyone, everywhere. At BlackTie,
-					everyone within our agency walls is a designer in their own right.
-					And there are a few principles we believe—and we believe everyone
-					should believe—about our design craft. These truths drive us,
-					motivate us, and ultimately help us redefine the power of design.</p>
+				<h4>${configuracaoPaginaInicial.tituloTexto2}</h4>
+				<p>${configuracaoPaginaInicial.texto2}</p>
 			</div>
 		</div>
 		<!-- row -->

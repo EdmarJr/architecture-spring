@@ -22,14 +22,17 @@ public class AdmConfiguracoesPaginaInicialController {
 	private Inicializacao inicializacao;
 	@Autowired
 	private ImagemMediator imagemMediator;
-	
+
 	@RequestMapping(method = RequestMethod.GET, value = "/admin/configuracao/paginaInicial")
 	public ModelAndView carregarConfiguracao() {
 		ModelAndView model = new ModelAndView();
 		ConfiguracaoPaginaInicial configuracao = mediator.obterConfiguracao();
-		configuracao.setImagemPaginaInicial(imagemMediator
-				.obterImagemPorIdEnderecoBase64(configuracao
-						.getImagemPaginaInicial().getId()));
+		if (configuracao.getImagemPaginaInicial() != null) {
+			configuracao.setImagemPaginaInicial(imagemMediator
+					.obterImagemPorIdEnderecoBase64(configuracao
+							.getImagemPaginaInicial().getId()));
+		}
+
 		model.addObject("configuracaoPaginaInicial", configuracao);
 		model.addObject("imagem", new Imagem());
 		model.setViewName("/admin/configuracao/configuracaoPaginaInicial");
@@ -40,12 +43,16 @@ public class AdmConfiguracoesPaginaInicialController {
 	@ResponseBody
 	public String alterarConfiguracao(
 			ConfiguracaoPaginaInicial configuracaoPaginaInicial) {
+		imagemMediator.gerenciarEntidadeComImagem(configuracaoPaginaInicial);
 		ConfiguracaoPaginaInicial config = mediator
 				.obterPorId(configuracaoPaginaInicial.getId());
-		imagemMediator.gerenciarEntidadeComImagem(configuracaoPaginaInicial);
-		configuracaoPaginaInicial.setImagensPrincipaisClientes(config
-				.getImagensPrincipaisClientes());
-		mediator.alterar(configuracaoPaginaInicial);
+		config.setPaginaInicial(configuracaoPaginaInicial.getImagemPaginaInicial());
+		config.setTexto1(configuracaoPaginaInicial.getTexto1());
+		config.setTexto2(configuracaoPaginaInicial.getTexto2());
+		config.setTituloTexto1(configuracaoPaginaInicial.getTituloTexto1());
+		config.setTituloTexto2(configuracaoPaginaInicial.getTituloTexto2());
+		config.setTextoImagem(configuracaoPaginaInicial.getTextoImagem());
+		mediator.alterar(config);
 		inicializacao.carregarConfiguracoes();
 		return "Configurações alteradas com sucesso.";
 	}

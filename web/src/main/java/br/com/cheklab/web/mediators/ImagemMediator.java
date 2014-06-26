@@ -49,6 +49,9 @@ public class ImagemMediator extends Mediator<Imagem> {
 
 	@Transactional
 	public void gerenciarEntidadeComImagem(EntidadeComImagem entidade) {
+		if(entidade.getImagem().getEndereco().equals("")) {
+			return;
+		}
 		Imagem imagemPaginaInicial = entidade.getImagem();
 		imagemPaginaInicial.setEnderecoMiniatura(imagemPaginaInicial
 				.getEndereco());

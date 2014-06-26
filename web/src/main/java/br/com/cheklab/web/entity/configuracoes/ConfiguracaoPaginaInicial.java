@@ -17,6 +17,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import br.com.cheklab.web.entity.Imagem;
 import br.com.cheklab.web.entity.TrabalhoRealizado;
 import br.com.cheklab.web.entity.interfaces.EntidadeComImagem;
@@ -47,7 +50,8 @@ public class ConfiguracaoPaginaInicial extends ConfiguracaoGeneric implements
 	@ManyToMany
 	@JoinTable(name = "configuracaoPaginaInicial_has_trabalhoRealizado", joinColumns = { @JoinColumn(name = "configuracao_pagina_inicial_id", referencedColumnName = "id") }, inverseJoinColumns = { @JoinColumn(name = "trabalho_realizado_id", referencedColumnName = "id") })
 	private List<TrabalhoRealizado> ultimosTrabalhos;
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
 	@JoinTable(name = "configuracaoPaginaInicial_has_imagensClientes", joinColumns = { @JoinColumn(referencedColumnName = "id", name = "configuracao_pagina_inicial_id") }, inverseJoinColumns = { @JoinColumn(referencedColumnName = "id", name = "imagem_cliente_id") })
 	private List<Imagem> imagensPrincipaisClientes;
 	private String tituloTexto1;
