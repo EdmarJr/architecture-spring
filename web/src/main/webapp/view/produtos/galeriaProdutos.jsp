@@ -97,7 +97,7 @@ function validarMinimoTresLetrasNaPesquisa() {
 			</div>
 			<div id="pagination">
 				<a
-					href='http://localhost:8080${pageContext.request.contextPath}/produtosPaginados/pagina?idCategoria=${produtos[0].categoria.id}&idPagina=2'
+					href='http://grandbrindes.com.br${pageContext.request.contextPath}/produtosPaginados/pagina?idCategoria=${produtos[0].categoria.id}&idPagina=2'
 					class="next">next</a>
 			</div>
 		</div>
