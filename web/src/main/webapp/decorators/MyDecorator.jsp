@@ -65,10 +65,9 @@
 							class="icon-bar"></span>
 					</button>
 					<a class="navbar-brand" style="padding: 0px 0px 0px 0px;"
-						href="${pageContext.request.contextPath}"><img width="50px"
+						href="${pageContext.request.contextPath}"><img width="160px"
 						alt="GrandBrindes"
-						src="<c:url value='/resources/img/grandbrindes/Logo.png'/>">
-						GRANDBRINDES </a>
+						src="<c:url value='/resources/img/grandbrindes/Logo.png'/>"></a>
 				</div>
 				<div id="navbarPrincipal" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav navbar-right">
@@ -81,7 +80,7 @@
 								TRABALHOS</a></li>
 						<li><a href="${pageContext.request.contextPath}/orcamentos">ORÇAMENTOS</a></li>
 						<li><a data-toggle="modal" data-target="#myModal"
-							href="#myModal"><i class="fa fa-envelope-o"></i></a></li>
+							href="#myModal"><i class="fa fa-phone"></i></a></li>
 					</ul>
 				</div>
 				<!--/.nav-collapse -->
@@ -98,9 +97,9 @@
 		<div id="f">
 			<div class="container">
 				<div class="row centered">
-					<a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i
+					<a href="#"><i class="fa fa-twitter" style="visibility: hidden;"></i></a><a href="http://www.facebook.com/grandbrindes.brinds"><i
 						class="fa fa-facebook"></i></a><a href="#"><i
-						class="fa fa-dribbble"></i></a>
+						class="fa fa-dribbble" style="visibility: hidden;"></i></a>
 
 				</div>
 				<!-- row -->

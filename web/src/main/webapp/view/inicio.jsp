@@ -46,25 +46,15 @@
 <div id="dg">
 	<div class="container">
 		<div class="row centered">
-			<h4>LATEST WORKS</h4>
+			<h4>ÚLTIMOS TRABALHOS</h4>
 			<br>
+			<c:forEach items="${configuracaoNossosTrabalhos.trabalhosRealizados}" var="trabalhoRealizado">
 			<div class="col-lg-4">
 				<div class="tilt">
-					<a href="#"><img src="assets/img/p01.png" alt=""></a>
+					<a href="#"><img src="${trabalhoRealizado.imagemTrabalho.enderecoSeparator}" alt="${trabalhoRealizado.nomeCliente}"></a>
 				</div>
 			</div>
-
-			<div class="col-lg-4">
-				<div class="tilt">
-					<a href="#"><img src="assets/img/p03.png" alt=""></a>
-				</div>
-			</div>
-
-			<div class="col-lg-4">
-				<div class="tilt">
-					<a href="#"><img src="assets/img/p02.png" alt=""></a>
-				</div>
-			</div>
+			</c:forEach>
 		</div>
 		<!-- row -->
 	</div>
