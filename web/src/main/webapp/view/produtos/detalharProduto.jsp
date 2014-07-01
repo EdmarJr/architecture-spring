@@ -49,21 +49,22 @@ img {
 	});
 
 	function comandoOrcamentar(idProduto, urlPostAjax, element) {
-		document.body.style.cursor = "progress";
-		$.ajax({
-			url : urlPostAjax,
-			data : {
-				'idProduto' : idProduto
-			},
-			type : "POST",
-			success : function(idEntidade) {
-				if (idEntidade == 'sucesso') {
-					$(element).fadeToggle('slow');
-					document.body.style.cursor = "auto";
-				}
+		$('#content').css('cursor','progress');
+		$
+				.ajax({
+					url : urlPostAjax,
+					data : {
+						'idProduto' : idProduto
+					},
+					type : "POST",
+					success : function(idEntidade) {
+						if (idEntidade == 'sucesso') {
+							$(element).fadeToggle('slow');
+						}
+						$('#content').css('cursor','auto');
 
-			}
-		});
+					}
+				});
 
 		event.preventDefault();
 

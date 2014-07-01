@@ -9,21 +9,23 @@
 <script
 	src='<c:url value="/resources/admin/js/bootbox/bootbox.min.js"/>'></script>
 <script>
-
-function validarMinimoTresLetrasNaPesquisa() {
-	var valor = $('#nomeForm').val();
-	if(valor.length < 3) {
-		bootbox.alert("Campo pesquisa deve ter no mínimo 3 caracteres", function(){});
-		return false;
+	function validarMinimoTresLetrasNaPesquisa() {
+		var valor = $('#nomeForm').val();
+		if (valor.length < 3) {
+			bootbox.alert("Campo pesquisa deve ter no mínimo 3 caracteres",
+					function() {
+					});
+			return false;
+		}
+		return true;
 	}
-	return true;
-}
 
 	function comandoPesquisar(event, form, enderecoAjax) {
 		if (event.keyCode == 13) {
-		if(!validarMinimoTresLetrasNaPesquisa()) {
-			return;
-		}
+			if (!validarMinimoTresLetrasNaPesquisa()) {
+				return;
+			}
+			$('#content').css('cursor', 'progress');
 			$.ajax({
 				url : enderecoAjax,
 				data : $(form).serialize(),
@@ -31,25 +33,27 @@ function validarMinimoTresLetrasNaPesquisa() {
 				success : function(html) {
 					$('#conteudoProdutos')
 							.html($('#conteudoProdutos', $(html)));
+					$('#content').css('cursor', 'progress');
 					ajustarEnderecoScroll();
 
-				},error: function(jqXHR, exception) {
-			        if (jqXHR.status === 0) {
-			            alert('Not connect.\n Verify Network.');
-			        } else if (jqXHR.status == 404) {
-			            alert('Requested page not found. [404]');
-			        } else if (jqXHR.status == 500) {
-			            alert('Internal Server Error [500].');
-			        } else if (exception === 'parsererror') {
-			            alert('Requested JSON parse failed.');
-			        } else if (exception === 'timeout') {
-			            alert('Time out error.');
-			        } else if (exception === 'abort') {
-			            alert('Ajax request aborted.');
-			        } else {
-			            alert('Uncaught Error.\n' + jqXHR.responseText);
-			        }
-			    }
+				},
+				error : function(jqXHR, exception) {
+					if (jqXHR.status === 0) {
+						alert('Not connect.\n Verify Network.');
+					} else if (jqXHR.status == 404) {
+						alert('Requested page not found. [404]');
+					} else if (jqXHR.status == 500) {
+						alert('Internal Server Error [500].');
+					} else if (exception === 'parsererror') {
+						alert('Requested JSON parse failed.');
+					} else if (exception === 'timeout') {
+						alert('Time out error.');
+					} else if (exception === 'abort') {
+						alert('Ajax request aborted.');
+					} else {
+						alert('Uncaught Error.\n' + jqXHR.responseText);
+					}
+				}
 			});
 		}
 
@@ -101,7 +105,7 @@ function validarMinimoTresLetrasNaPesquisa() {
 					class="next">next</a>
 			</div>
 		</div>
-		<div id="lastPostsLoader"></div>
+		<div id="lastPostsLoader" style="width: 100%;"></div>
 
 
 
@@ -111,9 +115,12 @@ function validarMinimoTresLetrasNaPesquisa() {
 	$(document)
 			.ready(
 					function() {
+
+						var carregarMaisItens = true;
 						function lastAddedLiveFunc() {
-							$('div#lastPostsLoader').html(
-									'<img src="bigLoader.gif"/>');
+							$('div#lastPostsLoader')
+									.html(
+											'<div id="loadProdutos" style="width: 100%; background-color: #428bca; text-align: center; "><b style="color: white;">Carregando mais produtos...</b></div>');
 
 							$
 									.get(
@@ -123,6 +130,10 @@ function validarMinimoTresLetrasNaPesquisa() {
 												if (data != "") {
 													var produto = $(".produto");
 													var ultimoProduto = produto[produto.length - 1];
+													if ($('.produto', $(data)).length == 0) {
+														$('#loadProdutos').remove();
+														carregarMaisItens = false;
+													}
 													$(ultimoProduto).append(
 															$('.produto',
 																	$(data)));
@@ -140,7 +151,7 @@ function validarMinimoTresLetrasNaPesquisa() {
 															+ (parseInt(numeroPagina) + 1);
 													$('#pagination a').attr(
 															'href', urlInteira);
-												}
+												} 
 												$('div#lastPostsLoader')
 														.empty();
 											});
@@ -150,14 +161,16 @@ function validarMinimoTresLetrasNaPesquisa() {
 						$(window)
 								.scroll(
 										function() {
+											if (carregarMaisItens) {
+												var wintop = $(window)
+														.scrollTop(), docheight = $(
+														document).height(), winheight = $(
+														window).height();
+												var scrolltrigger = 0.99;
 
-											var wintop = $(window).scrollTop(), docheight = $(
-													document).height(), winheight = $(
-													window).height();
-											var scrolltrigger = 0.99;
-
-											if ((wintop / (docheight - winheight)) > scrolltrigger) {
-												lastAddedLiveFunc();
+												if ((wintop / (docheight - winheight)) > scrolltrigger) {
+													lastAddedLiveFunc();
+												}
 											}
 										});
 					});

@@ -99,7 +99,7 @@
 			});
 
 	function comandoOrcamentar(idProduto, urlPostAjax, element) {
-		document.body.style.cursor = "progress";
+		$('#content').css('cursor','progress');
 		$
 				.ajax({
 					url : urlPostAjax,
@@ -110,8 +110,8 @@
 					success : function(idEntidade) {
 						if (idEntidade == 'sucesso') {
 							$(element).fadeToggle('slow');
-							document.body.style.cursor = "auto";    
 						}
+						$('#content').css('cursor','auto');
 
 					}
 				});
