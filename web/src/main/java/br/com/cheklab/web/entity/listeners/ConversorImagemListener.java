@@ -33,6 +33,9 @@ public class ConversorImagemListener {
 				|| entidade.getEnderecoMiniatura() == null) {
 			return;
 		}
+		
+		entidade.setMiniaturaBlob(entidade.getEnderecoMiniatura().split(",")[1].getBytes());
+		entidade.setMaiorBlob(entidade.getEndereco().split(",")[1].getBytes());
 		AutowireHelper.autowire(this, this.gerenciadorImagem);
 		entidade.setEndereco(gerenciadorImagem.salvarImagem(
 				entidade.getEndereco(),

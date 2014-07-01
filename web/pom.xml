@@ -26,6 +26,14 @@
 
 	<dependencies>
 
+		<dependency>
+	<groupId>org.apache.commons</groupId>
+	<artifactId>commons-dbcp2</artifactId>
+	<version>2.0.1</version>
+</dependency>
+
+
+
 		<!-- Servlet 3.0 API -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -42,10 +50,10 @@
 		</dependency>
 		<!-- Hibernate -->
 		<dependency>
-	<groupId>org.hibernate</groupId>
-	<artifactId>hibernate-entitymanager</artifactId>
-	<version>4.3.5.Final</version>
-</dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>4.3.5.Final</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -72,6 +80,13 @@
 			<artifactId>commons-lang3</artifactId>
 			<version>3.3.2</version>
 		</dependency>
+
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>1.9</version>
+		</dependency>
+
 
 
 		<dependency>
@@ -155,21 +170,21 @@
 			<artifactId>spring-security-taglibs</artifactId>
 			<version>${spring.security.version}</version>
 		</dependency>
-		
-			<dependency>
-	<groupId>javax.mail</groupId>
-	<artifactId>mail</artifactId>
-	<version>1.4.7</version>
-</dependency>
+
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.7</version>
+		</dependency>
 
 		<!-- test dependencies -->
 		<dependency>
-	<groupId>org.springframework</groupId>
-	<artifactId>spring-support</artifactId>
-	<version>2.0.8</version>
-</dependency>
-            
-            
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-support</artifactId>
+			<version>2.0.8</version>
+		</dependency>
+
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

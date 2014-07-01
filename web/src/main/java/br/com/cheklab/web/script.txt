@@ -10,3 +10,9 @@ insert into configuracao_orcamento (id, configuracao_id, indicacao_habilitada) v
 insert into configuracao_endereco values (1,'https://www.google.es/maps?t=m&amp;ie=UTF8&amp;ll=52.752693,22.791016&amp;spn=67.34552,156.972656&amp;z=2&amp;output=embed','We are available 24/7, so don\'t hesitate to contact us.','Somestreet Ave, 987',' London, UK.','+44 8948-4343','contact us','Save
 						& Go','hi@blacktie.co');
 insert into configuracao_nossos_trabalhos (subTituloPagina,subTituloRodape, tituloPagina, tituloRodape) values ('AND WE ARE HAPPY TO DO IT','We believe ideas come from everyone, everywhere. At BlackTie, everyone within our agency walls is a designer in their own right. And there are a few principles we believe and we believe everyone sho','WE WORK HARD TO ACHIEVE EXCELLENCE','AND WE ARE HAPPY TO DO IT');
+insert into configuracao_pagina_inicial (id) values (1);
+alter table imagem drop column maiorBlob;
+alter table imagem drop column miniaturaBlob;
+alter table imagem add column miniaturaBlob MEDIUMBLOB;
+alter table imagem add column maiorBlob MEDIUMBLOB;
+alter table imagem add column inclusaoAutomatica bit;

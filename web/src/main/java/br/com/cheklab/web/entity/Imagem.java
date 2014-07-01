@@ -1,11 +1,14 @@
 package br.com.cheklab.web.entity;
 
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -47,6 +50,12 @@ public class Imagem implements EntidadeComStatus, EntidadeComPosicao {
 
 	@Column(name = "ativo")
 	private Boolean ativo;
+	@Lob @Basic(fetch=FetchType.LAZY)
+	@Column(columnDefinition="BLOB NOT NULL", length=10485760)
+	private byte[] miniaturaBlob;
+	@Lob @Basic(fetch=FetchType.LAZY)
+	@Column(columnDefinition="BLOB NOT NULL", length=10485760)
+	private byte[] maiorBlob;
 
 	@Transient
 	private Long idEntidade;
@@ -91,19 +100,41 @@ public class Imagem implements EntidadeComStatus, EntidadeComPosicao {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+	
+	
 
+	public byte[] getMiniaturaBlob() {
+		return miniaturaBlob;
+	}
+
+	public void setMiniaturaBlob(byte[] miniaturaBlob) {
+		this.miniaturaBlob = miniaturaBlob;
+	}
+
+	public byte[] getMaiorBlob() {
+		return maiorBlob;
+	}
+
+	public void setMaiorBlob(byte[] maiorBlob) {
+		this.maiorBlob = maiorBlob;
+	}
+
+	@Override
 	public Integer getPosicao() {
 		return posicao;
 	}
 
+	@Override
 	public void setPosicao(Integer posicao) {
 		this.posicao = posicao;
 	}
 
+	@Override
 	public Boolean getAtivo() {
 		return ativo;
 	}
 
+	@Override
 	public void setAtivo(Boolean ativo) {
 		this.ativo = ativo;
 	}

@@ -11,9 +11,9 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.Iterator;
 
+import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.FileDeleteStrategy;
 import org.apache.commons.io.IOUtils;
-import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.stereotype.Component;
 
 @Component
