@@ -47,22 +47,45 @@ img {
 		});
 
 	});
+
+	function comandoOrcamentar(idProduto, urlPostAjax, element) {
+		document.body.style.cursor = "progress";
+		$.ajax({
+			url : urlPostAjax,
+			data : {
+				'idProduto' : idProduto
+			},
+			type : "POST",
+			success : function(idEntidade) {
+				if (idEntidade == 'sucesso') {
+					$(element).fadeToggle('slow');
+					document.body.style.cursor = "auto";
+				}
+
+			}
+		});
+
+		event.preventDefault();
+
+	}
 </script>
 <jsp:include page="../includes/menuCategorias.jsp"></jsp:include>
-<div class="col-md-9" style="margin-top:3%;margin-bottom: 0px;">
-<div class="panel panel-primary"><div class="panel-body" >TESTEEE</div></div>
+<div class="col-md-9" style="margin-top: 3%; margin-bottom: 0px;">
+	<div class="panel panel-primary">
+		<div class="panel-body" style='background: url(<c:url value="/resources/img/tituloDetalharProduto.jpg"/>)'><b>${produto.categoria.nome}</b></div>
+	</div>
 
 </div>
-<div class="col-md-9" >
+<div class="col-md-9">
 	<div class="panel panel-primary">
 
-		<div class="panel-body" id="body">
+		<div class="panel-body" id="body" style='background: url(<c:url value="/resources/img/planodefundoDetalharProduto.jpg"/>)'>
 			<div class="col-md-5" style="margin-top: 2%;">
 				<div class="list-group list-group-primary"
-					style="width: 80%; margin: 0 auto;">
+					style="width: 80%; margin: 0 auto; border:1px solid; border-radius:4px; border-color:#428bca;">
 					<div class="list-group-item"
 						style="margin-left: 0px; margin-right: 0px;">
-						<img class="imgZoom" style="margin-left: 0px; margin-right: 0px;"
+						<img class="imgZoom" style="margin-left: 0px; margin-right: 0px; border: 0px; border-color:#428bca;"
 							id="imagemPrincipal"
 							data-zoom-image='<c:url value="/resources/${produto.imagemPrincipal.enderecoSeparator}"/>'
 							src='<c:url value="/resources/${produto.imagemPrincipal.enderecoSeparator}"/>' />
@@ -71,7 +94,7 @@ img {
 			</div>
 			<div class="col-md-5" style="margin-top: 2%;">
 				<div class="list-group list-group-primary">
-					<div class="list-group-item">
+					<div class="list-group-item active">
 						<span> <span class="label label-primary"
 							style="text-size: 10">Nome:</span> <span style="float: right">${produto.nome}</span>
 						</span>
@@ -87,8 +110,9 @@ img {
 			<div class="col-md-2" style="margin-top: 2%;">
 				<div class="list-group list-group-primary">
 
-					<a href="#" class="list-group-item">Orçamentar</a> <a href="#"
-						class="list-group-item">Voltar</a>
+					<a href="#" class="list-group-item"
+						onclick="comandoOrcamentar('${produto.id}','${pageContext.request.contextPath}/adicionarProdutoOrcamento',this)">Orçamentar</a>
+					<a href="javascript:window.history.go(-1)" class="list-group-item">Voltar</a>
 				</div>
 			</div>
 			<div class="col-md-7">
