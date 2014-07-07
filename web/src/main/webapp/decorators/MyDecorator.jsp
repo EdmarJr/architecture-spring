@@ -73,7 +73,7 @@
 					<ul class="nav navbar-nav navbar-right">
 						<li id="liDefault"><a
 							href="${pageContext.request.contextPath}/inicio">INÍCIO</a></li>
-						<li><a href="#">SOBRE</a></li>
+						<li><a href="${pageContext.request.contextPath}/sobre">SOBRE</a></li>
 						<li><a href="${pageContext.request.contextPath}/produtos">PRODUTOS</a></li>
 						<li><a
 							href="${pageContext.request.contextPath}/nossosTrabalhos">NOSSOS

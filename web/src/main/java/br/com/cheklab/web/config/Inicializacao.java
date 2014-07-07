@@ -11,6 +11,7 @@ import br.com.cheklab.web.mediators.ConfiguracaoNossosTrabalhosMediator;
 import br.com.cheklab.web.mediators.ConfiguracaoOrcamentoMediator;
 import br.com.cheklab.web.mediators.ConfiguracaoPaginaInicialMediator;
 import br.com.cheklab.web.mediators.ConfiguracaoPaginaProdutosMediator;
+import br.com.cheklab.web.mediators.ConfiguracaoSobreMediator;
 import br.com.cheklab.web.mediators.ImagemMediator;
 import br.com.cheklab.web.utils.ConfiguracoesUtils;
 import br.com.cheklab.web.utils.GerenciadorImagem;
@@ -23,7 +24,7 @@ public class Inicializacao implements InitializingBean {
 	private ImagemMediator imagemMediator;
 	@Autowired
 	private ConfiguracaoMediator configuracaoMediator;
-	@Autowired(required = true)
+	@Autowired
 	private ConfiguracaoPaginaInicialMediator configuracaoPaginaInicialMediator;
 	@Autowired
 	private ConfiguracaoPaginaProdutosMediator configuracaoPaginaProdutosMediator;
@@ -33,6 +34,8 @@ public class Inicializacao implements InitializingBean {
 	private ConfiguracaoEnderecoMediator configuracaoEnderecoMediator;
 	@Autowired
 	private ConfiguracaoNossosTrabalhosMediator configuracaoNossosTrabalhosMediator;
+	@Autowired
+	private ConfiguracaoSobreMediator configuracaoSobreMediator;
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
@@ -41,6 +44,7 @@ public class Inicializacao implements InitializingBean {
 		AutowireHelper.autowire(this, this.configuracaoPaginaProdutosMediator);
 		AutowireHelper.autowire(this, this.configuracaoOrcamentoMediator);
 		AutowireHelper.autowire(this, this.configuracaoNossosTrabalhosMediator);
+		AutowireHelper.autowire(this, this.configuracaoSobreMediator);
 		GerenciadorImagem.contadorImagem = imagemMediator.obterContadorImagem();
 		carregarConfiguracoes();
 	}
@@ -62,6 +66,8 @@ public class Inicializacao implements InitializingBean {
 		ConfiguracoesUtils
 				.setConfiguracaoNossosTrabalhos(configuracaoNossosTrabalhosMediator
 						.obterConfiguracao());
+		ConfiguracoesUtils.setConfiguracaoSobre(configuracaoSobreMediator
+				.obterConfiguracao());
 	}
 
 }

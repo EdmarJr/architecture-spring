@@ -50,4 +50,13 @@ public class AdmOrcamentoController {
 		modelAndView.setViewName("/admin/orcamentos");
 		return modelAndView;
 	}
+
+	@RequestMapping(value = "/admin/orcamento/fechar**", method = RequestMethod.POST)
+	@ResponseBody
+	public ModelAndView fecharOrcamento(Long idOrcamento) {
+		Orcamento orcamento = mediator.obterPorId(idOrcamento);
+		orcamento.setEmAberto(Boolean.FALSE);
+		mediator.alterar(orcamento);
+		return carregarOrcamentos(idOrcamento);
+	}
 }

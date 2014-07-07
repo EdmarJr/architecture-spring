@@ -1,11 +1,13 @@
 package br.com.cheklab.web.entity;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,8 +16,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import br.com.cheklab.web.entity.listeners.OrcamentoListener;
+
 @Entity
 @Table(name = "orcamento")
+@EntityListeners(OrcamentoListener.class)
 public class Orcamento {
 
 	@Id
@@ -85,6 +90,22 @@ public class Orcamento {
 
 	public void setUltimaAtualizacao(Date ultimaAtualizacao) {
 		this.ultimaAtualizacao = ultimaAtualizacao;
+	}
+
+	public String getHorarioInclusaoFormatBr() {
+		SimpleDateFormat sp = obterSimpleDateFormat();
+		return getHoraRegistro() != null ? sp.format(getHoraRegistro()) : null;
+	}
+
+	private SimpleDateFormat obterSimpleDateFormat() {
+		SimpleDateFormat sp = new SimpleDateFormat("dd/MM/yyyy - HH:mm:ss");
+		return sp;
+	}
+
+	public String getHorarioAlteracaoFormatBr() {
+		SimpleDateFormat sp = obterSimpleDateFormat();
+		return getUltimaAtualizacao() != null ? sp
+				.format(getUltimaAtualizacao()) : null;
 	}
 
 }

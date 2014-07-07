@@ -6,6 +6,7 @@ import br.com.cheklab.web.entity.configuracoes.ConfiguracaoNossosTrabalhos;
 import br.com.cheklab.web.entity.configuracoes.ConfiguracaoPaginaInicial;
 import br.com.cheklab.web.entity.configuracoes.ConfiguracaoPaginaOrcamento;
 import br.com.cheklab.web.entity.configuracoes.ConfiguracaoPaginaProdutos;
+import br.com.cheklab.web.entity.configuracoes.ConfiguracaoSobre;
 
 public class ConfiguracoesUtils {
 	private static Configuracao configuracao;
@@ -14,7 +15,15 @@ public class ConfiguracoesUtils {
 	private static ConfiguracaoPaginaProdutos configuracaoPaginaProdutos;
 	private static ConfiguracaoEndereco configuracaoEndereco;
 	private static ConfiguracaoNossosTrabalhos configuracaoNossosTrabalhos;
+	private static ConfiguracaoSobre configuracaoSobre;
 	
+	public static ConfiguracaoSobre getConfiguracaoSobre() {
+		return configuracaoSobre;
+	}
+
+	public static void setConfiguracaoSobre(ConfiguracaoSobre configuracaoSobre) {
+		ConfiguracoesUtils.configuracaoSobre = configuracaoSobre;
+	}
 	public static Configuracao getConfiguracao() {
 		return configuracao;
 	}

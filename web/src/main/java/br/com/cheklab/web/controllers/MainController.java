@@ -23,6 +23,13 @@ public class MainController {
 		model.setViewName("inicio");
 	  return model;
 	}
+
+	@RequestMapping(value = { "/sobre**" }, method = RequestMethod.GET)
+	public ModelAndView sobrePage() {
+		ModelAndView model = controller.obterModelAndView();
+		model.setViewName("sobre");
+		return model;
+	}
  
 	@RequestMapping(value = "/admin**", method = RequestMethod.GET)
 	public ModelAndView adminPage() {

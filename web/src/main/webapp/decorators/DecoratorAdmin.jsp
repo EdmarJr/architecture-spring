@@ -59,7 +59,7 @@
 							<li><a href="${pageContext.request.contextPath}/admin/configuracao/endereco">Configurações Endereço</a></li>	
 							<li><a href="${pageContext.request.contextPath}/admin/configuracao/nossosTrabalhos">Configurações Nossos Trabalhos</a></li>
 							<li><a href="${pageContext.request.contextPath}/admin/configuracao/paginaInicial">Configurações Página Inicial</a></li>
-							<li><a href="#">Configurações Página Produtos</a></li>
+							<li><a href="${pageContext.request.contextPath}/admin/configuracao/sobre">Configurações Página Sobre</a></li>
 						</ul></li>
 					<li><a href="${pageContext.request.contextPath}/admin/orcamentos"><i class="fa fa-bar-chart-o"></i>
 							Orçamentos</a></li>

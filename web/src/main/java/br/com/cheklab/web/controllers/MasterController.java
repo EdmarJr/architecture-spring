@@ -11,6 +11,11 @@ import br.com.cheklab.web.utils.ConfiguracoesUtils;
 @Component
 @Scope()
 public class MasterController implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public ModelAndView obterModelAndView() {
 		ModelAndView model = new ModelAndView();
 		model.addObject("configuracao", ConfiguracoesUtils.getConfiguracao());
@@ -20,6 +25,8 @@ public class MasterController implements Serializable{
 		model.addObject("configuracaoEndereco", ConfiguracoesUtils.getConfiguracaoEndereco());
 		model.addObject("configuracaoNossosTrabalhos",
 				ConfiguracoesUtils.getConfiguracaoNossosTrabalhos());
+		model.addObject("configuracaoSobre",
+				ConfiguracoesUtils.getConfiguracaoSobre());
 		return model;
 	}
 }

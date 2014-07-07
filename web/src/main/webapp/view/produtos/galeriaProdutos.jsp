@@ -33,7 +33,7 @@
 				success : function(html) {
 					$('#conteudoProdutos')
 							.html($('#conteudoProdutos', $(html)));
-					$('#content').css('cursor', 'progress');
+					$('#content').css('cursor', 'auto');
 					ajustarEnderecoScroll();
 
 				},
