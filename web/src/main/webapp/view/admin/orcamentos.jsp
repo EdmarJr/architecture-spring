@@ -139,6 +139,10 @@
 									class="label label-default" style="text-size: 10">Email:</span>
 									<span style="float: right">${orcamentoSelecionado.cliente.email}</span>
 							</span></li>
+							<li class="list-group-item"><span> <span
+									class="label label-default" style="text-size: 10">Indicado por:</span>
+									<span style="float: right">${orcamentoSelecionado.cliente.indicacao}</span>
+							</span></li>
 						</ul>
 					</div>
 				</div>

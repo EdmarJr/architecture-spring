@@ -16,7 +16,7 @@
 		<div class="row">
 			<br><br>
 			<div class="col-lg-6 centered">
-				<img width="300px" class="img-rounded" src='<c:url value="/resources/${configuracaoPaginaInicial.imagemTrabalho.endereco}"/>' alt="">
+				<img width="300px" class="img-rounded" src='<c:url value="/resources/${trabalhoRealizado.imagemTrabalho.enderecoSeparator}"/>' alt="Cliente: ${trabalhoRealizado.nomeCliente}">
 			</div><!-- col-lg-6 -->
 			<div class="col-lg-6">
 				<h4>${trabalhoRealizado.nomeCliente}</h4>

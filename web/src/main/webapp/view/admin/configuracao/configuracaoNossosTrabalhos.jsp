@@ -212,20 +212,23 @@
 	src='<c:url value="/resources/admin/js/bootbox/bootbox.min.js"/>'></script>
 <script>
 	function incluirNovoTrabalho(ajaxUrl, urlThisPage) {
-		
+		$('body').css('cursor','progress');
 		$.ajax({
 			url : ajaxUrl,
 			type : 'POST',
 			data : $('#formTrabalhoRealizado,#formConfiguracao').serialize(),
 			success : function(mensagem) {
+				$('body').css('cursor','auto');
 				$('#basicModal').modal('hide');
 				bootbox.alert(mensagem, function() {
+					$('body').css('cursor','progress');
 					$.ajax({
 						url : urlThisPage,
 						type : 'GET',
 						success : function(html) {
 							$('#tabelaTrabalhos').html(
 									$('#tabelaTrabalhos', $(html)));
+							$('body').css('cursor','auto');
 							
 						}
 

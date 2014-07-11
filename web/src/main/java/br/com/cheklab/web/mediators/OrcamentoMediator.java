@@ -26,6 +26,9 @@ public class OrcamentoMediator extends Mediator<Orcamento> {
 	@Override
 	@Transactional
 	public void incluir(Orcamento entidade) {
+		if (entidade == null || entidade.getProdutosOrcamento() == null) {
+			return;
+		}
 		dao.incluir(entidade);
 		List<OrcamentoProdutos> produtosOrcamento = entidade.getProdutosOrcamento();
 		for(OrcamentoProdutos o : produtosOrcamento) {

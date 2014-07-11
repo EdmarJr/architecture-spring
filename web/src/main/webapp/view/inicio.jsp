@@ -51,7 +51,7 @@
 			<c:forEach items="${configuracaoNossosTrabalhos.trabalhosRealizados}" var="trabalhoRealizado">
 			<div class="col-lg-4">
 				<div class="tilt">
-					<a href="#"><img src="${trabalhoRealizado.imagemTrabalho.enderecoSeparator}" alt="${trabalhoRealizado.nomeCliente}"></a>
+					<a href="#"><img src='<c:url value="/resources/${trabalhoRealizado.imagemTrabalho.enderecoSeparator}"/>' alt="${trabalhoRealizado.nomeCliente}"></a>
 				</div>
 			</div>
 			</c:forEach>

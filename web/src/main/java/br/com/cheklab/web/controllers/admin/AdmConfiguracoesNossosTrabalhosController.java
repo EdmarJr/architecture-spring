@@ -36,7 +36,17 @@ public class AdmConfiguracoesNossosTrabalhosController {
 	@RequestMapping(method = RequestMethod.POST, value = "/admin/configuracao/nossosTrabalhos")
 	@ResponseBody
 	public String alterarConfiguracao(ConfiguracaoNossosTrabalhos configuracaoNossosTrabalhos) {
-		mediator.alterar(configuracaoNossosTrabalhos);
+		ConfiguracaoNossosTrabalhos configBanco = mediator
+				.obterPorId(configuracaoNossosTrabalhos.getId());
+		configBanco.setTituloPagina(configuracaoNossosTrabalhos
+				.getTituloPagina());
+		configBanco.setSubTituloPagina(configuracaoNossosTrabalhos
+				.getSubTituloPagina());
+		configBanco.setTituloRodape(configuracaoNossosTrabalhos
+				.getTituloRodape());
+		configBanco.setSubTituloRodape(configuracaoNossosTrabalhos
+				.getSubTituloRodape());
+		mediator.alterar(configBanco);
 		inicializacao.carregarConfiguracoes();
 		return "Configurações alteradas com sucesso.";
 	}
