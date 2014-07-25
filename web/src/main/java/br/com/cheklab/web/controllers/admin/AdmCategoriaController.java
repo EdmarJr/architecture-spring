@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.com.cheklab.web.config.Inicializacao;
 import br.com.cheklab.web.converters.CategoriaConverter;
 import br.com.cheklab.web.entity.Categoria;
 import br.com.cheklab.web.mediators.CategoriaMediator;
@@ -23,7 +24,8 @@ public class AdmCategoriaController {
 
 	@Autowired
 	private CategoriaConverter categoriaConverter;
-
+	@Autowired
+	private Inicializacao inicializacao;
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		binder.registerCustomEditor(Categoria.class, this.categoriaConverter);
@@ -68,12 +70,14 @@ public class AdmCategoriaController {
 	@RequestMapping(value = "/admin/categoria/editar**", method = RequestMethod.POST)
 	public ModelAndView editarCategoria(@ModelAttribute Categoria categoria) {
 		mediator.alterar(categoria);
+		inicializacao.carregarCategorias();
 		return carregarCategorias();
 	}
 
 	@RequestMapping(value = "/admin/categoria/incluir**", method = RequestMethod.POST)
 	public ModelAndView incluirCategoria(@ModelAttribute Categoria categoria) {
 		mediator.incluir(categoria);
+		inicializacao.carregarCategorias();
 		return carregarCategorias();
 	}
 
@@ -83,6 +87,7 @@ public class AdmCategoriaController {
 		Categoria categoria = new Categoria();
 		categoria.setId(idEntidade);
 		mediator.excluir(categoria);
+		inicializacao.carregarCategorias();
 		return idEntidade.toString();
 	}
 

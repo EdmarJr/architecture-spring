@@ -26,6 +26,16 @@ body {
     margin-top: 70px;
 }
 
+body .font-size14{
+	font-size: 14px;
+}
+body .font-size13{
+	font-size: 13px;
+}
+body .font-size12{
+	font-size: 12px;
+}
+
 /* Titles */
 h1, h2, h3, h4, h5, h6 {
     font-family: "Raleway";

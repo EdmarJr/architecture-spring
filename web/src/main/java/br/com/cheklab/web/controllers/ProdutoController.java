@@ -28,7 +28,7 @@ public class ProdutoController {
 	private ModelAndView obterView() {
 		ModelAndView model = controller.obterModelAndView();
 		model.addObject("produtoPesquisa", new Produto());
-		model.addObject("categorias", categoriaMediator.obterTodos());
+		model.addObject("categorias", controller.obterCategoriasDisponiveis());
 		return model;
 	}
 

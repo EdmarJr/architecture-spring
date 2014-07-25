@@ -2,7 +2,6 @@ package br.com.cheklab.web.entity;
 
 import java.util.List;
 
-import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -33,7 +32,6 @@ import br.com.cheklab.web.entity.listeners.EntidadesComStatusListener;
 @EntityListeners({ EntidadesComStatusListener.class,
 		EntidadesComPosicaoListener.class })
 @Table(name = "produto")
-@Cacheable(true)
 public class Produto implements EntidadeComImagens, EntidadeComStatus,
 		EntidadeComPosicao {
 
@@ -100,6 +98,7 @@ public class Produto implements EntidadeComImagens, EntidadeComStatus,
 		this.codigoIdentificacao = codigoIdentificacao;
 	}
 
+	@Override
 	public List<Imagem> getImagens() {
 		return imagens;
 	}
@@ -116,24 +115,28 @@ public class Produto implements EntidadeComImagens, EntidadeComStatus,
 		this.descricao = descricao;
 	}
 
+	@Override
 	public Integer getPosicao() {
 		return posicao;
 	}
 
+	@Override
 	public void setPosicao(Integer posicao) {
 		this.posicao = posicao;
 	}
 
+	@Override
 	public Boolean getAtivo() {
 		return ativo;
 	}
 
+	@Override
 	public void setAtivo(Boolean ativo) {
 		this.ativo = ativo;
 	}
 
 	public Imagem getImagemPrincipal() {
-		if (!getImagens().isEmpty()) {
+		if (getImagens() != null && !getImagens().isEmpty()) {
 			return getImagens().get(0);
 		}
 		return null;

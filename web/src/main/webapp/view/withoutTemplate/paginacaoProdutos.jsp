@@ -16,6 +16,7 @@
 	src='<c:url value="/resources/admin/js/bootbox/bootbox.min.js"/>'></script>
 <script type="text/javascript"
 	src='<c:url value="/resources/admin/js/fancy/jquery.mousewheel-3.0.6.pack.js"/>'></script>
+	
 <style>
 .imgMiniaturaFancy {
 	display: inline-block;

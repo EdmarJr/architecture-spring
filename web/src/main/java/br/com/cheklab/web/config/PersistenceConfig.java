@@ -51,6 +51,8 @@ public class PersistenceConfig {
 		Properties jpaProperties = new Properties();
 		jpaProperties.put("hibernate.hbm2ddl.auto",
 				env.getProperty("hibernate.hbm2ddl.auto"));
+		jpaProperties.put("javax.persistence.sharedCache.mode",
+				env.getProperty("javax.persistence.sharedCache.mode"));
 		factory.setJpaProperties(jpaProperties);
 		factory.afterPropertiesSet();
 		factory.setLoadTimeWeaver(new InstrumentationLoadTimeWeaver());

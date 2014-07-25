@@ -25,7 +25,10 @@
 			if (!validarMinimoTresLetrasNaPesquisa()) {
 				return;
 			}
-			$('#content').css('cursor', 'progress');
+			
+			$('#loading').attr('style', '');
+			$('#conteudoProdutos').attr('style', 'display:none;');
+			$('#pagination').attr('style', 'display:none;');
 			$.ajax({
 				url : enderecoAjax,
 				data : $(form).serialize(),
@@ -33,7 +36,10 @@
 				success : function(html) {
 					$('#conteudoProdutos')
 							.html($('#conteudoProdutos', $(html)));
-					$('#content').css('cursor', 'auto');
+					gerenciarTextos();
+					$('#loading').attr('style', 'display:none;');
+					$('#conteudoProdutos').attr('style', '');
+					$('#pagination').attr('style', '');
 					ajustarEnderecoScroll();
 
 				},
@@ -104,6 +110,9 @@
 					href='http://grandbrindes.com.br${pageContext.request.contextPath}/produtosPaginados/pagina?idCategoria=${produtos[0].categoria.id}&idPagina=2'
 					class="next">next</a>
 			</div>
+			<div id="loading" style="display:none;">
+				<img src='<c:url value="/resources/img/grandbrindes/loading.gif"/>'/>
+			</div>
 		</div>
 		<div id="lastPostsLoader" style="width: 100%;"></div>
 
@@ -111,6 +120,29 @@
 
 	</div>
 </div>
+<script>
+		$(document).ready(function() {
+			gerenciarTextos();
+		});
+		function gerenciarTextos() {
+			$(".resizeFonte").each(function() {
+				var heit = $(this).height();
+				if(heit > 30) {
+					$(this).attr("class","font-size14");
+					heit = $(this).height();
+					if(heit > 30) {
+						$(this).attr("class","font-size13");
+						heit = $(this).height();
+						if(heit > 30) {
+							$(this).attr("class","font-size12");
+							heit = $(this).height();
+						}
+					}
+				}
+			});
+		}
+	
+	</script>
 <script type="text/javascript">
 	$(document)
 			.ready(
@@ -151,6 +183,7 @@
 															+ (parseInt(numeroPagina) + 1);
 													$('#pagination a').attr(
 															'href', urlInteira);
+													gerenciarTextos();
 												} 
 												$('div#lastPostsLoader')
 														.empty();
