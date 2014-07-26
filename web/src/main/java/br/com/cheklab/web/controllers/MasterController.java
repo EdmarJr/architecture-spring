@@ -33,7 +33,4 @@ public class MasterController implements Serializable{
 		return model;
 	}
 	
-	public List<Categoria> obterCategoriasDisponiveis() {
-		return CategoriasUtils.getCategoriasDispovenis();
-	}
 }

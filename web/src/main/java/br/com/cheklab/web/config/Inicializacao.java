@@ -52,7 +52,6 @@ public class Inicializacao implements InitializingBean {
 		AutowireHelper.autowire(this, this.categoriaMediator);
 		GerenciadorImagem.contadorImagem = imagemMediator.obterContadorImagem();
 		carregarConfiguracoes();
-		carregarCategorias();
 	}
 
 	public void carregarConfiguracoes() {
@@ -74,10 +73,6 @@ public class Inicializacao implements InitializingBean {
 						.obterConfiguracao());
 		ConfiguracoesUtils.setConfiguracaoSobre(configuracaoSobreMediator
 				.obterConfiguracao());
-	}
-	
-	public void carregarCategorias() {
-		CategoriasUtils.setCategoriasDispovenis(categoriaMediator.obterTodos());
 	}
 	
 
