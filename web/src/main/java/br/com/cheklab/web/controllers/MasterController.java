@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.cheklab.web.entity.Categoria;
-import br.com.cheklab.web.utils.CategoriasUtils;
 import br.com.cheklab.web.utils.ConfiguracoesUtils;
 
 @Component

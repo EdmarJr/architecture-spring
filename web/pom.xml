@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>br.com.cheklab</groupId>
 	<artifactId>web</artifactId>
-	<packaging>war</packaging>
+	<packaging>war</packaging>  
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Servlet 3 Web Application</name>
 	<url>http://maven.apache.org</url>
@@ -14,7 +14,14 @@
 			<id>my-alternate-repository</id>
 			<url>http://myrepo.net/repo</url>
 		</repository>
+		<repository>
+			<id>mvnrepository</id>
+			<url>http://repo1.maven.org/maven2</url>
+		</repository>
+		
+
 	</repositories>
+
 
 	<properties>
 		<spring.version>4.0.3.RELEASE</spring.version>
@@ -27,10 +34,10 @@
 	<dependencies>
 
 		<dependency>
-	<groupId>org.apache.commons</groupId>
-	<artifactId>commons-dbcp2</artifactId>
-	<version>2.0.1</version>
-</dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-dbcp2</artifactId>
+			<version>2.0.1</version>
+		</dependency>
 
 
 
